@@ -2,7 +2,6 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - CharacterMoveAndRotate
-    - CharacterMoveWithController
     - FloatingJoystick
     - FremeRate
     - UIMultiplier
@@ -12,6 +11,12 @@ ScriptsOnlyBuild:
     - Cinemachine.CinemachinePipeline
     - Cinemachine.CinemachineTransposer
     - Cinemachine.CinemachineVirtualCamera
+    Unity.Recorder.Editor.dll:
+    - UnityEditor.Recorder.MovieRecorderEditor
+    - UnityEditor.Recorder.MovieRecorderSettings
+    - UnityEditor.Recorder.RecorderControllerSettings
+    - UnityEditor.Recorder.RecorderSettingsPrefsEditor
+    - UnityEditor.Recorder.RecorderWindow
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.RiderScriptEditorData
     - Packages.Rider.Editor.UnitTesting.CallbackData
@@ -40,6 +45,9 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
     - UnityEngine.UI.Slider
+    Zenject.dll:
+    - Zenject.ProjectContext
+    - Zenject.SceneContext
   serializedClasses:
     Cinemachine:
     - Cinemachine.CinemachineBlendDefinition
@@ -64,6 +72,7 @@ ScriptsOnlyBuild:
     - TMPro.VertexGradient
     UnityEngine.CoreModule:
     - UnityEngine.Events.PersistentCallGroup
+    - UnityEngine.Events.UnityEvent
     UnityEngine.TextCoreFontEngineModule:
     - UnityEngine.TextCore.FaceInfo
     - UnityEngine.TextCore.Glyph
@@ -76,6 +85,9 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Navigation
     - UnityEngine.UI.Slider/SliderEvent
     - UnityEngine.UI.SpriteState
+    Zenject:
+    - Zenject.ZenjectSettings
+    - Zenject.ZenjectSettings/SignalSettings
   methodsToPreserve: []
   sceneClasses:
     Assets/Scenes/MainScene.unity:
@@ -99,6 +111,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 49
       Script: {instanceID: 0}
+    - Class: 54
+      Script: {instanceID: 0}
     - Class: 64
       Script: {instanceID: 0}
     - Class: 65
@@ -118,47 +132,49 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1564}
+      Script: {instanceID: 1760}
     - Class: 114
-      Script: {instanceID: 1588}
+      Script: {instanceID: 1784}
     - Class: 114
-      Script: {instanceID: 1830}
+      Script: {instanceID: 2040}
     - Class: 114
-      Script: {instanceID: 2348}
+      Script: {instanceID: 2566}
     - Class: 114
-      Script: {instanceID: 2658}
+      Script: {instanceID: 2892}
     - Class: 114
-      Script: {instanceID: 2748}
+      Script: {instanceID: 2986}
     - Class: 114
-      Script: {instanceID: 2782}
+      Script: {instanceID: 3022}
     - Class: 114
-      Script: {instanceID: 2826}
+      Script: {instanceID: 3068}
     - Class: 114
-      Script: {instanceID: 2914}
+      Script: {instanceID: 3162}
     - Class: 114
-      Script: {instanceID: 3074}
+      Script: {instanceID: 3324}
     - Class: 114
-      Script: {instanceID: 4624}
+      Script: {instanceID: 3616}
     - Class: 114
-      Script: {instanceID: 4940}
+      Script: {instanceID: 4946}
     - Class: 114
-      Script: {instanceID: 5040}
+      Script: {instanceID: 5280}
     - Class: 114
-      Script: {instanceID: 5718}
+      Script: {instanceID: 6088}
     - Class: 114
-      Script: {instanceID: 5820}
+      Script: {instanceID: 6192}
     - Class: 114
-      Script: {instanceID: 6462}
+      Script: {instanceID: 6870}
     - Class: 114
-      Script: {instanceID: 6502}
+      Script: {instanceID: 6912}
     - Class: 114
-      Script: {instanceID: 6696}
+      Script: {instanceID: 7114}
     - Class: 114
-      Script: {instanceID: 7084}
+      Script: {instanceID: 7532}
     - Class: 114
-      Script: {instanceID: 7882}
+      Script: {instanceID: 8372}
     - Class: 114
-      Script: {instanceID: 7944}
+      Script: {instanceID: 8436}
+    - Class: 114
+      Script: {instanceID: 9822}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -234,6 +250,12 @@ ScriptsOnlyBuild:
     className: LayoutElement
   - hash:
       serializedVersion: 2
+      Hash: 1dbd2fa1959126791e0a40fe507d6cfb
+    assemblyName: ToonyColorsPro2.Demo.dll
+    namespaceName: ToonyColorsPro.Demo
+    className: TCP2_Demo_Camera
+  - hash:
+      serializedVersion: 2
       Hash: 6bc76e17f0d5e93f3eea7f5a2fe227f3
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -252,7 +274,7 @@ ScriptsOnlyBuild:
     className: CinemachineTriggerAction
   - hash:
       serializedVersion: 2
-      Hash: 892bb6d8e7c32cedbeb3520793e63714
+      Hash: b9ef60b62be4d38b764297a61f0c92ce
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CharacterMoveAndRotate
@@ -346,6 +368,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: RawImage
+  - hash:
+      serializedVersion: 2
+      Hash: 7c04ff7abdae8f8e88fda7b0ca2e11ba
+    assemblyName: ToonyColorsPro.Runtime.dll
+    namespaceName: ToonyColorsPro.Runtime
+    className: TCP2_PlanarReflection
   - hash:
       serializedVersion: 2
       Hash: 0913ff288d207f4b2303554c4bad25be
@@ -498,6 +526,12 @@ ScriptsOnlyBuild:
     className: Cinemachine3rdPersonFollow
   - hash:
       serializedVersion: 2
+      Hash: 49101319b21043357cb80c5aba043e1d
+    assemblyName: Unity.Recorder.dll
+    namespaceName: UnityEngine.Recorder
+    className: RecorderBindings
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
@@ -516,16 +550,22 @@ ScriptsOnlyBuild:
     className: ToggleGroup
   - hash:
       serializedVersion: 2
+      Hash: 69415240821be7986b27e72bf9609a30
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: Button
+  - hash:
+      serializedVersion: 2
       Hash: b639d97cb780d0d99a2bfb3ad1935732
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
     className: CinemachineMixingCamera
   - hash:
       serializedVersion: 2
-      Hash: 69415240821be7986b27e72bf9609a30
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.UI
-    className: Button
+      Hash: ad414eeb94134c1b0331356405c13b1f
+    assemblyName: ToonyColorsPro2.Demo.dll
+    namespaceName: ToonyColorsPro.Demo
+    className: TCP2_Demo_GammaLinear
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -636,6 +676,12 @@ ScriptsOnlyBuild:
     className: UnityOnCollisionExit2DMessageListener
   - hash:
       serializedVersion: 2
+      Hash: a6e561615949734e9f12f9b61661f43e
+    assemblyName: ToonyColorsPro2.Demo.dll
+    namespaceName: 
+    className: TCP2_Demo_InvertedMaskImage
+  - hash:
+      serializedVersion: 2
       Hash: 2574ac7d50617d23cdefe4ad22f5e1ad
     assemblyName: Unity.VisualScripting.Flow.dll
     namespaceName: Unity.VisualScripting
@@ -660,6 +706,12 @@ ScriptsOnlyBuild:
     className: UnityOnPointerExitMessageListener
   - hash:
       serializedVersion: 2
+      Hash: 0f46123eb60a6cce1399824f93fe8219
+    assemblyName: ToonyColorsPro2.Demo.dll
+    namespaceName: ToonyColorsPro.Demo
+    className: TCP2_Demo_View
+  - hash:
+      serializedVersion: 2
       Hash: aba7b2852ef61d175dd9602e7723d5e5
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -670,6 +722,12 @@ ScriptsOnlyBuild:
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
     className: CinemachineGroupComposer
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Core.Installers
+    className: PlayerInstaller
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -714,6 +772,18 @@ ScriptsOnlyBuild:
     className: ControlPlayableAsset
   - hash:
       serializedVersion: 2
+      Hash: 301439da0db6587dcbb560673f5dc397
+    assemblyName: ToonyColorsPro2.Demo.dll
+    namespaceName: ToonyColorsPro.Demo
+    className: TCP2_Demo_AnimateMaterial
+  - hash:
+      serializedVersion: 2
+      Hash: 12a825b52bd19f9c163c2c4b9548d867
+    assemblyName: ToonyColorsPro.Runtime.dll
+    namespaceName: ToonyColorsPro.Runtime
+    className: TCP2_GetPosOnWater
+  - hash:
+      serializedVersion: 2
       Hash: ffd3ed4fcd23b3e7745287c99a637247
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
@@ -742,6 +812,12 @@ ScriptsOnlyBuild:
     assemblyName: Zenject.dll
     namespaceName: Zenject
     className: ProjectKernel
+  - hash:
+      serializedVersion: 2
+      Hash: 7ffbb3f92ea27f70bb5deca6312414ef
+    assemblyName: ToonyColorsPro2.Demo.dll
+    namespaceName: ToonyColorsPro.Demo
+    className: TCP2_Demo_Cat
   - hash:
       serializedVersion: 2
       Hash: dbfb4270852b0008a423a7418d9de4cf
@@ -796,12 +872,6 @@ ScriptsOnlyBuild:
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
     className: CinemachineCollisionImpulseSource
-  - hash:
-      serializedVersion: 2
-      Hash: 82c4ce2c915cf5ee82e6d62309a6c467
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: CharacterMoveWithController
   - hash:
       serializedVersion: 2
       Hash: 37de53a49708b087da4050fc1ca7a6ee
@@ -948,6 +1018,12 @@ ScriptsOnlyBuild:
     className: PanelEventHandler
   - hash:
       serializedVersion: 2
+      Hash: 787b7f6dec616f7986358e5b9bdacbfe
+    assemblyName: ToonyColorsPro2.Demo.dll
+    namespaceName: ToonyColorsPro.Demo
+    className: TCP2_Demo_Interactive_Environment
+  - hash:
+      serializedVersion: 2
       Hash: 15882a52798c275361cd0a3ada984ec5
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
@@ -966,6 +1042,12 @@ ScriptsOnlyBuild:
     className: DefaultGameObjectKernel
   - hash:
       serializedVersion: 2
+      Hash: b10f0f008d787b95a5928eed8ceaa36e
+    assemblyName: ToonyColorsPro2.Demo.dll
+    namespaceName: Kino
+    className: Bloom
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
@@ -978,10 +1060,22 @@ ScriptsOnlyBuild:
     className: Text
   - hash:
       serializedVersion: 2
+      Hash: b6542bdca0edcd169421a6f5be1ebec1
+    assemblyName: ToonyColorsPro2.Demo.dll
+    namespaceName: ToonyColorsPro.Demo
+    className: TCP2_Demo_PBS
+  - hash:
+      serializedVersion: 2
       Hash: 2574ac7d50617d23cdefe4ad22f5e1ad
     assemblyName: Unity.VisualScripting.State.dll
     namespaceName: Unity.VisualScripting
     className: StateGraphAsset
+  - hash:
+      serializedVersion: 2
+      Hash: b60b8aabeb6f51f9849b883e275225bb
+    assemblyName: ToonyColorsPro2.Demo.dll
+    namespaceName: ToonyColorsPro
+    className: TCP2_Demo_Interactive_Content
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -1134,6 +1228,12 @@ ScriptsOnlyBuild:
     className: UnityOnDragMessageListener
   - hash:
       serializedVersion: 2
+      Hash: f6b4756d4470fa625d367b30639b2c73
+    assemblyName: ToonyColorsPro2.Demo.dll
+    namespaceName: ToonyColorsPro.Demo
+    className: TCP2_Demo
+  - hash:
+      serializedVersion: 2
       Hash: caa533b001ae39b864ba8425019e2268
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -1242,6 +1342,12 @@ ScriptsOnlyBuild:
     className: FloatingJoystick
   - hash:
       serializedVersion: 2
+      Hash: d8a422018ec06aded5071b7bf260f85c
+    assemblyName: ToonyColorsPro2.Demo.dll
+    namespaceName: 
+    className: TCP2_Demo_AutoRotate
+  - hash:
+      serializedVersion: 2
       Hash: eeb356fa33eec10332ebc7e468fecb95
     assemblyName: Cinemachine.dll
     namespaceName: 
@@ -1332,6 +1438,12 @@ ScriptsOnlyBuild:
     className: UnityOnParticleCollisionMessageListener
   - hash:
       serializedVersion: 2
+      Hash: 2122c42aac0c44e0cd7ed01910b598fb
+    assemblyName: ToonyColorsPro2.Demo.dll
+    namespaceName: ToonyColorsPro.Demo
+    className: TCP2_Demo_PBS_View
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
@@ -1351,6 +1463,12 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: ToonyColorsPro.Runtime.dll
+    namespaceName: ToonyColorsPro.Runtime
+    className: TCP2_ShaderUpdateUnityTime
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnMouseUpMessageListener
@@ -1360,6 +1478,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_ScrollbarEventHandler
+  - hash:
+      serializedVersion: 2
+      Hash: b8f61d47d5357228f62df063a9c8643a
+    assemblyName: ToonyColorsPro2.Demo.dll
+    namespaceName: ToonyColorsPro.Demo
+    className: TCP2_Demo_Interactive
   - hash:
       serializedVersion: 2
       Hash: 66a76d307baa3e8eb65d877c961f1b43
@@ -1372,6 +1496,12 @@ ScriptsOnlyBuild:
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
     className: CinemachineBasicMultiChannelPerlin
+  - hash:
+      serializedVersion: 2
+      Hash: dc9e318326bf89001e1c59c6bb98abc2
+    assemblyName: ToonyColorsPro.Runtime.dll
+    namespaceName: ToonyColorsPro.Runtime
+    className: TCP2_CameraDepth
   - hash:
       serializedVersion: 2
       Hash: 8220b46879dc5e37db1b940c938f5744
