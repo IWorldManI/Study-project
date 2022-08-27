@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637969547437173885
-    m_Hash: 3070294649
+      ticks: 637971971890724565
+    m_Hash: 1980835743
   m_LockFileStatus:
     m_FilePath: C:/Users/mmari/Documents/GitHub/Study-project/Proj/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637969547437203843
-    m_Hash: 799181593
+      ticks: 637971971890757078
+    m_Hash: 528475550
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
@@ -355,7 +355,7 @@ m_ResolvedPackages:
   - name: com.unity.modules.jsonserialize
     version: 1.0.0
   - name: com.unity.ide.rider
-    version: 3.0.14
+    version: 3.0.15
   - name: com.unity.ide.vscode
     version: 1.2.5
   - name: com.unity.editorcoroutines
@@ -387,12 +387,12 @@ m_ResolvedPackages:
   unityLifecycle:
     version: 1.0.1
     nextVersion: 
-- packageId: com.unity.ide.rider@3.0.14
+- packageId: com.unity.ide.rider@3.0.15
   testable: 0
   isDirectDependency: 1
-  version: 3.0.14
+  version: 3.0.15
   source: 1
-  resolvedPath: C:\Users\mmari\Documents\GitHub\Study-project\Proj\Library\PackageCache\com.unity.ide.rider@3.0.14
+  resolvedPath: C:\Users\mmari\Documents\GitHub\Study-project\Proj\Library\PackageCache\com.unity.ide.rider@3.0.15
   assetPath: Packages/com.unity.ide.rider
   name: com.unity.ide.rider
   displayName: JetBrains Rider Editor
@@ -460,13 +460,13 @@ m_ResolvedPackages:
     capabilities: 7
   hideInEditor: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 637861245770000000
+  datePublishedTicks: 637914298700000000
   documentationUrl: 
   hasRepository: 1
   repository:
     type: git
     url: https://github.cds.internal.unity3d.com/unity/com.unity.ide.rider.git
-    revision: e6bfc84a08a0876a2c20ec2ee0883b5ece331dfd
+    revision: b61ff0378932fdf03b5891e09c91728337de674c
     path: 
   unityLifecycle:
     version: 3.0.14

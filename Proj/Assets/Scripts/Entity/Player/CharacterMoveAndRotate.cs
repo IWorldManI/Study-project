@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Core.Factory;
 using Core.StateMachine;
 using Core.StateMachine.StateList;
 using UnityEngine;
@@ -17,14 +18,14 @@ public class CharacterMoveAndRotate : MonoBehaviour
 
     private StateMachine stateMachine;
     private RunState runState;
-
+    
     private void Start()
     {
         //Replace to zenject
         animator = GetComponent<Animator>();
         joystick = FindObjectOfType<FloatingJoystick>();
         rb = GetComponent<Rigidbody>();
-        
+
         stateMachine = new StateMachine();
         stateMachine.Initialize(new IdleState(this));
         

@@ -379,6 +379,8 @@
 "Assets/Joystick Pack/Scripts/Joysticks/FixedJoystick.cs"
 "Assets/Joystick Pack/Scripts/Joysticks/FloatingJoystick.cs"
 "Assets/Joystick Pack/Scripts/Joysticks/VariableJoystick.cs"
+"Assets/Scripts/Core/Factory/CustomerFactory.cs"
+"Assets/Scripts/Core/Factory/GenericFactory.cs"
 "Assets/Scripts/Core/Installers/PlayerInstaller.cs"
 "Assets/Scripts/Core/StateMachine/State.cs"
 "Assets/Scripts/Core/StateMachine/StateList/IdleState.cs"
@@ -388,6 +390,7 @@
 "Assets/Scripts/Entity/Customer/Customer.cs"
 "Assets/Scripts/Entity/Player/CharacterMoveAndRotate.cs"
 "Assets/Scripts/FremeRate.cs"
+"Assets/Scripts/TrashFolder/DEBUG_CustomerSpawn.cs"
 "Assets/Scripts/Woobling/Woobling.cs"
 -langversion:9.0
 

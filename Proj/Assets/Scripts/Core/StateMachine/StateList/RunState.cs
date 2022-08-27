@@ -13,20 +13,20 @@ namespace Core.StateMachine.StateList
         public override void Enter()
         {
             base.Enter();
-            Debug.Log("вошел в  Run");
+            Debug.Log("enter to  Run");
             player.animator.SetBool("isRun",true);
         }
 
         public override void Exit()
         {
             base.Exit();
-            Debug.Log("вышел из Run");
+            Debug.Log("exit Run");
         }
 
         public override void Update()
         {
             base.Update();
-            Debug.Log("обновляю Run");
+            Debug.Log("update state Run");
         }
     }
 }

@@ -13,20 +13,20 @@ namespace Core.StateMachine.StateList
         public override void Enter()
         {
             base.Enter();
-            Debug.Log("вошел в  idle");
+            Debug.Log("enter to idle");
             player.animator.SetBool("isRun",false);
         }
 
         public override void Exit()
         {
             base.Exit();
-            Debug.Log("вышел из idle");
+            Debug.Log("exit idle");
         }
 
         public override void Update()
         {
             base.Update();
-            Debug.Log("обновляю idle");
+            Debug.Log("update state idle");
         }
     }
 }
