@@ -109,6 +109,7 @@
 -define:ENABLE_LEGACY_INPUT_MANAGER
 -define:CSHARP_7_OR_LATER
 -define:CSHARP_7_3_OR_NEWER
+-r:"Assets/Plugins/Demigiant/DOTween/DOTween.dll"
 -r:"Assets/Plugins/Zenject/Source/Usage/Zenject-usage.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2021.3.4f1/Editor/Data/NetStandard/compat/2.1.0/shims/netfx/mscorlib.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2021.3.4f1/Editor/Data/NetStandard/compat/2.1.0/shims/netfx/System.ComponentModel.Composition.dll"
@@ -298,6 +299,7 @@
 -r:"C:/Users/mmari/Documents/GitHub/Study-project/Proj/Library/PackageCache/com.unity.cinemachine@2.8.6/Runtime/ThirdParty/clipper_library.dll"
 -r:"C:/Users/mmari/Documents/GitHub/Study-project/Proj/Library/PackageCache/com.unity.nuget.newtonsoft-json@3.0.2/Runtime/AOT/Newtonsoft.Json.dll"
 -r:"C:/Users/mmari/Documents/GitHub/Study-project/Proj/Library/PackageCache/com.unity.visualscripting@1.7.8/Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll"
+-r:"Library/Bee/artifacts/1300b0aP.dag/Assembly-CSharp-firstpass.ref.dll"
 -r:"Library/Bee/artifacts/1300b0aP.dag/Cinemachine.ref.dll"
 -r:"Library/Bee/artifacts/1300b0aP.dag/ToonyColorsPro.Runtime.ref.dll"
 -r:"Library/Bee/artifacts/1300b0aP.dag/ToonyColorsPro2.Demo.ref.dll"
@@ -320,14 +322,23 @@
 "Assets/Joystick Pack/Scripts/Joysticks/FixedJoystick.cs"
 "Assets/Joystick Pack/Scripts/Joysticks/FloatingJoystick.cs"
 "Assets/Joystick Pack/Scripts/Joysticks/VariableJoystick.cs"
-"Assets/Scripts/CharacterMoveAndRotate.cs"
+"Assets/Scripts/Core/Factory/CustomerFactory.cs"
+"Assets/Scripts/Core/Factory/GenericFactory.cs"
 "Assets/Scripts/Core/Installers/PlayerInstaller.cs"
+"Assets/Scripts/Core/StateMachine/CustomerStateList/CustomerIdle.cs"
+"Assets/Scripts/Core/StateMachine/CustomerStateList/CustomerRun.cs"
+"Assets/Scripts/Core/StateMachine/PlayerStateList/IdleState.cs"
+"Assets/Scripts/Core/StateMachine/PlayerStateList/RunState.cs"
 "Assets/Scripts/Core/StateMachine/State.cs"
-"Assets/Scripts/Core/StateMachine/StateList/IdleState.cs"
-"Assets/Scripts/Core/StateMachine/StateList/RunState.cs"
 "Assets/Scripts/Core/StateMachine/StateMachine.cs"
-"Assets/Scripts/Core/UiScripts/UIMultiplier.cs"
+"Assets/Scripts/Core/Trash/UIMultiplier.cs"
+"Assets/Scripts/Entity/Counters/CashBox.cs"
+"Assets/Scripts/Entity/Counters/Milk.cs"
+"Assets/Scripts/Entity/Counters/Tomatoes.cs"
+"Assets/Scripts/Entity/Customer/Customer.cs"
+"Assets/Scripts/Entity/Player/CharacterMoveAndRotate.cs"
 "Assets/Scripts/FremeRate.cs"
+"Assets/Scripts/TrashFolder/DEBUG_CustomerSpawn.cs"
 "Assets/Scripts/Woobling/Woobling.cs"
 -langversion:9.0
 

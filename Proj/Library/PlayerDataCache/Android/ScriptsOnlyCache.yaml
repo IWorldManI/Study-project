@@ -1,9 +1,15 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - CashBox
     - CharacterMoveAndRotate
+    - Core.Factory.CustomerFactory
+    - DEBUG_CustomerSpawn
+    - Entity.Customer.Customer
     - FloatingJoystick
     - FremeRate
+    - Milk
+    - Tomatoes
     - UIMultiplier
     - Woobling
     Cinemachine.dll:
@@ -11,6 +17,8 @@ ScriptsOnlyBuild:
     - Cinemachine.CinemachinePipeline
     - Cinemachine.CinemachineTransposer
     - Cinemachine.CinemachineVirtualCamera
+    DOTweenUpgradeManager.dll:
+    - DG.DOTweenUpgradeManager.UpgradeWindow
     Unity.Recorder.Editor.dll:
     - UnityEditor.Recorder.MovieRecorderEditor
     - UnityEditor.Recorder.MovieRecorderSettings
@@ -29,10 +37,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -123,6 +129,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 89
       Script: {instanceID: 0}
+    - Class: 90
+      Script: {instanceID: 0}
     - Class: 91
       Script: {instanceID: 0}
     - Class: 95
@@ -132,56 +140,72 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1760}
+      Script: {instanceID: 1766}
     - Class: 114
-      Script: {instanceID: 1784}
+      Script: {instanceID: 1790}
     - Class: 114
-      Script: {instanceID: 2040}
+      Script: {instanceID: 2046}
     - Class: 114
-      Script: {instanceID: 2566}
+      Script: {instanceID: 2576}
     - Class: 114
-      Script: {instanceID: 2892}
+      Script: {instanceID: 2902}
     - Class: 114
-      Script: {instanceID: 2986}
+      Script: {instanceID: 2996}
     - Class: 114
-      Script: {instanceID: 3022}
+      Script: {instanceID: 3032}
     - Class: 114
-      Script: {instanceID: 3068}
+      Script: {instanceID: 3078}
     - Class: 114
-      Script: {instanceID: 3162}
+      Script: {instanceID: 3172}
     - Class: 114
-      Script: {instanceID: 3324}
+      Script: {instanceID: 3334}
     - Class: 114
-      Script: {instanceID: 3616}
+      Script: {instanceID: 3626}
     - Class: 114
-      Script: {instanceID: 4946}
+      Script: {instanceID: 3644}
     - Class: 114
-      Script: {instanceID: 5280}
+      Script: {instanceID: 3972}
     - Class: 114
-      Script: {instanceID: 6088}
+      Script: {instanceID: 4032}
     - Class: 114
-      Script: {instanceID: 6192}
+      Script: {instanceID: 4608}
     - Class: 114
-      Script: {instanceID: 6870}
+      Script: {instanceID: 4980}
     - Class: 114
-      Script: {instanceID: 6912}
+      Script: {instanceID: 5172}
     - Class: 114
-      Script: {instanceID: 7114}
+      Script: {instanceID: 5318}
     - Class: 114
-      Script: {instanceID: 7532}
+      Script: {instanceID: 6128}
     - Class: 114
-      Script: {instanceID: 8372}
+      Script: {instanceID: 6232}
     - Class: 114
-      Script: {instanceID: 8436}
+      Script: {instanceID: 6920}
     - Class: 114
-      Script: {instanceID: 9822}
+      Script: {instanceID: 6962}
+    - Class: 114
+      Script: {instanceID: 7164}
+    - Class: 114
+      Script: {instanceID: 7582}
+    - Class: 114
+      Script: {instanceID: 8422}
+    - Class: 114
+      Script: {instanceID: 8486}
+    - Class: 114
+      Script: {instanceID: 8692}
+    - Class: 114
+      Script: {instanceID: 9884}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
       Script: {instanceID: 0}
     - Class: 136
       Script: {instanceID: 0}
+    - Class: 137
+      Script: {instanceID: 0}
     - Class: 157
+      Script: {instanceID: 0}
+    - Class: 195
       Script: {instanceID: 0}
     - Class: 196
       Script: {instanceID: 0}
@@ -192,6 +216,8 @@ ScriptsOnlyBuild:
     - Class: 223
       Script: {instanceID: 0}
     - Class: 224
+      Script: {instanceID: 0}
+    - Class: 238
       Script: {instanceID: 0}
   scriptHashData:
   - hash:
@@ -544,6 +570,12 @@ ScriptsOnlyBuild:
     className: ProjectContext
   - hash:
       serializedVersion: 2
+      Hash: eadafb18ee9aa8997e00570a0a30c518
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Core.Factory
+    className: CustomerFactory
+  - hash:
+      serializedVersion: 2
       Hash: 0fd6822f6177297bd0eb4d83cc7a9030
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -617,6 +649,12 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Tomatoes
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
     className: CinemachinePixelPerfect
@@ -634,10 +672,28 @@ ScriptsOnlyBuild:
     className: UnityOnSelectMessageListener
   - hash:
       serializedVersion: 2
+      Hash: 35311c8ab181a5a222ab0e62a6a6d90e
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: DEBUG_CustomerSpawn
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools.TestRunner.Callbacks
     className: PlayerQuitHandler
+  - hash:
+      serializedVersion: 2
+      Hash: 704dcd31abc789439bc3f3cd10b58c2b
+    assemblyName: DOTween.dll
+    namespaceName: DG.Tweening.Core
+    className: DOTweenComponent
+  - hash:
+      serializedVersion: 2
+      Hash: 9b2663563359a91d0a6867fee160c936
+    assemblyName: DOTween.dll
+    namespaceName: DG.Tweening.Core
+    className: DOTweenSettings
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -704,6 +760,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnPointerExitMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: f5999c59d8b87a3401a2b26c576082fb
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Entity.Customer
+    className: Customer
   - hash:
       serializedVersion: 2
       Hash: 0f46123eb60a6cce1399824f93fe8219
@@ -842,6 +904,12 @@ ScriptsOnlyBuild:
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
     className: GroupWeightManipulator
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CashBox
   - hash:
       serializedVersion: 2
       Hash: 56df1fa7cea034df9863fe5a24200a32
@@ -1376,6 +1444,12 @@ ScriptsOnlyBuild:
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
     className: CinemachineTrackedDolly
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Milk
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f

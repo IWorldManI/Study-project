@@ -6,7 +6,6 @@ namespace Core.StateMachine
         {
         
         }
-
         public virtual void Exit()
         {
         
