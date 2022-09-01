@@ -16,7 +16,7 @@ namespace Core.StateMachine.StateList
             base.Enter();
             Debug.Log("customer enter to run");
             customer.animator.SetBool("isRun",true);
-            customer._navMeshAgent.SetDestination(customer.target);
+            //customer._navMeshAgent.SetDestination(customer.target);
         }
 
         public override void Exit()

@@ -325,6 +325,7 @@
 "Assets/Scripts/Core/Factory/CustomerFactory.cs"
 "Assets/Scripts/Core/Factory/GenericFactory.cs"
 "Assets/Scripts/Core/Installers/PlayerInstaller.cs"
+"Assets/Scripts/Core/Iterator/Iterator.cs"
 "Assets/Scripts/Core/StateMachine/CustomerStateList/CustomerIdle.cs"
 "Assets/Scripts/Core/StateMachine/CustomerStateList/CustomerRun.cs"
 "Assets/Scripts/Core/StateMachine/PlayerStateList/IdleState.cs"

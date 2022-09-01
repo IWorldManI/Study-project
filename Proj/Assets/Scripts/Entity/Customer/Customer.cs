@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using Core.Iterator;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
-using Core.StateMachine;
 using Core.StateMachine.StateList;
+using Unity.VisualScripting;
+using StateMachine = Core.StateMachine.StateMachine;
 
 namespace Entity.Customer
 {
@@ -16,21 +19,22 @@ namespace Entity.Customer
         public int orders;
         public float customerMultiplier;
 
-        public  List<GameObject> orderList = new List<GameObject>();
-        private int n;
-
         [SerializeField] public NavMeshAgent _navMeshAgent;
 
         private StateMachine stateMachine;
 
-        public Vector3 target;
+        private ItemCollection _itemCollection;
+        
+        [SerializeField] private Vector3 target;
+        
+        
         
         //debug
         private void Update()
         {
             if (Input.GetMouseButtonDown(0))
             {
-                n++;
+               
             }
             //mb need fix 
             if (_navMeshAgent.remainingDistance==0)
@@ -42,7 +46,7 @@ namespace Entity.Customer
         private void Start()
         {
             //testing values field
-            orders = Random.Range(1, 3);
+            orders = Random.Range(0, 2);
             customerMultiplier = Random.Range(1f, 2f);
 
             //Replace to zenject
@@ -59,58 +63,30 @@ namespace Entity.Customer
             var tomatoes = FindObjectOfType<Tomatoes>().gameObject;
             var milk = FindObjectOfType<Milk>().gameObject;
             var cashBox = FindObjectOfType<CashBox>().gameObject;
-            orderList.Add(tomatoes);
-            orderList.Add(milk);
-            orderList.Add(cashBox);
-
-            n = Random.Range(0, 3);
+            
+            //iterator test
+            _itemCollection = new ItemCollection();
+            
+            //iterator additems
+            _itemCollection.AddItem(tomatoes);
+            _itemCollection.AddItem(milk);
+            _itemCollection.AddItem(cashBox);
         }
         
         //test moving
-        IEnumerator NextState()
+        private IEnumerator NextState()
         {
-            yield return new WaitForSeconds(Random.Range(1f,5f));
+            yield return new WaitForSeconds(Random.Range(3f, 7f));
             
-            switch (n)
-            {
-                case 0:
-                {
-                    target = orderList[0].transform.position;
-                    break;
-                }
-                case 1:
-                {
-                    target = orderList[1].transform.position;
-                    break;
-                }
-                case 2:
-                {
-                    target = orderList[2].transform.position;
-                    break;
-                }
-                default:
-                {
-                    target = orderList[2].transform.position;
-                    break;
-                }
-            }
+            var item = _itemCollection.GetItems();
+            
+            target = item[Random.Range(0, item.Count)].transform.position;
+
             stateMachine.ChangeState(new CustomerRun(this));
+            _navMeshAgent.SetDestination(target); //here start moving?
             
             StartCoroutine(NextState());
             
-            StartCoroutine(Nplusplus());
-            StartCoroutine(Nminusminus());
         }
-
-        IEnumerator Nplusplus()
-        {
-            yield return new WaitForSeconds(Random.Range(10f, 15f));
-            n++;
-        }IEnumerator Nminusminus()
-        {
-            yield return new WaitForSeconds(Random.Range(5f, 10f));
-            n = 0;
-        }
-        
     }
 }

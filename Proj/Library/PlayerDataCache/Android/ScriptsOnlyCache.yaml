@@ -37,8 +37,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -176,25 +178,25 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 5318}
     - Class: 114
-      Script: {instanceID: 6128}
+      Script: {instanceID: 6126}
     - Class: 114
-      Script: {instanceID: 6232}
+      Script: {instanceID: 6230}
     - Class: 114
-      Script: {instanceID: 6920}
+      Script: {instanceID: 6916}
     - Class: 114
-      Script: {instanceID: 6962}
+      Script: {instanceID: 6958}
     - Class: 114
-      Script: {instanceID: 7164}
+      Script: {instanceID: 7160}
     - Class: 114
-      Script: {instanceID: 7582}
+      Script: {instanceID: 7578}
     - Class: 114
-      Script: {instanceID: 8422}
+      Script: {instanceID: 8418}
     - Class: 114
-      Script: {instanceID: 8486}
+      Script: {instanceID: 8482}
     - Class: 114
-      Script: {instanceID: 8692}
+      Script: {instanceID: 8688}
     - Class: 114
-      Script: {instanceID: 9884}
+      Script: {instanceID: 9880}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -762,7 +764,7 @@ ScriptsOnlyBuild:
     className: UnityOnPointerExitMessageListener
   - hash:
       serializedVersion: 2
-      Hash: f5999c59d8b87a3401a2b26c576082fb
+      Hash: be6b0d9a619cd53e5336e9b198c383d6
     assemblyName: Assembly-CSharp.dll
     namespaceName: Entity.Customer
     className: Customer
