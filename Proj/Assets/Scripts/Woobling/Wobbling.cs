@@ -1,6 +1,6 @@
 using UnityEngine;
  
-public class Woobling : MonoBehaviour {    
+public class Wobbling : MonoBehaviour {    
     // We'll sproing about this transform's origin point.
     public Transform pivot;
  

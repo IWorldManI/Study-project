@@ -1,12 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using Core.Iterator;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 using Core.StateMachine.StateList;
-using Unity.VisualScripting;
 using StateMachine = Core.StateMachine.StateMachine;
 
 namespace Entity.Customer
@@ -14,8 +11,7 @@ namespace Entity.Customer
     public class Customer : MonoBehaviour
     {
         [SerializeField] public Animator animator;
-        private static readonly int IsRun = Animator.StringToHash("isRun");
-        
+
         public int orders;
         public float customerMultiplier;
 
@@ -27,22 +23,6 @@ namespace Entity.Customer
         
         [SerializeField] private Vector3 target;
         
-        
-        
-        //debug
-        private void Update()
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-               
-            }
-            //mb need fix 
-            if (_navMeshAgent.remainingDistance==0)
-            {
-                stateMachine.ChangeState(new CustomerIdle(this));
-            }
-        }
-        
         private void Start()
         {
             //testing values field
@@ -53,6 +33,8 @@ namespace Entity.Customer
             _navMeshAgent = GetComponent<NavMeshAgent>();
             animator = GetComponent<Animator>();
 
+            //_navMeshAgent.stoppingDistance = Random.Range(1f, 2f); //for test
+
             stateMachine = new StateMachine();
             stateMachine.Initialize(new CustomerIdle(this));
             
@@ -62,7 +44,7 @@ namespace Entity.Customer
             //test list moving
             var tomatoes = FindObjectOfType<Tomatoes>().gameObject;
             var milk = FindObjectOfType<Milk>().gameObject;
-            var cashBox = FindObjectOfType<CashBox>().gameObject;
+            var cashBox = FindObjectOfType<Cashier>().gameObject;
             
             //iterator test
             _itemCollection = new ItemCollection();
@@ -72,7 +54,20 @@ namespace Entity.Customer
             _itemCollection.AddItem(milk);
             _itemCollection.AddItem(cashBox);
         }
-        
+           
+        //debug
+        private void Update()
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+               
+            }
+            //mb need fix 
+            if (_navMeshAgent.remainingDistance<=_navMeshAgent.stoppingDistance)
+            {
+                stateMachine.ChangeState(new CustomerIdle(this));
+            }
+        }
         //test moving
         private IEnumerator NextState()
         {
