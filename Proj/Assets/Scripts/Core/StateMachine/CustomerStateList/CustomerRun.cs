@@ -14,7 +14,7 @@ namespace Core.StateMachine.StateList
         public override void Enter()
         {
             base.Enter();
-            Debug.Log("customer enter to run");
+            //Debug.Log("customer enter to run");
             customer.animator.SetBool("isRun",true);
             //customer._navMeshAgent.SetDestination(customer.target);
         }
@@ -22,13 +22,13 @@ namespace Core.StateMachine.StateList
         public override void Exit()
         {
             base.Exit();
-            Debug.Log("customer exit run");
+            //Debug.Log("customer exit run");
         }
 
         public override void Update()
         {
             base.Update();
-            Debug.Log("customer update state run");
+            //Debug.Log("customer update state run");
         }
     }
 }

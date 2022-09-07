@@ -14,20 +14,20 @@ namespace Core.StateMachine.StateList
         public override void Enter()
         {
             base.Enter();
-            Debug.Log("customer enter to idle");
+            //Debug.Log("customer enter to idle");
             customer.animator.SetBool("isRun",false);
         }
 
         public override void Exit()
         {
             base.Exit();
-            Debug.Log("customer exit idle");
+            //Debug.Log("customer exit idle");
         }
 
         public override void Update()
         {
             base.Update();
-            Debug.Log("customer update state idle");
+            //Debug.Log("customer update state idle");
         }
     }
 }

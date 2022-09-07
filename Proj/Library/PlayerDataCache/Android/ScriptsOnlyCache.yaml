@@ -11,6 +11,7 @@ ScriptsOnlyBuild:
     - Milk
     - MoneyPool
     - PooledShape
+    - TestFloorItem
     - Tomatoes
     - UIMultiplier
     - Wobbling
@@ -40,10 +41,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -177,35 +176,37 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 4682}
     - Class: 114
-      Script: {instanceID: 4988}
+      Script: {instanceID: 4756}
     - Class: 114
-      Script: {instanceID: 5180}
+      Script: {instanceID: 4990}
     - Class: 114
-      Script: {instanceID: 5326}
+      Script: {instanceID: 5182}
     - Class: 114
-      Script: {instanceID: 5730}
+      Script: {instanceID: 5328}
     - Class: 114
-      Script: {instanceID: 6136}
+      Script: {instanceID: 5732}
     - Class: 114
-      Script: {instanceID: 6240}
+      Script: {instanceID: 6138}
     - Class: 114
-      Script: {instanceID: 6926}
+      Script: {instanceID: 6242}
     - Class: 114
-      Script: {instanceID: 6968}
+      Script: {instanceID: 6928}
     - Class: 114
-      Script: {instanceID: 7022}
+      Script: {instanceID: 6970}
     - Class: 114
-      Script: {instanceID: 7172}
+      Script: {instanceID: 7024}
     - Class: 114
-      Script: {instanceID: 7590}
+      Script: {instanceID: 7174}
     - Class: 114
-      Script: {instanceID: 8430}
+      Script: {instanceID: 7592}
     - Class: 114
-      Script: {instanceID: 8494}
+      Script: {instanceID: 8432}
     - Class: 114
-      Script: {instanceID: 8700}
+      Script: {instanceID: 8496}
     - Class: 114
-      Script: {instanceID: 9892}
+      Script: {instanceID: 8702}
+    - Class: 114
+      Script: {instanceID: 9894}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -413,7 +414,7 @@ ScriptsOnlyBuild:
     className: TCP2_PlanarReflection
   - hash:
       serializedVersion: 2
-      Hash: 0913ff288d207f4b2303554c4bad25be
+      Hash: 984e9ce109cad15b4f6ab4d918953ddd
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Wobbling
@@ -801,6 +802,12 @@ ScriptsOnlyBuild:
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
     className: CinemachineGroupComposer
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: TestFloorItem
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f

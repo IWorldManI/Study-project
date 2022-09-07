@@ -343,6 +343,7 @@
 "Assets/Scripts/Entity/Player/CharacterMoveAndRotate.cs"
 "Assets/Scripts/FremeRate.cs"
 "Assets/Scripts/TrashFolder/DEBUG_CustomerSpawn.cs"
+"Assets/Scripts/Woobling/TestFloorItem.cs"
 "Assets/Scripts/Woobling/Wobbling.cs"
 "Assets/Scripts/Woobling/WobblingConnector.cs"
 -langversion:9.0
