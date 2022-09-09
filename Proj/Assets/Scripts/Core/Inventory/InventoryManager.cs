@@ -15,13 +15,13 @@ public class InventoryManager : MonoBehaviour
 
     private void Start()
     {
+        _wobblingConnector = FindObjectOfType<WobblingConnector>();
+        
         SearchAllAndAddToDictionary();
     }
 
     private void SearchAllAndAddToDictionary()
     {
-        _wobblingConnector = FindObjectOfType<WobblingConnector>();
-
         foreach (GameObject item in _wobblingConnector._itemsInBackpack)
         {
             if (item.TryGetComponent<Ingredient>(out Ingredient ingredient))
