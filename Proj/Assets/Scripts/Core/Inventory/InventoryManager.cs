@@ -24,14 +24,7 @@ public class InventoryManager : MonoBehaviour
     {
         foreach (GameObject item in _wobblingConnector._itemsInBackpack)
         {
-            if (item.TryGetComponent<Ingredient>(out Ingredient ingredient))
-            {
-                _ingredient.Add(ingredient);
-                
-                if(!items.ContainsKey(typeof(Ingredient)))
-                    items.Add(typeof(Ingredient), _ingredient);
-                Debug.Log(ingredient);
-            }
+            AddToDictionary(item);
         }
     }
 
