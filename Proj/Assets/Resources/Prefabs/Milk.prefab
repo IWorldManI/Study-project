@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7029219740434133681}
   - component: {fileID: 7029219740434133682}
   - component: {fileID: 7029219740434133683}
-  - component: {fileID: 4573777664623406484}
+  - component: {fileID: 320839322254874159}
   - component: {fileID: 19342294731110768}
   m_Layer: 0
   m_Name: Milk
@@ -116,7 +116,7 @@ MonoBehaviour:
   OnTook: 0
   stiffness: 0
   conservation: 0
---- !u!114 &4573777664623406484
+--- !u!114 &320839322254874159
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7029219740434133685}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d4cdea656a61fc43a492a37d0266d84, type: 3}
+  m_Script: {fileID: 11500000, guid: 084bf90cedc26064e9f35b2f9e7bde4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &19342294731110768

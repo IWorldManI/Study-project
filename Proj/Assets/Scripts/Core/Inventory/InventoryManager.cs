@@ -7,11 +7,10 @@ using Object = UnityEngine.Object;
 
 public class InventoryManager : MonoBehaviour
 {
-    private Dictionary<Type, object> items = new Dictionary<Type, object>();
+    private Dictionary<Type, List<Ingredient>> items = new Dictionary<Type, List<Ingredient>>();
     
-    [SerializeField] private List<GameObject> _tomatoes = new List<GameObject>();
-    [SerializeField] private List<GameObject> _milk = new List<GameObject>();
-    
+    [SerializeField] private List<Ingredient> _ingredient = new List<Ingredient>();
+
     private WobblingConnector _wobblingConnector;
 
     private void Start()
@@ -25,37 +24,26 @@ public class InventoryManager : MonoBehaviour
 
         foreach (GameObject item in _wobblingConnector._itemsInBackpack)
         {
-            if (item.TryGetComponent<Tomatoes>(out Tomatoes tomatoes))
+            if (item.TryGetComponent<Ingredient>(out Ingredient ingredient))
             {
-                _tomatoes.Add(tomatoes.gameObject);
+                _ingredient.Add(ingredient);
                 
-                if(!items.TryGetValue(typeof(Tomatoes),out _))
-                    items.Add(typeof(Tomatoes), tomatoes.name);
-                Debug.Log(tomatoes);
-            } 
-            if (item.TryGetComponent<Milk>(out Milk milk))
-            {
-                _milk.Add(milk.gameObject);
-                if(!items.TryGetValue(typeof(Milk),out _))
-                    items.Add(typeof(Milk), milk.name);
-                Debug.Log(milk);
+                if(!items.ContainsKey(typeof(Ingredient)))
+                    items.Add(typeof(Ingredient), _ingredient);
+                Debug.Log(ingredient);
             }
         }
     }
 
     public void AddToDictionary(GameObject item)
     {
-        if (item.TryGetComponent<Tomatoes>(out Tomatoes tomatoes))
+        if (item.TryGetComponent<Ingredient>(out Ingredient ingredient))
         {
-            _tomatoes.Add(tomatoes.gameObject);
-            items[typeof(Tomatoes)] = tomatoes;
-            Debug.Log(tomatoes);
-        } 
-        if (item.TryGetComponent<Milk>(out Milk milk))
-        {
-            _milk.Add(milk.gameObject);
-            items[typeof(Milk)] = milk;
-            Debug.Log(milk);
+            _ingredient.Add(ingredient);
+                
+            if(!items.ContainsKey(typeof(Ingredient)))
+                items.Add(typeof(Ingredient), _ingredient);
+            Debug.Log(ingredient);
         }
     }
 }
