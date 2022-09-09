@@ -9,10 +9,12 @@ public class TestFloorItem : MonoBehaviour
     {
         if (other.GetComponentInChildren<WobblingConnector>())
         {
-            Debug.Log("Touch");
+            //Debug.Log("Touch");
             var _wobbling = other.GetComponentInChildren<WobblingConnector>();
             transform.parent = _wobbling.transform;
             _wobbling.AddItem(transform);
+            var test = FindObjectOfType<InventoryManager>();
+            test.AddToDictionary(gameObject);
         }
     }
 }

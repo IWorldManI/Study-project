@@ -42,9 +42,9 @@ namespace Entity.Customer
             StartCoroutine(NextState());
 
             //test list moving
-            var tomatoes = FindObjectOfType<Tomatoes>().gameObject;
-            var milk = FindObjectOfType<Milk>().gameObject;
-            var cashBox = FindObjectOfType<Cashier>().gameObject;
+            var tomatoes = FindObjectOfType<TomatoesStand>().gameObject;
+            var milk = FindObjectOfType<MilkStand>().gameObject;
+            var cashBox = FindObjectOfType<CashierStand>().gameObject;
             
             //iterator test
             _itemCollection = new ItemCollection();
