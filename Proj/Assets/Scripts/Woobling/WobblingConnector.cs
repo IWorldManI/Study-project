@@ -5,23 +5,25 @@ using UnityEngine;
 
 public class WobblingConnector : MonoBehaviour
 {
+    /*
     //Add to list and arranges objects vertically
     
-    [SerializeField] public List<GameObject> _itemsInBackpack = new List<GameObject>();
+    //[SerializeField] public List<GameObject> _itemsInBackpack = new List<GameObject>();
     [SerializeField] public InventoryManager _inventoryManager;
     
     private void Awake()
     {
         _inventoryManager = FindObjectOfType<InventoryManager>();
-        if(_itemsInBackpack.Count>=0)
+        
+        if(_inventoryManager._ingredientList.Count>=0)
             SortItems();
     }
 
-    public void AddItem(Transform item)
+    public void AddItem(Ingredient item)
     {
         if (item.TryGetComponent<Wobbling>(out Wobbling _wobbling))
         {
-            _itemsInBackpack.Add(item.gameObject);
+            _inventoryManager._ingredientList.Add(item);
             _wobbling.OnTook = true;
             SetProperties(_wobbling);
             _wobbling.Initialize();
@@ -36,7 +38,8 @@ public class WobblingConnector : MonoBehaviour
             {
                 if (!_wobbling.OnTook)
                 {
-                    _itemsInBackpack.Add(_wobbling.gameObject);
+                    var item = child.GetComponent<Ingredient>();
+                    _inventoryManager._ingredientList.Add(item);
                     _wobbling.OnTook = true;
                 }
                 SetProperties(_wobbling);
@@ -46,10 +49,11 @@ public class WobblingConnector : MonoBehaviour
 
     private void SetProperties(Wobbling _wobbling)
     {
-        var socket = _itemsInBackpack.Count <= 1 ? transform :  _itemsInBackpack[^2].transform;
+        var socket = _inventoryManager._ingredientList.Count <= 1 ? transform :  _inventoryManager._ingredientList[^2].transform;
         _wobbling.pivot = socket;
         _wobbling.transform.position = new Vector3(0, socket.transform.position.y + 1f, 1);
         _wobbling.stiffness = 399;
         _wobbling.conservation = 0.6f;
     }
+    */
 }

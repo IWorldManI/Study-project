@@ -8,17 +8,16 @@ ScriptsOnlyBuild:
     - Entity.Customer.Customer
     - FloatingJoystick
     - FremeRate
+    - Ingredient
     - InventoryManager
-    - Milk
     - MilkStand
     - MoneyPool
     - PooledShape
+    - Stand
     - TestFloorItem
-    - Tomatoes
     - TomatoesStand
     - UIMultiplier
     - Wobbling
-    - WobblingConnector
     Cinemachine.dll:
     - Cinemachine.CinemachineBrain
     - Cinemachine.CinemachinePipeline
@@ -149,7 +148,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1766}
     - Class: 114
-      Script: {instanceID: 1792}
+      Script: {instanceID: 1790}
+    - Class: 114
+      Script: {instanceID: 1862}
     - Class: 114
       Script: {instanceID: 2048}
     - Class: 114
@@ -169,53 +170,49 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3452}
     - Class: 114
-      Script: {instanceID: 3632}
+      Script: {instanceID: 3634}
     - Class: 114
-      Script: {instanceID: 3650}
+      Script: {instanceID: 3652}
     - Class: 114
-      Script: {instanceID: 3978}
+      Script: {instanceID: 3748}
     - Class: 114
-      Script: {instanceID: 4038}
+      Script: {instanceID: 3982}
     - Class: 114
-      Script: {instanceID: 4616}
+      Script: {instanceID: 4042}
     - Class: 114
-      Script: {instanceID: 4684}
+      Script: {instanceID: 4620}
     - Class: 114
-      Script: {instanceID: 4758}
+      Script: {instanceID: 4688}
     - Class: 114
-      Script: {instanceID: 4992}
+      Script: {instanceID: 4762}
     - Class: 114
-      Script: {instanceID: 5184}
+      Script: {instanceID: 4996}
     - Class: 114
-      Script: {instanceID: 5330}
+      Script: {instanceID: 5188}
     - Class: 114
-      Script: {instanceID: 5734}
+      Script: {instanceID: 5334}
     - Class: 114
-      Script: {instanceID: 6140}
+      Script: {instanceID: 6144}
     - Class: 114
-      Script: {instanceID: 6244}
+      Script: {instanceID: 6248}
     - Class: 114
-      Script: {instanceID: 6348}
+      Script: {instanceID: 6936}
     - Class: 114
-      Script: {instanceID: 6932}
+      Script: {instanceID: 6978}
     - Class: 114
-      Script: {instanceID: 6974}
+      Script: {instanceID: 7032}
     - Class: 114
-      Script: {instanceID: 7028}
+      Script: {instanceID: 7182}
     - Class: 114
-      Script: {instanceID: 7178}
+      Script: {instanceID: 7600}
     - Class: 114
-      Script: {instanceID: 7596}
+      Script: {instanceID: 8440}
     - Class: 114
-      Script: {instanceID: 8436}
+      Script: {instanceID: 8504}
     - Class: 114
-      Script: {instanceID: 8500}
+      Script: {instanceID: 8712}
     - Class: 114
-      Script: {instanceID: 8548}
-    - Class: 114
-      Script: {instanceID: 8708}
-    - Class: 114
-      Script: {instanceID: 9900}
+      Script: {instanceID: 9904}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -265,6 +262,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: FremeRate
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Stand
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -543,7 +546,7 @@ ScriptsOnlyBuild:
     className: UnityOnButtonClickMessageListener
   - hash:
       serializedVersion: 2
-      Hash: a4b198006a56e18baceb84d4a3fd17f8
+      Hash: 48bf9c490a7b16caaa7f433b886dabf3
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: InventoryManager
@@ -585,6 +588,12 @@ ScriptsOnlyBuild:
     className: RecorderBindings
   - hash:
       serializedVersion: 2
+      Hash: 223de6b3c00c9d5ad5eda9698017c766
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: TestMove
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
@@ -619,6 +628,12 @@ ScriptsOnlyBuild:
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
     className: CinemachineMixingCamera
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Ingredient
   - hash:
       serializedVersion: 2
       Hash: ad414eeb94134c1b0331356405c13b1f
@@ -993,7 +1008,7 @@ ScriptsOnlyBuild:
     className: UnityOnPointerClickMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 68d91aeb0d508bb0c527b32cdb5dc792
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: WobblingConnector

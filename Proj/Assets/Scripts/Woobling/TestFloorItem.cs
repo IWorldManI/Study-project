@@ -1,20 +1,18 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TestFloorItem : MonoBehaviour
 {
    private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponentInChildren<WobblingConnector>())
+        if (other.GetComponentInChildren<InventoryManager>())
         {
             //Debug.Log("Touch");
-            var _wobbling = other.GetComponentInChildren<WobblingConnector>();
-            transform.parent = _wobbling.transform;
-            _wobbling.AddItem(transform);
+            var inventoryManager = other.GetComponentInChildren<InventoryManager>();
+            var item = GetComponent<Ingredient>();
+            transform.parent = inventoryManager.transform;
+            //_inventoryManager.AddItem(item);
             var test = FindObjectOfType<InventoryManager>();
-            test.AddToDictionary(gameObject);
+            test.AddToDictionary(item);
         }
     }
 }

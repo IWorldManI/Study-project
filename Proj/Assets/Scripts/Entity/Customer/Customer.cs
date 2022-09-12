@@ -40,19 +40,19 @@ namespace Entity.Customer
             
             //test moving
             StartCoroutine(NextState());
-
+            
             //test list moving
-            var tomatoes = FindObjectOfType<TomatoesStand>().gameObject;
-            var milk = FindObjectOfType<MilkStand>().gameObject;
-            var cashBox = FindObjectOfType<CashierStand>().gameObject;
+            Stand[] standObjects = FindObjectsOfType<Stand>();
             
             //iterator test
             _itemCollection = new ItemCollection();
             
             //iterator additems
-            _itemCollection.AddItem(tomatoes);
-            _itemCollection.AddItem(milk);
-            _itemCollection.AddItem(cashBox);
+            foreach (var stand in standObjects)
+            {
+                _itemCollection.AddItem(stand);
+            }
+
         }
            
         //debug

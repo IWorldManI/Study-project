@@ -16,8 +16,8 @@ public class CharacterMoveAndRotate : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float rotationSpeed = 360;
 
-    private StateMachine stateMachine;
-    private RunState runState;
+    private StateMachine _stateMachine;
+    private RunState _runState;
     
     private void Start()
     {
@@ -26,21 +26,21 @@ public class CharacterMoveAndRotate : MonoBehaviour
         joystick = FindObjectOfType<FloatingJoystick>();
         rb = GetComponent<Rigidbody>();
 
-        stateMachine = new StateMachine();
-        stateMachine.Initialize(new IdleState(this));
+        _stateMachine = new StateMachine();
+        _stateMachine.Initialize(new IdleState(this));
         
     }
 
     private void Update()
     {
-        stateMachine.CurrentState.Update();
+        _stateMachine.CurrentState.Update();
         if (Input.GetMouseButtonDown(0))
         {
-            stateMachine.ChangeState(new RunState(this));
+            _stateMachine.ChangeState(new RunState(this));
         }
         else if(Input.GetMouseButtonUp(0))
         {
-            stateMachine.ChangeState(new IdleState(this));
+            _stateMachine.ChangeState(new IdleState(this));
         }
     }
 

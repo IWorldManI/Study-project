@@ -13,7 +13,8 @@ public abstract class PoolerBase<T> : MonoBehaviour where T : MonoBehaviour
     private T _prefab;
     private ObjectPool<T> _pool;
 
-    private ObjectPool<T> Pool {
+    private ObjectPool<T> Pool 
+    {
         get 
         {
             if (_pool == null) throw new InvalidOperationException("You need to call InitPool before using it.");
@@ -22,7 +23,8 @@ public abstract class PoolerBase<T> : MonoBehaviour where T : MonoBehaviour
         set => _pool = value;
     }
 
-    protected void InitPool(T prefab, int initial = 10, int max = 20, bool collectionChecks = false) {
+    protected void InitPool(T prefab, int initial = 10, int max = 20, bool collectionChecks = false) 
+    {
         _prefab = prefab;
         Pool = new ObjectPool<T>(CreateSetup, GetSetup, ReleaseSetup, DestroySetup, collectionChecks, initial, max);
     }

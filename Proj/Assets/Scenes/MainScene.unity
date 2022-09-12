@@ -205,7 +205,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 93a3672be953954418c4613418fe3b02, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -404,7 +404,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 120237186}
-  - component: {fileID: 120237190}
+  - component: {fileID: 120237191}
+  - component: {fileID: 120237192}
+  - component: {fileID: 120237193}
   m_Layer: 0
   m_Name: Cashier
   m_TagString: Untagged
@@ -428,7 +430,32 @@ Transform:
   m_Father: {fileID: 1622801342}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &120237190
+--- !u!65 &120237191
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 120237185}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &120237192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 120237185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f86c0f6916508434e901224cf9618462, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &120237193
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2603,7 +2630,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 716177923}
-  - component: {fileID: 716177927}
+  - component: {fileID: 716177928}
+  - component: {fileID: 716177929}
+  - component: {fileID: 716177930}
   m_Layer: 0
   m_Name: Milk
   m_TagString: Untagged
@@ -2627,7 +2656,32 @@ Transform:
   m_Father: {fileID: 1622801342}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &716177927
+--- !u!65 &716177928
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716177922}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &716177929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716177922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f86c0f6916508434e901224cf9618462, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &716177930
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3569,7 +3623,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1328125076}
-  - component: {fileID: 1328125080}
+  - component: {fileID: 1328125081}
+  - component: {fileID: 1328125082}
+  - component: {fileID: 1328125083}
   m_Layer: 0
   m_Name: Tomatoes
   m_TagString: Untagged
@@ -3593,7 +3649,32 @@ Transform:
   m_Father: {fileID: 1622801342}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1328125080
+--- !u!65 &1328125081
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1328125075}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1328125082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1328125075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f86c0f6916508434e901224cf9618462, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1328125083
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5117,7 +5198,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1999755462}
-  - component: {fileID: 1999755463}
   - component: {fileID: 1999755464}
   m_Layer: 0
   m_Name: Holder
@@ -5148,20 +5228,6 @@ Transform:
   m_Father: {fileID: 21199504}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1999755463
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1999755461}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fb3ae588f44c054baec4d82094b53f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _itemsInBackpack: []
-  _inventoryManager: {fileID: 0}
 --- !u!114 &1999755464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5174,8 +5240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a2012041acc318489bfdeac46fb6ebf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tomatoes: []
-  _milk: []
+  _ingredientList: []
 --- !u!4 &2002079250 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4040691393493516660, guid: 7039cca53efcd1f4388b04c40e9664b8, type: 3}
