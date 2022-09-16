@@ -7,7 +7,7 @@ using Object = UnityEngine.Object;
 
 public class InventoryManager : MonoBehaviour
 {
-    private Dictionary<Type, List<Ingredient>> _ingredientListDictionary = new Dictionary<Type, List<Ingredient>>();
+    private Dictionary<Type, List<Ingredient>> _ingredientDictionary = new Dictionary<Type, List<Ingredient>>();
  
     [SerializeField] private List<Ingredient> _ingredientList = new List<Ingredient>();
  
@@ -15,7 +15,7 @@ public class InventoryManager : MonoBehaviour
     {
         if (_ingredientList.Count >= 0)
         {
-            FindAllItemsInListAndSort();
+            SearchAllAndAddToDictionary();
         }
     }
     
@@ -24,10 +24,20 @@ public class InventoryManager : MonoBehaviour
         //SearchAllAndAddToDictionary();
     }
     
+    private void Update()
+    {
+        if (Input.GetMouseButtonUp(0))
+        {
+            RemoveItemFromDictionary(_ingredientList[0]);
+        }
+    }
+    
+    
     private void SearchAllAndAddToDictionary()
     {
-        foreach (Ingredient item in _ingredientList)
+        foreach (Transform child in transform)
         {
+            var item = child.GetComponent<Ingredient>();
             AddToDictionary(item);
         }
     }
@@ -37,13 +47,13 @@ public class InventoryManager : MonoBehaviour
         _ingredientList.Add(item);
         var type = item.GetType();
 
-        if(!_ingredientListDictionary.ContainsKey(type))
+        if(!_ingredientDictionary.ContainsKey(type))
         {
-            _ingredientListDictionary.Add(type, new List<Ingredient>(){item});
+            _ingredientDictionary.Add(type, new List<Ingredient>(){item});
         }
         else
         {
-            _ingredientListDictionary[type].Add(item);
+            _ingredientDictionary[type].Add(item);
         }
         
         if (item.TryGetComponent<Wobbling>(out Wobbling _wobbling))
@@ -54,56 +64,31 @@ public class InventoryManager : MonoBehaviour
         //Debug.Log(item.GetType());
     }
     
-    private void Update()
-    {
-        if (Input.GetMouseButtonUp(0))
-        {
-            var itemToRemove = _ingredientList.GetType();
-
-            if (!_ingredientListDictionary.ContainsKey(itemToRemove))
-            {
-                RemoveItemFromDictionary(_ingredientList[0]);
-            }
-        }
-    }
     
-    public void RemoveItemFromDictionary(Ingredient item)
+    private void RemoveItemFromDictionary(Ingredient item)
     {
-        Debug.Log(_ingredientList.Count);
+        Debug.Log(_ingredientList.Count + " items contains before remove");
         
-        _ingredientList.Remove(item);
-        var itemToRemove = item.GetType();
+        var type = item.GetType();
 
-        if (!_ingredientListDictionary.ContainsKey(itemToRemove))
+        if (_ingredientDictionary.ContainsKey(type))
         {
-            _ingredientListDictionary[itemToRemove].Remove(item);
+            var indexDict = _ingredientDictionary[type].IndexOf(item);
+            _ingredientDictionary[type].RemoveAt(indexDict);
+            Debug.Log("Item removed " + type);
         }
+        
+        var indexList = _ingredientList.IndexOf(item);
+        _ingredientList.RemoveAt(indexList);
         
         Destroy(item.gameObject);
-        //_ingredientList.RemoveAll(item => item == null);
-        
         
         SortItemsInListAfterRemovalOfAny();
         
-        Debug.Log("Item removed" + item);
-        Debug.Log(_ingredientList.Count);
+        Debug.Log(_ingredientList.Count + " item contains after remove");
     }
     
-    private void FindAllItemsInListAndSort()
-    {
-        foreach (Transform child in transform)
-        {
-            if(child.TryGetComponent<Wobbling>(out Wobbling _wobbling))
-            {
-                if (!_wobbling.OnTook)
-                {
-                    var item = child.GetComponent<Ingredient>();
-                    AddToDictionary(item);
-                    SetProperties(_wobbling);
-                }
-            }
-        }
-    }
+   
     
     private void SetProperties(Wobbling _wobbling)
     {
@@ -120,16 +105,16 @@ public class InventoryManager : MonoBehaviour
     private void SortItemsInListAfterRemovalOfAny()
     {
         int indx = 0;
-        foreach (var t in _ingredientList)
+        foreach (var ingredient in _ingredientList)
         {
-            var test = t.GetComponent<Wobbling>();
-            test.OnTook = true;
+            var item = ingredient.GetComponent<Wobbling>();
+            item.OnTook = true;
             var socket = indx <= 0 ? transform : _ingredientList[indx-1].transform;;
-            test.pivot = socket;
-            test.transform.position = new Vector3(socket.transform.position.x, socket.transform.position.y + 1f, socket.transform.position.z);
-            test.stiffness = 399;
-            test.conservation = 0.6f;
-            test.Initialize();
+            item.pivot = socket;
+            item.transform.position = new Vector3(socket.transform.position.x, socket.transform.position.y + 1f, socket.transform.position.z);
+            item.stiffness = 399;
+            item.conservation = 0.6f;
+            item.Initialize();
             indx++;
         }
     }
