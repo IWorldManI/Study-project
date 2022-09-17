@@ -1,6 +1,7 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - CashierStand
     - CharacterMoveAndRotate
     - Core.Factory.CustomerFactory
     - DEBUG_CustomerSpawn
@@ -9,11 +10,12 @@ ScriptsOnlyBuild:
     - FremeRate
     - InventoryManager
     - Milk
+    - MilkStand
     - MoneyPool
     - PooledShape
-    - Stand
     - TestFloorItem
     - Tomatoes
+    - TomatoesStand
     - UIMultiplier
     - Wobbling
     Cinemachine.dll:
@@ -148,41 +150,43 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1766}
     - Class: 114
-      Script: {instanceID: 1794}
+      Script: {instanceID: 1790}
     - Class: 114
-      Script: {instanceID: 1866}
+      Script: {instanceID: 2048}
     - Class: 114
-      Script: {instanceID: 2052}
+      Script: {instanceID: 2578}
     - Class: 114
-      Script: {instanceID: 2582}
+      Script: {instanceID: 2906}
     - Class: 114
-      Script: {instanceID: 2910}
+      Script: {instanceID: 3000}
     - Class: 114
-      Script: {instanceID: 3004}
+      Script: {instanceID: 3036}
     - Class: 114
-      Script: {instanceID: 3040}
+      Script: {instanceID: 3082}
     - Class: 114
-      Script: {instanceID: 3086}
+      Script: {instanceID: 3176}
     - Class: 114
-      Script: {instanceID: 3180}
+      Script: {instanceID: 3338}
     - Class: 114
-      Script: {instanceID: 3342}
+      Script: {instanceID: 3452}
     - Class: 114
-      Script: {instanceID: 3456}
+      Script: {instanceID: 3634}
     - Class: 114
-      Script: {instanceID: 3638}
+      Script: {instanceID: 3652}
     - Class: 114
-      Script: {instanceID: 3656}
+      Script: {instanceID: 3982}
     - Class: 114
-      Script: {instanceID: 4046}
+      Script: {instanceID: 4042}
     - Class: 114
-      Script: {instanceID: 4624}
+      Script: {instanceID: 4622}
     - Class: 114
-      Script: {instanceID: 4692}
+      Script: {instanceID: 4690}
     - Class: 114
       Script: {instanceID: 4766}
     - Class: 114
       Script: {instanceID: 5000}
+    - Class: 114
+      Script: {instanceID: 5192}
     - Class: 114
       Script: {instanceID: 5338}
     - Class: 114
@@ -192,23 +196,25 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 6356}
     - Class: 114
-      Script: {instanceID: 6940}
+      Script: {instanceID: 6944}
     - Class: 114
-      Script: {instanceID: 6982}
+      Script: {instanceID: 6986}
     - Class: 114
-      Script: {instanceID: 7036}
+      Script: {instanceID: 7040}
     - Class: 114
-      Script: {instanceID: 7186}
+      Script: {instanceID: 7190}
     - Class: 114
-      Script: {instanceID: 7604}
+      Script: {instanceID: 7610}
     - Class: 114
-      Script: {instanceID: 8444}
+      Script: {instanceID: 8450}
     - Class: 114
-      Script: {instanceID: 8508}
+      Script: {instanceID: 8514}
     - Class: 114
-      Script: {instanceID: 8556}
+      Script: {instanceID: 8562}
     - Class: 114
-      Script: {instanceID: 9908}
+      Script: {instanceID: 8722}
+    - Class: 114
+      Script: {instanceID: 9914}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128

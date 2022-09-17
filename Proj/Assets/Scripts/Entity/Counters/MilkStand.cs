@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class MilkStand : Stand
 {
-    // Start is called before the first frame update
-    void Start()
+    private void OnTriggerEnter(Collider other)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if(other.GetComponentInChildren<InventoryManager>())
+        {
+            Debug.Log("Touch");
+            other.GetComponentInChildren<InventoryManager>().ItemRequest(typeof(Milk));
+        }
     }
 }

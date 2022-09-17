@@ -9,7 +9,7 @@ public class Stand : MonoBehaviour
     {
         
     }
-
+    
     // Update is called once per frame
     void Update()
     {

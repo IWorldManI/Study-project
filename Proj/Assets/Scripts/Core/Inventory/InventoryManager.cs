@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEditor;
 using Object = UnityEngine.Object;
 
 public class InventoryManager : MonoBehaviour
@@ -28,11 +29,19 @@ public class InventoryManager : MonoBehaviour
     {
         if (Input.GetMouseButtonUp(0))
         {
-            RemoveItemFromDictionary(_ingredientList[0]);
+            
         }
     }
-    
-    
+
+    public void ItemRequest(Type t)
+    {
+        var type = t;
+        var item = _ingredientList.Where(x => x.GetType() == type).FirstOrDefault();
+        var indexList = _ingredientList.IndexOf(item);
+        Debug.Log(indexList, item);
+        RemoveItemFromDictionary(_ingredientList[indexList]);
+    }
+
     private void SearchAllAndAddToDictionary()
     {
         foreach (Transform child in transform)
@@ -71,10 +80,9 @@ public class InventoryManager : MonoBehaviour
         
         var type = item.GetType();
 
-        if (_ingredientDictionary.ContainsKey(type))
+        if (_ingredientDictionary.TryGetValue(type, out var list))
         {
-            var indexDict = _ingredientDictionary[type].IndexOf(item);
-            _ingredientDictionary[type].RemoveAt(indexDict);
+            list.Remove(item);
             Debug.Log("Item removed " + type);
         }
         
