@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MilkStand : Stand
@@ -8,8 +6,9 @@ public class MilkStand : Stand
     {
         if(other.GetComponentInChildren<InventoryManager>())
         {
-            Debug.Log("Touch");
-            other.GetComponentInChildren<InventoryManager>().ItemRequest(typeof(Milk));
+            Debug.Log("Touch" + name);
+            var item = other.GetComponentInChildren<InventoryManager>().ItemRequest(typeof(Milk));
+            item.GetComponent<Milk>().Move(transform);
         }
     }
 }

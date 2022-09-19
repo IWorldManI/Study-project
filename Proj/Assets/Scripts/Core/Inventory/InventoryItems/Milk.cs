@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class Milk : Ingredient
 {
-    // Start is called before the first frame update
-    void Start()
+    public void Move(Transform _target)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        StartCoroutine(base.Move(_target));
     }
 }

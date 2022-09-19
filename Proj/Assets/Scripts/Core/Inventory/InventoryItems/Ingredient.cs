@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class Ingredient : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public IEnumerator Move(Transform _target)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        var time = 0f;
+        while (time <= 1f)
+        {
+            var step = (_target.position - transform.position) * Mathf.InverseLerp(0, 1f, time);
+            transform.position += step;
+            time += Time.deltaTime;
+            yield return new WaitForSeconds(Time.deltaTime);
+            if (Vector3.Distance(transform.position, _target.position) <= Vector3.kEpsilon)
+            {
+                yield break;
+            }
+        }
     }
 }

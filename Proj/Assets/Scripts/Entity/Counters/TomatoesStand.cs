@@ -6,8 +6,9 @@ public class TomatoesStand : Stand
     {
         if(other.GetComponentInChildren<InventoryManager>())
         {
-            Debug.Log("Touch");
-            other.GetComponentInChildren<InventoryManager>().ItemRequest(typeof(Tomatoes));
+            Debug.Log("Touch" + name);
+            var item = other.GetComponentInChildren<InventoryManager>().ItemRequest(typeof(Tomatoes));
+            item.GetComponent<Tomatoes>().Move(transform);
         }
     }
 }

@@ -33,13 +33,15 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public void ItemRequest(Type t)
+    public GameObject ItemRequest(Type t)
     {
         var type = t;
         var item = _ingredientList.Where(x => x.GetType() == type).FirstOrDefault();
         var indexList = _ingredientList.IndexOf(item);
         Debug.Log(indexList, item);
         RemoveItemFromDictionary(_ingredientList[indexList]);
+
+        return item.gameObject;
     }
 
     private void SearchAllAndAddToDictionary()
@@ -88,8 +90,12 @@ public class InventoryManager : MonoBehaviour
         
         var indexList = _ingredientList.IndexOf(item);
         _ingredientList.RemoveAt(indexList);
-        
-        Destroy(item.gameObject);
+
+        if (item.TryGetComponent<Wobbling>(out Wobbling _wobbling))
+        {
+            _wobbling.OnTook = false;
+        }
+        item.transform.parent = null;
         
         SortItemsInListAfterRemovalOfAny();
         
