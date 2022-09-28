@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Ingredient : MonoBehaviour
 {
+    /*
     public IEnumerator Move(Transform _target)
     {
         var time = 0f;
@@ -18,5 +17,9 @@ public class Ingredient : MonoBehaviour
                 yield break;
             }
         }
-    }
+    }*/
+    
+
+   
+    
 }

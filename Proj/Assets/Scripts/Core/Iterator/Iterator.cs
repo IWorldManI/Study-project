@@ -88,7 +88,7 @@ namespace Core.Iterator
     // iterator instances, compatible with the collection class.
     class ItemCollection : IteratorAggregate
     {
-        List<Stand> _collection = new List<Stand>();
+        List<ItemReceiver> _collection = new List<ItemReceiver>();
         
         bool _direction = false;
         
@@ -97,12 +97,12 @@ namespace Core.Iterator
             _direction = !_direction;
         }
         
-        public List<Stand> GetItems()
+        public List<ItemReceiver> GetItems()
         {
             return _collection;
         }
         
-        public void AddItem(Stand item)
+        public void AddItem(ItemReceiver item)
         {
             this._collection.Add(item);
         }

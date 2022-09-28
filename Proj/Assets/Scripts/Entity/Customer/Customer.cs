@@ -42,7 +42,7 @@ namespace Entity.Customer
             StartCoroutine(NextState());
             
             //test list moving
-            Stand[] standObjects = FindObjectsOfType<Stand>();
+            ItemReceiver[] standObjects = FindObjectsOfType<ItemReceiver>();
             
             //iterator test
             _itemCollection = new ItemCollection();

@@ -1,16 +1,12 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-using UnityEditor;
-using Object = UnityEngine.Object;
 
 public class InventoryManager : MonoBehaviour
 {
     private Dictionary<Type, List<Ingredient>> _ingredientDictionary = new Dictionary<Type, List<Ingredient>>();
- 
-    [SerializeField] private List<Ingredient> _ingredientList = new List<Ingredient>();
+    public List<Ingredient> _ingredientList = new List<Ingredient>();
  
     private void Awake()
     {
@@ -22,7 +18,7 @@ public class InventoryManager : MonoBehaviour
     
     private void Start()
     {
-        //SearchAllAndAddToDictionary();
+        
     }
     
     private void Update()
@@ -33,15 +29,20 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public GameObject ItemRequest(Type t)
+    public Ingredient ItemGiveRequest(Type type)
     {
-        var type = t;
-        var item = _ingredientList.Where(x => x.GetType() == type).FirstOrDefault();
+        var item = _ingredientList.Where(x => x.GetType() == type).LastOrDefault();
         var indexList = _ingredientList.IndexOf(item);
-        Debug.Log(indexList, item);
-        RemoveItemFromDictionary(_ingredientList[indexList]);
 
-        return item.gameObject;
+        if (indexList >= 0)
+        {
+            RemoveItemFromDictionary(_ingredientList[indexList]);
+            Debug.Log(indexList, item);
+        }
+        else 
+            Debug.Log("Dont have current type item");
+
+        return item;
     }
 
     private void SearchAllAndAddToDictionary()
@@ -107,7 +108,6 @@ public class InventoryManager : MonoBehaviour
     private void SetProperties(Wobbling _wobbling)
     {
         _wobbling.OnTook = true;
-        //var index = _ingredientList.FindIndex(i => i == _wobbling.GetComponent<Ingredient>());
         var socket = _ingredientList.Count <= 1 ? transform :  _ingredientList[^2].transform;
         _wobbling.pivot = socket;
         _wobbling.transform.position = new Vector3(socket.transform.position.x, socket.transform.position.y + 1f, socket.transform.position.z);
