@@ -405,14 +405,13 @@
 "Assets/Scripts/Entity/Player/CharacterMoveAndRotate.cs"
 "Assets/Scripts/Entity/Stands/CashierStand.cs"
 "Assets/Scripts/Entity/Stands/MilkStand.cs"
+"Assets/Scripts/Entity/Stands/PlaceHolderForItems.cs"
 "Assets/Scripts/Entity/Stands/TomatoesStand.cs"
 "Assets/Scripts/FremeRate.cs"
-"Assets/Scripts/PlaceHolderForItems.cs"
 "Assets/Scripts/TrashFolder/DEBUG_CustomerSpawn.cs"
 "Assets/Scripts/TrashFolder/TestMove.cs"
 "Assets/Scripts/TrashFolder/Trash/UIMultiplier.cs"
 "Assets/Scripts/Woobling/Wobbling.cs"
-"Assets/Scripts/Woobling/WobblingConnector.cs"
 -langversion:9.0
 
 /deterministic

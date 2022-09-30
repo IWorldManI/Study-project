@@ -21,22 +21,12 @@ public class ItemGiver : ItemDistributor
         {
             //Debug.Log("Touch");
             var inventoryManager = other.GetComponentInChildren<InventoryManager>();
-            GiveItem(inventoryManager);
+            var item = ItemContains[ItemContains.Count-1].GetComponent<Ingredient>();
+            base.GiveItem(inventoryManager, item);
+            var indx = ItemContains.IndexOf(item);
+            ItemContains.RemoveAt(indx);
         }
    }
 
-   private void GiveItem(InventoryManager im)
-   {
-       var item = ItemContains[0].GetComponent<Ingredient>();
-       ItemContains[0].transform.parent = im.transform;
-       
-       base.Move(item,this,im,im._ingredientList.Last().transform.localPosition + new Vector3(0, 1, 0));
-   }
-
-   void Foo()
-   {
-       var item = ItemContains[0].GetComponent<Ingredient>();
-       //im.AddToDictionary(item);
-       ItemContains.RemoveAt(0);
-   }
+   
 }

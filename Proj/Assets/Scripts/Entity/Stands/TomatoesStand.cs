@@ -22,15 +22,7 @@ public class TomatoesStand : ItemDistributor
             Debug.Log("Touch" + name);
             var inventoryManager = other.GetComponentInChildren<InventoryManager>();
             var item = other.GetComponentInChildren<InventoryManager>().ItemGiveRequest(typeof(Tomatoes));
-            if (item != null)
-            {
-                if (item != null && ItemContains.Count <= MaxCapacity) 
-                {
-                    item.transform.parent = ItemPlace[ItemContains.Count].transform;
-                    base.Move(item,this,inventoryManager, new Vector3(0,0,0));
-                    ItemContains.Add(item);
-                }
-            }
+            ReceiveItem(inventoryManager,item);
         }
     }
 }

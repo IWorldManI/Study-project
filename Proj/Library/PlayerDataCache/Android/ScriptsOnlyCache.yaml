@@ -44,10 +44,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -217,7 +215,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 8714}
     - Class: 114
-      Script: {instanceID: 9906}
+      Script: {instanceID: 9908}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -269,7 +267,7 @@ ScriptsOnlyBuild:
     className: FremeRate
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: d32274b712ee418c50b7bc55889cae92
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ItemReceiver
@@ -695,7 +693,7 @@ ScriptsOnlyBuild:
     className: AnimatorIkHandlerManager
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: d32274b712ee418c50b7bc55889cae92
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: TomatoesStand
@@ -839,7 +837,7 @@ ScriptsOnlyBuild:
     className: CinemachineGroupComposer
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: d32274b712ee418c50b7bc55889cae92
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ItemGiver
@@ -965,7 +963,7 @@ ScriptsOnlyBuild:
     className: GroupWeightManipulator
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: d32274b712ee418c50b7bc55889cae92
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CashierStand
@@ -1535,7 +1533,7 @@ ScriptsOnlyBuild:
     className: CinemachineTrackedDolly
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: d32274b712ee418c50b7bc55889cae92
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MilkStand
@@ -1569,6 +1567,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: ScrollRect
+  - hash:
+      serializedVersion: 2
+      Hash: d32274b712ee418c50b7bc55889cae92
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ItemDistributor
   - hash:
       serializedVersion: 2
       Hash: f9c05aa86e45cc76878136fb48a10c5d
@@ -1713,12 +1717,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: ItemDistributor
   platform: 13
   scenePathNames:
   - Assets/Scenes/MainScene.unity

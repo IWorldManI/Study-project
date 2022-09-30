@@ -77,7 +77,7 @@ public class InventoryManager : MonoBehaviour
     }
     
     
-    private void RemoveItemFromDictionary(Ingredient item)
+    public void RemoveItemFromDictionary(Ingredient item)
     {
         Debug.Log(_ingredientList.Count + " items contains before remove");
         
