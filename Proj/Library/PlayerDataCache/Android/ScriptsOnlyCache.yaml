@@ -5,7 +5,7 @@ ScriptsOnlyBuild:
     - CharacterMoveAndRotate
     - Core.Factory.CustomerFactory
     - DEBUG_CustomerSpawn
-    - Entity.Customer.Customer
+    - Entity.NPC.NPC
     - FloatingJoystick
     - FremeRate
     - InventoryManager
@@ -18,7 +18,7 @@ ScriptsOnlyBuild:
     - Tomatoes
     - TomatoesStand
     - UIMultiplier
-    - Wobbling
+    - WobblingNeedFix
     Cinemachine.dll:
     - Cinemachine.CinemachineBrain
     - Cinemachine.CinemachinePipeline
@@ -189,33 +189,33 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 5334}
     - Class: 114
-      Script: {instanceID: 6144}
+      Script: {instanceID: 6142}
     - Class: 114
-      Script: {instanceID: 6248}
+      Script: {instanceID: 6246}
     - Class: 114
-      Script: {instanceID: 6352}
+      Script: {instanceID: 6350}
     - Class: 114
-      Script: {instanceID: 6552}
+      Script: {instanceID: 6550}
     - Class: 114
-      Script: {instanceID: 6938}
+      Script: {instanceID: 6936}
     - Class: 114
-      Script: {instanceID: 6980}
+      Script: {instanceID: 6978}
     - Class: 114
-      Script: {instanceID: 7034}
+      Script: {instanceID: 7032}
     - Class: 114
-      Script: {instanceID: 7184}
+      Script: {instanceID: 7182}
     - Class: 114
-      Script: {instanceID: 7602}
+      Script: {instanceID: 7600}
     - Class: 114
-      Script: {instanceID: 8442}
+      Script: {instanceID: 8440}
     - Class: 114
-      Script: {instanceID: 8506}
+      Script: {instanceID: 8504}
     - Class: 114
-      Script: {instanceID: 8554}
+      Script: {instanceID: 8552}
     - Class: 114
-      Script: {instanceID: 8714}
+      Script: {instanceID: 8712}
     - Class: 114
-      Script: {instanceID: 9908}
+      Script: {instanceID: 9906}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -267,7 +267,7 @@ ScriptsOnlyBuild:
     className: FremeRate
   - hash:
       serializedVersion: 2
-      Hash: d32274b712ee418c50b7bc55889cae92
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ItemReceiver
@@ -432,7 +432,7 @@ ScriptsOnlyBuild:
       Hash: 984e9ce109cad15b4f6ab4d918953ddd
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: Wobbling
+    className: WobblingNeedFix
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -609,7 +609,7 @@ ScriptsOnlyBuild:
     className: ProjectContext
   - hash:
       serializedVersion: 2
-      Hash: eadafb18ee9aa8997e00570a0a30c518
+      Hash: 2f2affcf47a87bd2b1d3d4f2dba8516b
     assemblyName: Assembly-CSharp.dll
     namespaceName: Core.Factory
     className: CustomerFactory
@@ -693,7 +693,7 @@ ScriptsOnlyBuild:
     className: AnimatorIkHandlerManager
   - hash:
       serializedVersion: 2
-      Hash: d32274b712ee418c50b7bc55889cae92
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: TomatoesStand
@@ -809,8 +809,8 @@ ScriptsOnlyBuild:
       serializedVersion: 2
       Hash: be6b0d9a619cd53e5336e9b198c383d6
     assemblyName: Assembly-CSharp.dll
-    namespaceName: Entity.Customer
-    className: Customer
+    namespaceName: Entity.NPC
+    className: NPC
   - hash:
       serializedVersion: 2
       Hash: 0f46123eb60a6cce1399824f93fe8219
@@ -837,7 +837,7 @@ ScriptsOnlyBuild:
     className: CinemachineGroupComposer
   - hash:
       serializedVersion: 2
-      Hash: d32274b712ee418c50b7bc55889cae92
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ItemGiver
@@ -963,7 +963,7 @@ ScriptsOnlyBuild:
     className: GroupWeightManipulator
   - hash:
       serializedVersion: 2
-      Hash: d32274b712ee418c50b7bc55889cae92
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CashierStand
@@ -1009,12 +1009,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnPointerClickMessageListener
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: WobblingConnector
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -1533,7 +1527,7 @@ ScriptsOnlyBuild:
     className: CinemachineTrackedDolly
   - hash:
       serializedVersion: 2
-      Hash: d32274b712ee418c50b7bc55889cae92
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MilkStand
@@ -1569,7 +1563,7 @@ ScriptsOnlyBuild:
     className: ScrollRect
   - hash:
       serializedVersion: 2
-      Hash: d32274b712ee418c50b7bc55889cae92
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ItemDistributor

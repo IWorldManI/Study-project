@@ -1,4 +1,5 @@
 using System.Linq;
+using Entity.NPC;
 using UnityEngine;
 
 public class ItemGiver : ItemDistributor
@@ -15,18 +16,33 @@ public class ItemGiver : ItemDistributor
             }
         }
     }
-    private void OnTriggerEnter(Collider other)
-   {
-        if (other.GetComponentInChildren<InventoryManager>())
+
+    private void Give(InventoryManager inventoryManager)
+    {
+        Debug.Log("Touch " + name);
+        if (ItemContains.Count > 0) 
         {
-            //Debug.Log("Touch");
-            var inventoryManager = other.GetComponentInChildren<InventoryManager>();
-            var item = ItemContains[ItemContains.Count-1].GetComponent<Ingredient>();
+            var item = ItemContains[ItemContains.Count - 1].GetComponent<Ingredient>();
             base.GiveItem(inventoryManager, item);
             var indx = ItemContains.IndexOf(item);
             ItemContains.RemoveAt(indx);
         }
+    }
+    private void OnTriggerEnter(Collider other)
+   {
+       if(other.TryGetComponent<CharacterMoveAndRotate>(out var player))
+       {
+           var inventoryManager = player.GetComponentInChildren<InventoryManager>();
+           {
+               Give(inventoryManager);
+           }
+       }
+       if(other.TryGetComponent<NPC>(out var npc))
+       {
+           var inventoryManager = npc.GetComponentInChildren<InventoryManager>();
+           {
+               Give(inventoryManager);
+           }
+       }
    }
-
-   
 }

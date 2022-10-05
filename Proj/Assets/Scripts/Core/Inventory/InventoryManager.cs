@@ -5,9 +5,11 @@ using System.Linq;
 
 public class InventoryManager : MonoBehaviour
 {
-    private Dictionary<Type, List<Ingredient>> _ingredientDictionary = new Dictionary<Type, List<Ingredient>>();
+    private readonly Dictionary<Type, List<Ingredient>> _ingredientDictionary = new Dictionary<Type, List<Ingredient>>();
     public List<Ingredient> _ingredientList = new List<Ingredient>();
- 
+
+    public Type LookingItem;
+
     private void Awake()
     {
         if (_ingredientList.Count >= 0)
@@ -18,7 +20,7 @@ public class InventoryManager : MonoBehaviour
     
     private void Start()
     {
-        
+        LookingItem = typeof(Milk); //for test pick up current item
     }
     
     private void Update()
@@ -52,6 +54,8 @@ public class InventoryManager : MonoBehaviour
             var item = child.GetComponent<Ingredient>();
             AddToDictionary(item);
         }
+
+        SortItemsInList();
     }
  
     public void AddToDictionary(Ingredient item)
@@ -66,11 +70,6 @@ public class InventoryManager : MonoBehaviour
         else
         {
             _ingredientDictionary[type].Add(item);
-        }
-        
-        if (item.TryGetComponent<Wobbling>(out Wobbling _wobbling))
-        {
-            SetProperties(_wobbling);
         }
         
         //Debug.Log(item.GetType());
@@ -91,44 +90,21 @@ public class InventoryManager : MonoBehaviour
         
         var indexList = _ingredientList.IndexOf(item);
         _ingredientList.RemoveAt(indexList);
-
-        if (item.TryGetComponent<Wobbling>(out Wobbling _wobbling))
-        {
-            _wobbling.OnTook = false;
-        }
+        
         item.transform.parent = null;
         
-        SortItemsInListAfterRemovalOfAny();
+        SortItemsInList();
         
         Debug.Log(_ingredientList.Count + " item contains after remove");
     }
-    
-   
-    
-    private void SetProperties(Wobbling _wobbling)
-    {
-        _wobbling.OnTook = true;
-        var socket = _ingredientList.Count <= 1 ? transform :  _ingredientList[^2].transform;
-        _wobbling.pivot = socket;
-        _wobbling.transform.position = new Vector3(socket.transform.position.x, socket.transform.position.y + 1f, socket.transform.position.z);
-        _wobbling.stiffness = 399;
-        _wobbling.conservation = 0.6f;
-        _wobbling.Initialize();
-    }
-    
-    private void SortItemsInListAfterRemovalOfAny()
+
+    private void SortItemsInList()
     {
         int indx = 0;
         foreach (var ingredient in _ingredientList)
         {
-            var item = ingredient.GetComponent<Wobbling>();
-            item.OnTook = true;
             var socket = indx <= 0 ? transform : _ingredientList[indx-1].transform;;
-            item.pivot = socket;
-            item.transform.position = new Vector3(socket.transform.position.x, socket.transform.position.y + 1f, socket.transform.position.z);
-            item.stiffness = 399;
-            item.conservation = 0.6f;
-            item.Initialize();
+            ingredient.transform.position = new Vector3(socket.transform.position.x, socket.transform.position.y + 1f, socket.transform.position.z);
             indx++;
         }
     }

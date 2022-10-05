@@ -1,9 +1,9 @@
-using Entity.Customer;
+using Entity.NPC;
 using UnityEngine;
 
 namespace Core.Factory
 {
-    public class CustomerFactory : GenericFactory<Customer>
+    public class CustomerFactory : GenericFactory<NPC>
     {
         
     }

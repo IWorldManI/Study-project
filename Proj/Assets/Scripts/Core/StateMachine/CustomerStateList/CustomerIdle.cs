@@ -1,21 +1,20 @@
-using Entity.Customer;
-using UnityEngine;
+using Entity.NPC;
 
 namespace Core.StateMachine.StateList
 {
     public class CustomerIdle : State
     {
-        private Customer customer;
+        private NPC _customer;
 
-        public CustomerIdle(Customer _customer)
+        public CustomerIdle(NPC customer)
         {
-            customer = _customer;
+            _customer = customer;
         }
         public override void Enter()
         {
             base.Enter();
             //Debug.Log("customer enter to idle");
-            customer.animator.SetBool("isRun",false);
+            _customer.animator.SetBool("isRun",false);
         }
 
         public override void Exit()

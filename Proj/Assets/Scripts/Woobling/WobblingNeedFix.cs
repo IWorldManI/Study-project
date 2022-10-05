@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
  
-public class Wobbling : MonoBehaviour {    
+public class WobblingNeedFix : MonoBehaviour {    
     // We'll sproing about this transform's origin point.
     public Transform pivot;
 

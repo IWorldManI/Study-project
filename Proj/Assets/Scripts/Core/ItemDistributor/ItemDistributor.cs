@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
@@ -11,6 +12,8 @@ public class ItemDistributor : MonoBehaviour
     protected int MaxCapacity;
     protected readonly List<Transform> ItemPlace = new List<Transform>();
 
+    protected Type StandType;
+
     protected virtual void Start()
     {
         
@@ -18,9 +21,16 @@ public class ItemDistributor : MonoBehaviour
 
     protected void GiveItem(InventoryManager inventoryManager, Ingredient item)
     {
-        item.transform.parent = inventoryManager.transform;
-       
-        Give(item,this,inventoryManager,inventoryManager._ingredientList.Last().transform.localPosition + new Vector3(0, 1, 0)); ;
+        if (item != null && ItemContains.Count > 0)
+        {
+            item.transform.parent = inventoryManager.transform;
+
+            var position = inventoryManager._ingredientList.Count == 0
+                ? new Vector3(0, 0, 0)
+                : inventoryManager._ingredientList.Last().transform.localPosition; 
+            Give(item, this, inventoryManager,
+                position + new Vector3(0, 1, 0));
+        }
     }
 
     protected void ReceiveItem(InventoryManager inventoryManager,Ingredient item)
@@ -33,11 +43,12 @@ public class ItemDistributor : MonoBehaviour
         }   
     }
 
-    protected void Give(Ingredient ingredient,ItemDistributor giver,InventoryManager receiver, Vector3 _target)
+    private void Give(Ingredient ingredient,ItemDistributor giver,InventoryManager receiver, Vector3 _target)
     {
         ingredient.transform.DOLocalJump(_target, 1f, 1, .5f).OnComplete(()=>CompleteGive(ingredient,giver,receiver));
     }
-    protected void Receive(Ingredient ingredient,InventoryManager giver,ItemDistributor receiver, Vector3 _target)
+
+    private void Receive(Ingredient ingredient,InventoryManager giver,ItemDistributor receiver, Vector3 _target)
     {
         ingredient.transform.DOLocalJump(_target, 1f, 1, .5f).OnComplete(()=>CompleteReceive(ingredient,giver,receiver));
     }

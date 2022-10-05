@@ -401,7 +401,7 @@
 "Assets/Scripts/Core/StateMachine/PlayerStateList/RunState.cs"
 "Assets/Scripts/Core/StateMachine/State.cs"
 "Assets/Scripts/Core/StateMachine/StateMachine.cs"
-"Assets/Scripts/Entity/Customer/Customer.cs"
+"Assets/Scripts/Entity/NPC/NPC.cs"
 "Assets/Scripts/Entity/Player/CharacterMoveAndRotate.cs"
 "Assets/Scripts/Entity/Stands/CashierStand.cs"
 "Assets/Scripts/Entity/Stands/MilkStand.cs"
@@ -411,7 +411,7 @@
 "Assets/Scripts/TrashFolder/DEBUG_CustomerSpawn.cs"
 "Assets/Scripts/TrashFolder/TestMove.cs"
 "Assets/Scripts/TrashFolder/Trash/UIMultiplier.cs"
-"Assets/Scripts/Woobling/Wobbling.cs"
+"Assets/Scripts/Woobling/WobblingNeedFix.cs"
 -langversion:9.0
 
 /deterministic

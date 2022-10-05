@@ -1,21 +1,20 @@
-using Entity.Customer;
-using UnityEngine;
+using Entity.NPC;
 
 namespace Core.StateMachine.StateList
 {
     public class CustomerRun : State
     {
-        private Customer customer;
+        private NPC _customer;
 
-        public CustomerRun(Customer _customer)
+        public CustomerRun(NPC customer)
         {
-            customer = _customer;
+            _customer = customer;
         }
         public override void Enter()
         {
             base.Enter();
             //Debug.Log("customer enter to run");
-            customer.animator.SetBool("isRun",true);
+            _customer.animator.SetBool("isRun",true);
             //customer._navMeshAgent.SetDestination(customer.target);
         }
 
