@@ -10,11 +10,14 @@ ScriptsOnlyBuild:
     - FremeRate
     - InventoryManager
     - ItemGiver
+    - Ketchup
+    - KetchupStand
     - Milk
     - MilkStand
     - MoneyPool
     - PlaceHolderForItems
     - PooledShape
+    - ProductionMachine
     - Tomatoes
     - TomatoesStand
     - UIMultiplier
@@ -44,8 +47,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -151,31 +156,33 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1790}
     - Class: 114
-      Script: {instanceID: 2048}
+      Script: {instanceID: 2046}
     - Class: 114
-      Script: {instanceID: 2578}
+      Script: {instanceID: 2576}
     - Class: 114
-      Script: {instanceID: 2906}
+      Script: {instanceID: 2904}
     - Class: 114
-      Script: {instanceID: 3000}
+      Script: {instanceID: 2998}
     - Class: 114
-      Script: {instanceID: 3036}
+      Script: {instanceID: 3034}
     - Class: 114
-      Script: {instanceID: 3082}
+      Script: {instanceID: 3080}
     - Class: 114
-      Script: {instanceID: 3176}
+      Script: {instanceID: 3174}
     - Class: 114
-      Script: {instanceID: 3338}
+      Script: {instanceID: 3336}
     - Class: 114
-      Script: {instanceID: 3452}
+      Script: {instanceID: 3450}
     - Class: 114
-      Script: {instanceID: 3634}
+      Script: {instanceID: 3632}
     - Class: 114
-      Script: {instanceID: 3652}
+      Script: {instanceID: 3650}
     - Class: 114
-      Script: {instanceID: 3982}
+      Script: {instanceID: 3980}
     - Class: 114
-      Script: {instanceID: 4042}
+      Script: {instanceID: 4040}
+    - Class: 114
+      Script: {instanceID: 4596}
     - Class: 114
       Script: {instanceID: 4620}
     - Class: 114
@@ -205,17 +212,21 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 7182}
     - Class: 114
-      Script: {instanceID: 7600}
+      Script: {instanceID: 7244}
     - Class: 114
-      Script: {instanceID: 8440}
+      Script: {instanceID: 7602}
     - Class: 114
-      Script: {instanceID: 8504}
+      Script: {instanceID: 8442}
     - Class: 114
-      Script: {instanceID: 8552}
+      Script: {instanceID: 8506}
     - Class: 114
-      Script: {instanceID: 8712}
+      Script: {instanceID: 8554}
     - Class: 114
-      Script: {instanceID: 9906}
+      Script: {instanceID: 8714}
+    - Class: 114
+      Script: {instanceID: 9908}
+    - Class: 114
+      Script: {instanceID: 37526}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -265,12 +276,6 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: FremeRate
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: ItemReceiver
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -807,7 +812,13 @@ ScriptsOnlyBuild:
     className: UnityOnPointerExitMessageListener
   - hash:
       serializedVersion: 2
-      Hash: be6b0d9a619cd53e5336e9b198c383d6
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Ketchup
+  - hash:
+      serializedVersion: 2
+      Hash: aab93e0586c002ddc8cce23ff56139d5
     assemblyName: Assembly-CSharp.dll
     namespaceName: Entity.NPC
     className: NPC
@@ -1293,6 +1304,12 @@ ScriptsOnlyBuild:
     className: TextMeshProUGUI
   - hash:
       serializedVersion: 2
+      Hash: 3acd3fce64dc43767fff11137ff00e25
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ProductionMachine
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Zenject.dll
     namespaceName: Zenject
@@ -1711,6 +1728,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: KetchupStand
   platform: 13
   scenePathNames:
   - Assets/Scenes/MainScene.unity

@@ -1,10 +1,11 @@
+using System;
 using System.Linq;
-using Entity.NPC;
 using UnityEngine;
 
 public class ItemGiver : ItemDistributor
 {
-    void Start()
+    //class for test item pickup from spawner
+    protected override void Start()
     {
         base.Start();
         {
@@ -17,31 +18,25 @@ public class ItemGiver : ItemDistributor
         }
     }
 
-    private void Give(InventoryManager inventoryManager)
+    private void Give(InventoryManager inventoryManager, Type type)
     {
         Debug.Log("Touch " + name);
         if (ItemContains.Count > 0) 
         {
-            var item = ItemContains[ItemContains.Count - 1].GetComponent<Ingredient>();
-            base.GiveItem(inventoryManager, item);
-            var indx = ItemContains.IndexOf(item);
-            ItemContains.RemoveAt(indx);
+            var item = ItemContains.LastOrDefault(x => x.GetType() == type);
+            GiveItem(inventoryManager, item, this);
         }
-    }
-    private void OnTriggerEnter(Collider other)
+    } 
+   private void OnTriggerEnter(Collider other)
    {
        if(other.TryGetComponent<CharacterMoveAndRotate>(out var player))
        {
            var inventoryManager = player.GetComponentInChildren<InventoryManager>();
            {
-               Give(inventoryManager);
-           }
-       }
-       if(other.TryGetComponent<NPC>(out var npc))
-       {
-           var inventoryManager = npc.GetComponentInChildren<InventoryManager>();
-           {
-               Give(inventoryManager);
+               if(ItemContains.LastOrDefault(x => x.GetType() == typeof(Tomatoes))) 
+                   Give(inventoryManager, typeof(Tomatoes));
+               else
+                   Give(inventoryManager, typeof(Milk));
            }
        }
    }

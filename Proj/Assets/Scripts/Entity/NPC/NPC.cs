@@ -15,13 +15,13 @@ namespace Entity.NPC
         public int orders;
         public float customerMultiplier;
 
-        [SerializeField] private NavMeshAgent _navMeshAgent;
+        [SerializeField] private NavMeshAgent navMeshAgent;
 
         private StateMachine _stateMachine;
 
         private ItemCollection _itemCollection;
 
-        private InventoryManager _inventoryManager;
+        private InventoryManager inventoryManager; //need reference
         
         [SerializeField] private Vector3 target;
         
@@ -32,10 +32,8 @@ namespace Entity.NPC
             customerMultiplier = Random.Range(1f, 2f);
 
             //Replace to zenject
-            _navMeshAgent = GetComponent<NavMeshAgent>();
+            navMeshAgent = GetComponent<NavMeshAgent>();
             animator = GetComponent<Animator>();
-
-            //_navMeshAgent.stoppingDistance = Random.Range(1f, 2f); //for test
 
             _stateMachine = new StateMachine();
             _stateMachine.Initialize(new CustomerIdle(this));
@@ -54,24 +52,19 @@ namespace Entity.NPC
             {
                 _itemCollection.AddItem(stand);
             }
-            _inventoryManager = GetComponentInChildren<InventoryManager>();
+            inventoryManager = GetComponentInChildren<InventoryManager>();
         }
            
         //debug
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-               
-            }
-            //mb need fix 
-            if (_navMeshAgent.remainingDistance<=_navMeshAgent.stoppingDistance)
+            if (navMeshAgent.remainingDistance<=navMeshAgent.stoppingDistance)
             {
                 _stateMachine.ChangeState(new CustomerIdle(this));
             }
         }
         //test moving
-        private IEnumerator NextState()
+        public IEnumerator NextState()
         {
             yield return new WaitForSeconds(Random.Range(3f, 7f));
             
@@ -80,10 +73,9 @@ namespace Entity.NPC
             target = item[Random.Range(0, item.Count)].transform.position;
 
             _stateMachine.ChangeState(new CustomerRun(this));
-            _navMeshAgent.SetDestination(target); //here start moving?
+            navMeshAgent.SetDestination(target);
             
-            StartCoroutine(NextState());
-            
+            //StartCoroutine(NextState());
         }
     }
 }

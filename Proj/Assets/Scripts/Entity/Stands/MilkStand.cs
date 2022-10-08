@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class MilkStand : ItemDistributor
 {
-    void Start()
+    protected override void Start()
     {
         base.Start();
         {
@@ -23,26 +23,17 @@ public class MilkStand : ItemDistributor
         if(other.TryGetComponent<NPC>(out var npc) && ItemContains.Count > 0)
         {
             var inventoryManager = npc.GetComponentInChildren<InventoryManager>();
+            var item = ItemContains[^1].GetComponent<Ingredient>();
             if(StandType == inventoryManager.LookingItem) //mb use this in base class?
-                Give(inventoryManager);
+                GiveItem(inventoryManager,item,this);
+            StartCoroutine(npc.NextState());
         }
-        if(other.TryGetComponent<CharacterMoveAndRotate>(out var player))
+        else if(other.TryGetComponent<CharacterMoveAndRotate>(out var player))
         {
             var inventoryManager = player.GetComponentInChildren<InventoryManager>();
-            Receive(inventoryManager);
+            var item = inventoryManager.GetComponentInChildren<InventoryManager>().ItemGiveRequest(typeof(Milk));
+            ReceiveItem(inventoryManager, item);
         }
     }
-    private void Give(InventoryManager inventoryManager)
-    {
-        var item = ItemContains[ItemContains.Count - 1].GetComponent<Ingredient>();
-        base.GiveItem(inventoryManager, item);
-        var indx = ItemContains.IndexOf(item);
-        ItemContains.RemoveAt(indx);
-    }
-
-    private void Receive(InventoryManager inventoryManager)
-    {
-        var item = inventoryManager.GetComponentInChildren<InventoryManager>().ItemGiveRequest(typeof(Milk));
-        ReceiveItem(inventoryManager, item);
-    }
+   
 }

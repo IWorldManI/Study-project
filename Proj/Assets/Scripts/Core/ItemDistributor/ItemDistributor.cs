@@ -19,10 +19,13 @@ public class ItemDistributor : MonoBehaviour
         
     }
 
-    protected void GiveItem(InventoryManager inventoryManager, Ingredient item)
+    protected void GiveItem(InventoryManager inventoryManager, Ingredient item,ItemDistributor itemDistributor)
     {
         if (item != null && ItemContains.Count > 0)
         {
+            var index = itemDistributor.ItemContains.IndexOf(item);
+            itemDistributor.ItemContains.RemoveAt(index);
+            
             item.transform.parent = inventoryManager.transform;
 
             var position = inventoryManager._ingredientList.Count == 0
@@ -35,7 +38,7 @@ public class ItemDistributor : MonoBehaviour
 
     protected void ReceiveItem(InventoryManager inventoryManager,Ingredient item)
     {
-        if (item != null && ItemContains.Count <= MaxCapacity) 
+        if (item != null && ItemContains.Count < MaxCapacity) 
         {
             item.transform.parent = ItemPlace[ItemContains.Count].transform;
             Receive(item, inventoryManager, this, new Vector3(0, 0, 0));
@@ -56,11 +59,11 @@ public class ItemDistributor : MonoBehaviour
     private void CompleteGive(Ingredient ingredient,ItemDistributor giver,InventoryManager receiver)
     {
         receiver.AddToDictionary(ingredient);
-        Debug.Log("ItemGive");
+        Debug.Log("ItemGive complete");
     }
     private void CompleteReceive(Ingredient ingredient,InventoryManager  giver,ItemDistributor receiver)
     {
         giver.RemoveItemFromDictionary(ingredient);
-        Debug.Log("ItemReceive");
+        Debug.Log("ItemReceive complete");
     }
 }

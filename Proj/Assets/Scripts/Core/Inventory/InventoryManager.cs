@@ -39,7 +39,7 @@ public class InventoryManager : MonoBehaviour
         if (indexList >= 0)
         {
             RemoveItemFromDictionary(_ingredientList[indexList]);
-            Debug.Log(indexList, item);
+            //Debug.Log(indexList, item);
         }
         else 
             Debug.Log("Dont have current type item");

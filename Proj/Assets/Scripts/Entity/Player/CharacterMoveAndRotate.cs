@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Core.Factory;
 using Core.StateMachine;
 using Core.StateMachine.StateList;
 using UnityEngine;
@@ -19,6 +15,8 @@ public class CharacterMoveAndRotate : MonoBehaviour
     private StateMachine _stateMachine;
     private RunState _runState;
     
+    private InventoryManager _inventoryManager;
+    
     private void Start()
     {
         //Replace to zenject
@@ -28,7 +26,8 @@ public class CharacterMoveAndRotate : MonoBehaviour
 
         _stateMachine = new StateMachine();
         _stateMachine.Initialize(new IdleState(this));
-        
+
+        _inventoryManager = GetComponent<InventoryManager>();
     }
 
     private void Update()
