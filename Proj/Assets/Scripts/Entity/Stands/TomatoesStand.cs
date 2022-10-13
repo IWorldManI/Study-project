@@ -22,16 +22,16 @@ public class TomatoesStand : ItemDistributor
         if(other.TryGetComponent<NPC>(out var npc) && ItemContains.Count > 0)
         {
             var inventoryManager = npc.GetComponentInChildren<InventoryManager>();
-            var item = ItemContains[ItemContains.Count - 1].GetComponent<Ingredient>();
-            if(StandType == inventoryManager.LookingItem) //mb use this in base class?
-                GiveItem(inventoryManager,item,this);
-            StartCoroutine(npc.NextState());
+            var item = ItemContains[^1].GetComponent<Ingredient>();
+            if (StandType == inventoryManager.LookingItem)                              //mb use this check in base class?
+                GiveItem(inventoryManager, item, ItemContains);
+            //StartCoroutine(npc.NextState());                                      // mb increased responsibility why here decides to continue NPC movement?
         }
         else if(other.TryGetComponent<CharacterMoveAndRotate>(out var player))
         {
             var inventoryManager = player.GetComponentInChildren<InventoryManager>();
-            var item = inventoryManager.GetComponentInChildren<InventoryManager>().ItemGiveRequest(typeof(Tomatoes));
-            ReceiveItem(inventoryManager,item);
+            var item = inventoryManager.GetComponentInChildren<InventoryManager>().ItemGiveRequest(StandType);
+            ReceiveItem(inventoryManager,item, ItemContains);
         }
     }
 }

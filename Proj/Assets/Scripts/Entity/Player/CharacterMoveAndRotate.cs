@@ -10,7 +10,7 @@ public class CharacterMoveAndRotate : MonoBehaviour
     [SerializeField] private Joystick joystick;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private float speed;
-    [SerializeField] private float rotationSpeed = 360;
+    [SerializeField] private float rotationSpeed = 0;
 
     private StateMachine _stateMachine;
     private RunState _runState;
@@ -56,7 +56,7 @@ public class CharacterMoveAndRotate : MonoBehaviour
         if (movementDirection != Vector3.zero)
         {
             Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);          
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);    
         }
     }
 }

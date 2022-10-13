@@ -24,15 +24,14 @@ public class KetchupStand : ItemDistributor
         {
             var inventoryManager = npc.GetComponentInChildren<InventoryManager>();
             var item = ItemContains[^1].GetComponent<Ingredient>();
-            if(StandType == inventoryManager.LookingItem) //mb use this in base class?
-                GiveItem(inventoryManager,item,this);
-            StartCoroutine(npc.NextState());
+            if (StandType == inventoryManager.LookingItem)
+                GiveItem(inventoryManager, item, ItemContains);
         }
         else if(other.TryGetComponent<CharacterMoveAndRotate>(out var player))
         {
             var inventoryManager = player.GetComponentInChildren<InventoryManager>();
-            var item = inventoryManager.GetComponentInChildren<InventoryManager>().ItemGiveRequest(typeof(Ketchup));
-            ReceiveItem(inventoryManager, item);
+            var item = inventoryManager.GetComponentInChildren<InventoryManager>().ItemGiveRequest(StandType);
+            ReceiveItem(inventoryManager, item, ItemContains);
         }
     }
 }

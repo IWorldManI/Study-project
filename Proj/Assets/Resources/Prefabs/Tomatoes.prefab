@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 657517611165285472}
   - component: {fileID: 657517611165285468}
   - component: {fileID: 657517611165285471}
-  - component: {fileID: 657517611165285473}
   - component: {fileID: 5089335135960249570}
+  - component: {fileID: -6844756902498835472}
   m_Layer: 0
   m_Name: Tomatoes
   m_TagString: Untagged
@@ -85,22 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &657517611165285473
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 657517611165285475}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f46f0f0e19f1e2947bea5bc5d67cc090, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pivot: {fileID: 0}
-  OnTook: 0
-  stiffness: 0
-  conservation: 0
 --- !u!114 &5089335135960249570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,5 +95,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: efe13d73d24c89345a73ef26d7cd3cb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-6844756902498835472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 657517611165285475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d99304c59043d7242afa0e979fddf739, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

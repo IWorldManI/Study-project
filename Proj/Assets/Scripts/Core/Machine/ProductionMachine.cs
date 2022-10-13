@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class ProductionMachine : ItemDistributor
 {
-    [SerializeField] private GameObject productPrefab;
-    
-    private void Start()
+    [SerializeField] private KetchupPool productPool; //testing, there should be a pool
+
+    protected override void Start()
     {
         base.Start();
         {
@@ -18,43 +18,69 @@ public class ProductionMachine : ItemDistributor
             }
             MaxCapacity = ItemPlace.Count;
             StandType = typeof(Tomatoes);
+            
+            StartCoroutine(Process(StandType));
+            productPool = GetComponent<KetchupPool>();
         }
     }
 
-    private IEnumerator Product(Type type)
+    private IEnumerator Process(Type type)
     {
-        yield return new WaitForSeconds(10f);
-        var itemForProcessing = ItemContains.LastOrDefault(x => x.GetType() == type);
-        if (itemForProcessing != null) 
-        {
-            var index = ItemContains.IndexOf(itemForProcessing);
-            ItemContains.RemoveAt(index);
-            Destroy(itemForProcessing.gameObject);
-            var item = Instantiate(productPrefab,transform.position,Quaternion.identity);
-            item.transform.parent = transform;
-            ItemContains.Add(item.GetComponent<Ingredient>());
-            
-            Debug.Log("Start again routine cuz have item to production");
+        while (true)
+        { 
+            yield return new WaitForSeconds(2f);
+                    var itemForProcessing = ItemContains.LastOrDefault(x => x.GetType() == type);
+                    if (itemForProcessing != null) 
+                    {
+                        var index = ItemContains.IndexOf(itemForProcessing);
+                        ItemContains.RemoveAt(index);
+                        Destroy(itemForProcessing.gameObject);
+                        var item = productPool.Spawn(transform.position + new Vector3(0, ItemProduction.Count, 0), 1);
+                        
+                        item.transform.parent = transform;
+                        ItemProduction.Add(item.GetComponent<Ingredient>());
+                        
+                        Debug.Log("Start again routine cuz have item to product");
+                    }
         }
     }
-    
+
+    protected override IEnumerator Delay(InventoryManager inventoryManager)
+    {
+        yield return new WaitForSeconds(.4f);
+       
+        if (ItemContains.Count < MaxCapacity)
+        {
+            var item = inventoryManager.GetComponentInChildren<InventoryManager>().ItemGiveRequest(typeof(Tomatoes));
+            ReceiveItem(inventoryManager,item, ItemContains);
+        }
+            
+        if (ItemProduction.Count > 0) 
+        {
+            var item = ItemProduction.LastOrDefault(x => x.GetType() == typeof(Ketchup));
+            GiveItem(inventoryManager, item, ItemProduction);
+        }
+
+        DelayRoutine = Delay(inventoryManager);
+        StartCoroutine(DelayRoutine);
+    }
     private void OnTriggerEnter(Collider other)
     {
         if(other.TryGetComponent<CharacterMoveAndRotate>(out var player))
         {
             var inventoryManager = player.GetComponentInChildren<InventoryManager>();
             
-            if (ItemContains.Count < MaxCapacity)
+            DelayRoutine = Delay(inventoryManager);
+            StartCoroutine(DelayRoutine);
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.TryGetComponent<CharacterMoveAndRotate>(out var player))
+        {
+            if (DelayRoutine != null) 
             {
-                var item = inventoryManager.GetComponentInChildren<InventoryManager>().ItemGiveRequest(typeof(Tomatoes));
-                ReceiveItem(inventoryManager,item);
-                StartCoroutine(Product(typeof(Tomatoes)));
-            }
-            
-            if (ItemContains.Count > 0) 
-            {
-                var item = ItemContains.LastOrDefault(x => x.GetType() == typeof(Ketchup));
-                GiveItem(inventoryManager, item, this);
+                StopCoroutine(DelayRoutine);
             }
         }
     }

@@ -12,12 +12,6 @@ public class MoneyPool : PoolerBase<PooledShape>
         var shape = Get(); // Pull from the pool
         Release(shape); // Release back to the pool
         
-        
-        for (var i = 0; i < 100; i++)
-        {
-            Spawn();
-        }
-        
     }
 
     //for test object pooling
@@ -25,16 +19,19 @@ public class MoneyPool : PoolerBase<PooledShape>
     {
         if (Input.GetMouseButton(0))
         {
-            Spawn();
+            //Spawn(transform.position + Random.insideUnitSphere * 10, 1);
         }
     }
 
-    private void Spawn()
+    public void Spawn(Vector3 spawnPosition, int count)
     {
-        var shape = Get();
-        shape.transform.parent = gameObject.transform;
-        shape.transform.position = transform.position + Random.insideUnitSphere * 10;
-        shape.Init(KillShape);
+        for (int i = 0; i < count; i++)
+        {
+            var shape = Get();
+            shape.transform.parent = gameObject.transform;
+            shape.transform.position = spawnPosition;
+            shape.Init(KillShape);   
+        }
     }
 
     private void KillShape(PooledShape shape)

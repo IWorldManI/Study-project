@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 
@@ -17,27 +18,46 @@ public class ItemGiver : ItemDistributor
             }
         }
     }
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.TryGetComponent<CharacterMoveAndRotate>(out var player))
+        {
+            var inventoryManager = player.GetComponentInChildren<InventoryManager>();
+            {
+                DelayRoutine = Delay(inventoryManager);
+                StartCoroutine(DelayRoutine);
+            }
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.TryGetComponent<CharacterMoveAndRotate>(out var player))
+        {
+            if (DelayRoutine != null) 
+            {
+                StopCoroutine(DelayRoutine);
+            }
+        }
+    }
     private void Give(InventoryManager inventoryManager, Type type)
     {
-        Debug.Log("Touch " + name);
         if (ItemContains.Count > 0) 
         {
             var item = ItemContains.LastOrDefault(x => x.GetType() == type);
-            GiveItem(inventoryManager, item, this);
+            GiveItem(inventoryManager, item, ItemContains);
         }
-    } 
-   private void OnTriggerEnter(Collider other)
-   {
-       if(other.TryGetComponent<CharacterMoveAndRotate>(out var player))
+    }
+
+    protected override IEnumerator Delay(InventoryManager inventoryManager)
+    {
+       yield return new WaitForSeconds(.4f);
+       
+       Give(inventoryManager, ItemContains.LastOrDefault().GetType());
+       
+       if (ItemContains.Count > 0)
        {
-           var inventoryManager = player.GetComponentInChildren<InventoryManager>();
-           {
-               if(ItemContains.LastOrDefault(x => x.GetType() == typeof(Tomatoes))) 
-                   Give(inventoryManager, typeof(Tomatoes));
-               else
-                   Give(inventoryManager, typeof(Milk));
-           }
+           DelayRoutine = Delay(inventoryManager);
+           StartCoroutine(DelayRoutine);
        }
-   }
+    }
 }

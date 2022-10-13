@@ -33,7 +33,7 @@ public class InventoryManager : MonoBehaviour
 
     public Ingredient ItemGiveRequest(Type type)
     {
-        var item = _ingredientList.Where(x => x.GetType() == type).LastOrDefault();
+        var item = _ingredientList.LastOrDefault(x => x.GetType() == type);
         var indexList = _ingredientList.IndexOf(item);
 
         if (indexList >= 0)
@@ -71,8 +71,6 @@ public class InventoryManager : MonoBehaviour
         {
             _ingredientDictionary[type].Add(item);
         }
-        
-        //Debug.Log(item.GetType());
     }
     
     

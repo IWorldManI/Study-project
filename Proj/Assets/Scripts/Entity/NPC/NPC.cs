@@ -66,7 +66,7 @@ namespace Entity.NPC
         //test moving
         public IEnumerator NextState()
         {
-            yield return new WaitForSeconds(Random.Range(3f, 7f));
+            yield return new WaitForSeconds(Random.Range(13f, 7f));
             
             var item = _itemCollection.GetItems();
             
@@ -75,7 +75,7 @@ namespace Entity.NPC
             _stateMachine.ChangeState(new CustomerRun(this));
             navMeshAgent.SetDestination(target);
             
-            //StartCoroutine(NextState());
+            StartCoroutine(NextState());
         }
     }
 }
