@@ -29,6 +29,10 @@ public class CashierStand : ItemDistributor
                 var item = ingredient.GetComponent<Ingredient>();
                 ReceiveItem(inventoryManager, item, ItemContains);
             }
+            //only test
+            npc.OnCollect += npc.OrderNext;
+            npc.OnCollect?.Invoke();
+            npc.OnCollect -= npc.OrderNext;
         }
         
         if(other.TryGetComponent<CharacterMoveAndRotate>(out var player))

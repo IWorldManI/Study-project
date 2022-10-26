@@ -8,10 +8,10 @@ public class KetchupPool : PoolerBase<PooledShape>
 
     private void Start() 
     {
-        InitPool(_shapePrefab); // Initialize the pool
+        InitPool(_shapePrefab); 
 
-        var shape = Get(); // Pull from the pool
-        Release(shape); // Release back to the pool
+        var shape = Get(); 
+        Release(shape); 
         
     }
     

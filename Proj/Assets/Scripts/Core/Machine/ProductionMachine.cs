@@ -1,16 +1,21 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class ProductionMachine : ItemDistributor
 {
     [SerializeField] private KetchupPool productPool; //testing, there should be a pool
-
+    
+    private IEnumerator _productRoutine;
     protected override void Start()
     {
         base.Start();
         {
+            ItemContains = new List<Ingredient>();
+            ItemProduction = new List<Ingredient>();
+
             Holder = GetComponentInChildren<PlaceHolderForItems>();
             foreach (Transform child in Holder.transform)
             {
@@ -18,8 +23,7 @@ public class ProductionMachine : ItemDistributor
             }
             MaxCapacity = ItemPlace.Count;
             StandType = typeof(Tomatoes);
-            
-            StartCoroutine(Process(StandType));
+
             productPool = GetComponent<KetchupPool>();
         }
     }
@@ -41,17 +45,24 @@ public class ProductionMachine : ItemDistributor
                         ItemProduction.Add(item.GetComponent<Ingredient>());
                         
                         Debug.Log("Start again routine cuz have item to product");
+                    }else
+                    {
+                        if (_productRoutine != null)
+                        {
+                            StopCoroutine(_productRoutine);
+                            _productRoutine = null;
+                        }
                     }
         }
     }
 
-    protected override IEnumerator Delay(InventoryManager inventoryManager)
+    private IEnumerator Delay(InventoryManager inventoryManager)
     {
-        yield return new WaitForSeconds(.4f);
+        yield return new WaitForSeconds(_itemDistributeDelay);
        
         if (ItemContains.Count < MaxCapacity)
         {
-            var item = inventoryManager.GetComponentInChildren<InventoryManager>().ItemGiveRequest(typeof(Tomatoes));
+            var item = inventoryManager.GetComponentInChildren<InventoryManager>().ItemGiveRequest(StandType);
             ReceiveItem(inventoryManager,item, ItemContains);
         }
             
@@ -72,6 +83,12 @@ public class ProductionMachine : ItemDistributor
             
             DelayRoutine = Delay(inventoryManager);
             StartCoroutine(DelayRoutine);
+            if (_productRoutine == null)
+            {
+                _productRoutine = Process(StandType);
+                StartCoroutine(_productRoutine);
+            }
+                
         }
     }
     private void OnTriggerExit(Collider other)

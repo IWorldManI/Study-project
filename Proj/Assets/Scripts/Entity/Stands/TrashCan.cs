@@ -6,7 +6,7 @@ public class TrashCan : ItemDistributor
 {
     private IEnumerator _delayRoutine;
     
-    protected override void Start()
+    private void Start()
     {
         base.Start();
         {
@@ -32,8 +32,9 @@ public class TrashCan : ItemDistributor
     }
     private void DropInCan(InventoryManager inventoryManager)
     {
+#if UNITY_EDITOR
         Debug.Log("Trashed " + name);
-        
+#endif
         var type = inventoryManager._ingredientList.LastOrDefault().GetType();
         var item = inventoryManager.GetComponentInChildren<InventoryManager>().ItemGiveRequest(type);
         ReceiveItem(inventoryManager, item, ItemContains);
@@ -49,9 +50,9 @@ public class TrashCan : ItemDistributor
         }
     }
 
-    protected override IEnumerator Delay(InventoryManager inventoryManager)
+    private IEnumerator Delay(InventoryManager inventoryManager)
     {
-        yield return new WaitForSeconds(.3f);
+        yield return new WaitForSeconds(.15f);
         if (inventoryManager._ingredientList.Count > 0) 
             DropInCan(inventoryManager);
         

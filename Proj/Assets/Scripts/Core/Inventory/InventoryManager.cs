@@ -17,12 +17,7 @@ public class InventoryManager : MonoBehaviour
             SearchAllAndAddToDictionary();
         }
     }
-    
-    private void Start()
-    {
-        LookingItem = typeof(Milk); //for test pick up current item
-    }
-    
+   
     private void Update()
     {
         if (Input.GetMouseButtonUp(0))
@@ -76,7 +71,7 @@ public class InventoryManager : MonoBehaviour
     
     public void RemoveItemFromDictionary(Ingredient item)
     {
-        Debug.Log(_ingredientList.Count + " items contains before remove");
+        //Debug.Log(_ingredientList.Count + " items contains before remove");
         
         var type = item.GetType();
 
@@ -93,7 +88,7 @@ public class InventoryManager : MonoBehaviour
         
         SortItemsInList();
         
-        Debug.Log(_ingredientList.Count + " item contains after remove");
+        //Debug.Log(_ingredientList.Count + " item contains after remove");
     }
 
     private void SortItemsInList()
