@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class KetchupStand : ItemDistributor
 {
+    private readonly Dictionary<NPC, Coroutine> _receiveItemDictionary = new Dictionary<NPC, Coroutine>();
+    private readonly Dictionary<NPC, Coroutine> _giveItemDictionary = new Dictionary<NPC, Coroutine>(); //maybe helper class
+    
     protected override void Start()
     {
         base.Start();
@@ -27,17 +30,20 @@ public class KetchupStand : ItemDistributor
         if(other.TryGetComponent<NPC>(out var npc))
         {
             var inventoryManager = npc.GetComponentInChildren<InventoryManager>();
+            if (!_receiveItemDictionary.ContainsKey(npc))
             {
                 GiveDelayRoutine = GiveDelay(inventoryManager, npc);
-                StartCoroutine(GiveDelayRoutine);
+                _receiveItemDictionary.Add(npc, StartCoroutine(GiveDelayRoutine));
+                Debug.Log("Routine started npc" + npc.name);
             }
         }
         else if(other.TryGetComponent<CharacterMoveAndRotate>(out var player))
         {
             var inventoryManager = player.GetComponentInChildren<InventoryManager>();
             {
-                DelayRoutine = ReceiveDelay(inventoryManager);
-                StartCoroutine(DelayRoutine);
+                ReceiveDelayRoutine = ReceiveDelay(inventoryManager);
+                StartCoroutine(ReceiveDelayRoutine);
+                Debug.Log("Routine started player");
             }
         }
     }
@@ -46,9 +52,21 @@ public class KetchupStand : ItemDistributor
     {
         if(other.TryGetComponent<CharacterMoveAndRotate>(out var player))
         {
-            if (DelayRoutine != null) 
+            if (ReceiveDelayRoutine != null) 
             {
-                StopCoroutine(DelayRoutine);
+                StopCoroutine(ReceiveDelayRoutine);
+                Debug.Log("Routine stopped player");
+            }
+        }
+
+        if (other.TryGetComponent<NPC>(out var npc))
+        {
+            if (_receiveItemDictionary.TryGetValue(npc, out Coroutine rCoroutine))
+            {
+                _receiveItemDictionary.Remove(npc);
+
+                StopCoroutine(rCoroutine);
+                Debug.Log("Routine stopped npc" + npc.name);
             }
         }
     }
@@ -63,8 +81,8 @@ public class KetchupStand : ItemDistributor
             ReceiveItem(inventoryManager, item, ItemContains);
         }
        
-        DelayRoutine = ReceiveDelay(inventoryManager);
-        StartCoroutine(DelayRoutine);
+        ReceiveDelayRoutine = ReceiveDelay(inventoryManager);
+        StartCoroutine(ReceiveDelayRoutine);
     }
     
     private IEnumerator GiveDelay(InventoryManager inventoryManager, NPC npc)

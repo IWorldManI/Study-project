@@ -72,8 +72,8 @@ public class ProductionMachine : ItemDistributor
             GiveItem(inventoryManager, item, ItemProduction);
         }
 
-        DelayRoutine = Delay(inventoryManager);
-        StartCoroutine(DelayRoutine);
+        ReceiveDelayRoutine = Delay(inventoryManager);
+        StartCoroutine(ReceiveDelayRoutine);
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -81,8 +81,8 @@ public class ProductionMachine : ItemDistributor
         {
             var inventoryManager = player.GetComponentInChildren<InventoryManager>();
             
-            DelayRoutine = Delay(inventoryManager);
-            StartCoroutine(DelayRoutine);
+            ReceiveDelayRoutine = Delay(inventoryManager);
+            StartCoroutine(ReceiveDelayRoutine);
             if (_productRoutine == null)
             {
                 _productRoutine = Process(StandType);
@@ -95,9 +95,9 @@ public class ProductionMachine : ItemDistributor
     {
         if(other.TryGetComponent<CharacterMoveAndRotate>(out var player))
         {
-            if (DelayRoutine != null) 
+            if (ReceiveDelayRoutine != null) 
             {
-                StopCoroutine(DelayRoutine);
+                StopCoroutine(ReceiveDelayRoutine);
             }
         }
     }

@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class MilkStand : ItemDistributor
 {
+    private readonly Dictionary<NPC, Coroutine> _receiveItemDictionary = new Dictionary<NPC, Coroutine>();
+    private readonly Dictionary<NPC, Coroutine> _giveItemDictionary = new Dictionary<NPC, Coroutine>(); //maybe helper class
+    
     protected override void Start()
     {
         base.Start();
@@ -25,40 +28,50 @@ public class MilkStand : ItemDistributor
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.TryGetComponent<NPC>(out var npc) && ItemContains.Count > 0)
+        if(other.TryGetComponent<NPC>(out var npc))
         {
             var inventoryManager = npc.GetComponentInChildren<InventoryManager>();
-            var item = ItemContains[^1].GetComponent<Ingredient>();
-            if (StandType == inventoryManager.LookingItem)
+            if (!_receiveItemDictionary.ContainsKey(npc))
             {
-                GiveItem(inventoryManager, item, ItemContains);
-                npc.OnCollect += npc.OrderNext;
-                npc.OnCollect?.Invoke();
-                npc.OnCollect -= npc.OrderNext;
+                GiveDelayRoutine = GiveDelay(inventoryManager, npc);
+                _receiveItemDictionary.Add(npc, StartCoroutine(GiveDelayRoutine));
+                Debug.Log("Routine started npc" + npc.name);
             }
         }
         else if(other.TryGetComponent<CharacterMoveAndRotate>(out var player))
         {
             var inventoryManager = player.GetComponentInChildren<InventoryManager>();
             {
-                DelayRoutine = ReceiveDelay(inventoryManager);
-                StartCoroutine(DelayRoutine);
+                ReceiveDelayRoutine = ReceiveDelay(inventoryManager);
+                StartCoroutine(ReceiveDelayRoutine);
+                Debug.Log("Routine started player");
             }
         }
     }
-    
     private void OnTriggerExit(Collider other)
     {
         if(other.TryGetComponent<CharacterMoveAndRotate>(out var player))
         {
-            if (DelayRoutine != null) 
+            if (ReceiveDelayRoutine != null) 
             {
-                StopCoroutine(DelayRoutine);
+                StopCoroutine(ReceiveDelayRoutine);
+                Debug.Log("Routine stopped player");
+            }
+        }
+
+        if (other.TryGetComponent<NPC>(out var npc))
+        {
+            if (_receiveItemDictionary.TryGetValue(npc, out Coroutine rCoroutine))
+            {
+                _receiveItemDictionary.Remove(npc);
+
+                StopCoroutine(rCoroutine);
+                Debug.Log("Routine stopped npc" + npc.name);
             }
         }
     }
 
-    private IEnumerator ReceiveDelay(InventoryManager inventoryManager)
+    protected IEnumerator ReceiveDelay(InventoryManager inventoryManager)
     {
         yield return new WaitForSeconds(_itemDistributeDelay);
 
@@ -68,7 +81,25 @@ public class MilkStand : ItemDistributor
             ReceiveItem(inventoryManager, item, ItemContains);
         }
        
-        DelayRoutine = ReceiveDelay(inventoryManager);
-        StartCoroutine(DelayRoutine);
+        ReceiveDelayRoutine = ReceiveDelay(inventoryManager);
+        StartCoroutine(ReceiveDelayRoutine);
+    }
+    
+    protected IEnumerator GiveDelay(InventoryManager inventoryManager, NPC npc)
+    {
+        yield return new WaitForSeconds(_itemDistributeDelay);
+        
+        GiveDelayRoutine = GiveDelay(inventoryManager, npc);
+        StartCoroutine(GiveDelayRoutine);
+        
+        if (StandType == inventoryManager.LookingItem && ItemContains.Count > 0)
+        {
+            var item = ItemContains[^1].GetComponent<Ingredient>();
+            GiveItem(inventoryManager, item, ItemContains);
+            npc.OnCollect += npc.OrderNext;
+            npc.OnCollect?.Invoke();
+            npc.OnCollect -= npc.OrderNext;
+            StopCoroutine(GiveDelayRoutine);
+        }
     }
 }

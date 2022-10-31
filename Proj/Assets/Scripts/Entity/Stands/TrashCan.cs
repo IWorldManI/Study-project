@@ -56,7 +56,7 @@ public class TrashCan : ItemDistributor
         if (inventoryManager._ingredientList.Count > 0) 
             DropInCan(inventoryManager);
         
-        if (ItemContains.Count > 0)
+        if (ItemContains.Count >= 0)
         {
             _delayRoutine = Delay(inventoryManager);
             StartCoroutine(_delayRoutine);

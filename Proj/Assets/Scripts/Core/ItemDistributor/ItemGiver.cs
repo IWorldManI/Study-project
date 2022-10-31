@@ -35,8 +35,8 @@ public class ItemGiver : ItemDistributor
         {
             var inventoryManager = player.GetComponentInChildren<InventoryManager>();
             {
-                DelayRoutine = Delay(inventoryManager);
-                StartCoroutine(DelayRoutine);
+                ReceiveDelayRoutine = Delay(inventoryManager);
+                StartCoroutine(ReceiveDelayRoutine);
             }
         }
     }
@@ -44,9 +44,9 @@ public class ItemGiver : ItemDistributor
     {
         if(other.TryGetComponent<CharacterMoveAndRotate>(out var player))
         {
-            if (DelayRoutine != null) 
+            if (ReceiveDelayRoutine != null) 
             {
-                StopCoroutine(DelayRoutine);
+                StopCoroutine(ReceiveDelayRoutine);
             }
         }
     }
@@ -65,8 +65,8 @@ public class ItemGiver : ItemDistributor
        if (ItemContains.Count > 0) 
            Give(inventoryManager, ItemContains.LastOrDefault().GetType());
        
-       DelayRoutine = Delay(inventoryManager);
-       StartCoroutine(DelayRoutine);
+       ReceiveDelayRoutine = Delay(inventoryManager);
+       StartCoroutine(ReceiveDelayRoutine);
     }
     private IEnumerator SpawnDelay()
     {

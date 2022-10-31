@@ -78,7 +78,7 @@ public class InventoryManager : MonoBehaviour
         if (_ingredientDictionary.TryGetValue(type, out var list))
         {
             list.Remove(item);
-            Debug.Log("Item removed " + type);
+            //Debug.Log("Item removed " + type);
         }
         
         var indexList = _ingredientList.IndexOf(item);

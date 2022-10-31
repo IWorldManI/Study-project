@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,8 +17,9 @@ public class ItemDistributor : MonoBehaviour
 
     protected internal Type StandType;
 
-    protected IEnumerator DelayRoutine;
+    protected IEnumerator ReceiveDelayRoutine;
     protected IEnumerator GiveDelayRoutine;
+    
     private float _itemDistributeDuration = 0.3f;
     protected float _itemDistributeDelay;
 
@@ -32,13 +34,13 @@ public class ItemDistributor : MonoBehaviour
     {
         if (item != null && list.Count > 0)
         {
+            item.transform.parent = inventoryManager.transform;
+            
             var index = list.IndexOf(item);
             list.RemoveAt(index);
             
-            item.transform.parent = inventoryManager.transform;
-
             var position = new Vector3(0, inventoryManager._ingredientList.Count + 1, 0);
-            Give(item, this, inventoryManager, position);
+            Give(item, this, inventoryManager, position, list);
         }
     }
 
@@ -46,16 +48,24 @@ public class ItemDistributor : MonoBehaviour
     {
         if (item != null && list.Count < MaxCapacity) 
         {
-            item.transform.parent = ItemPlace[ItemContains.Count].transform;
-            Receive(item, inventoryManager, this, Vector3.zero,list);
-            //list.Add(item);
+            if(ItemPlace[list.Count].transform.childCount <= 0)
+            {
+                Debug.Log("Everything okay");
+                item.transform.parent = ItemPlace[list.Count].transform;
+            }
+            else 
+            {
+                Debug.Log("Find empty");
+                item.transform.parent = list.Count > 0 ? ItemPlace[list.Count - 1].transform : ItemPlace[list.Count].transform;
+            }
+            Receive(item, inventoryManager, this, Vector3.zero, list);
         }   
     }
 
-    private void Give(Ingredient ingredient,ItemDistributor giver,InventoryManager receiver, Vector3 _target)
+    private void Give(Ingredient ingredient,ItemDistributor giver,InventoryManager receiver, Vector3 _target, List<Ingredient> list)
     {
         ingredient.transform.DOLocalRotate(Vector3.zero,_itemDistributeDuration);
-        ingredient.transform.DOLocalJump(_target, 1f, 1, _itemDistributeDuration).OnComplete(()=>CompleteGive(ingredient,giver,receiver));
+        ingredient.transform.DOLocalJump(_target, 1f, 1, _itemDistributeDuration).OnComplete(()=>CompleteGive(ingredient,giver,receiver, list));
     }
 
     private void Receive(Ingredient ingredient, InventoryManager giver,ItemDistributor receiver, Vector3 _target, List<Ingredient> list)
@@ -64,7 +74,7 @@ public class ItemDistributor : MonoBehaviour
         ingredient.transform.DOLocalJump(_target, 1f, 1, _itemDistributeDuration).OnComplete(()=>CompleteReceive(ingredient,giver,receiver,list));
     }
 
-    private void CompleteGive(Ingredient ingredient, ItemDistributor giver, InventoryManager receiver)
+    private void CompleteGive(Ingredient ingredient, ItemDistributor giver, InventoryManager receiver, List<Ingredient> list)
     {
         receiver.AddToDictionary(ingredient);
         //Debug.Log("ItemGive complete");

@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 using Core.StateMachine.StateList;
-using Unity.VisualScripting;
 using Debug = UnityEngine.Debug;
 using StateMachine = Core.StateMachine.StateMachine;
 
@@ -90,7 +89,7 @@ namespace Entity.NPC
             var itemId = Random.Range(0, item.Count);
             
             target = item[itemId].transform.position;
-            Debug.Log("Looking for " + item[itemId].name);
+            Debug.Log("Looking for " + item[itemId].name + name);
             
             inventoryManager.LookingItem = _customerOrdersManager.GetOrder(item[itemId]);
 
