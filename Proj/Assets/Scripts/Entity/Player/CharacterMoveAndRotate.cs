@@ -17,6 +17,7 @@ public class CharacterMoveAndRotate : MonoBehaviour
     
     private InventoryManager _inventoryManager;
     
+    
     private void Start()
     {
         //Replace to zenject

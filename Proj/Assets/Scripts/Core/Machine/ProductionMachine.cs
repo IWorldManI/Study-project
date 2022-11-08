@@ -58,7 +58,7 @@ public class ProductionMachine : ItemDistributor
 
     private IEnumerator Delay(InventoryManager inventoryManager)
     {
-        yield return new WaitForSeconds(_itemDistributeDelay);
+        yield return new WaitForSeconds(ItemDistributeDelay);
        
         if (ItemContains.Count < MaxCapacity)
         {

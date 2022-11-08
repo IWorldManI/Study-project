@@ -1,10 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using DG.Tweening;
+using Entity.NPC;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ItemDistributor : MonoBehaviour
 {
@@ -21,13 +20,38 @@ public class ItemDistributor : MonoBehaviour
     protected IEnumerator GiveDelayRoutine;
     
     private float _itemDistributeDuration = 0.3f;
-    protected float _itemDistributeDelay;
-
+    protected float ItemDistributeDelay;
+    
     protected virtual void Start()
     {
         ItemProduction = new List<Ingredient>();
         ItemContains = new List<Ingredient>();
-        _itemDistributeDelay = _itemDistributeDuration + 0.1f;
+        ItemDistributeDelay = _itemDistributeDuration + 0.1f;
+    }
+    
+    protected void TryReceiveItem(InventoryManager inventoryManager, NPC npc)
+    {
+        if (ItemContains.Count < MaxCapacity) 
+        {
+            var item = inventoryManager.GetComponentInChildren<InventoryManager>().ItemGiveRequest(StandType);
+            ReceiveItem(inventoryManager, item, ItemContains);
+        }
+    }
+    protected void TryGiveItem(InventoryManager inventoryManager, NPC npc)
+    {
+        if (StandType == inventoryManager.LookingItem && ItemContains.Count > 0)
+        {
+            var item = ItemContains[^1].GetComponent<Ingredient>();
+            GiveItem(inventoryManager, item, ItemContains);
+            if (npc != null)
+            {
+                npc.OnCollect += npc.TryOrderNext;
+                npc.OnCollect?.Invoke(npc);
+                npc.OnCollect -= npc.TryOrderNext;
+                
+                //StopCoroutine(GiveDelayRoutine);
+            }
+        }
     }
 
     protected void GiveItem(InventoryManager inventoryManager, Ingredient item, List<Ingredient> list)
@@ -62,16 +86,16 @@ public class ItemDistributor : MonoBehaviour
         }   
     }
 
-    private void Give(Ingredient ingredient,ItemDistributor giver,InventoryManager receiver, Vector3 _target, List<Ingredient> list)
+    private void Give(Ingredient ingredient,ItemDistributor giver,InventoryManager receiver, Vector3 target, List<Ingredient> list)
     {
         ingredient.transform.DOLocalRotate(Vector3.zero,_itemDistributeDuration);
-        ingredient.transform.DOLocalJump(_target, 1f, 1, _itemDistributeDuration).OnComplete(()=>CompleteGive(ingredient,giver,receiver, list));
+        ingredient.transform.DOLocalJump(target, 1f, 1, _itemDistributeDuration).OnComplete(()=>CompleteGive(ingredient,giver,receiver, list));
     }
 
-    private void Receive(Ingredient ingredient, InventoryManager giver,ItemDistributor receiver, Vector3 _target, List<Ingredient> list)
+    private void Receive(Ingredient ingredient, InventoryManager giver,ItemDistributor receiver, Vector3 target, List<Ingredient> list)
     {
         ingredient.transform.DOLocalRotate(Vector3.zero,_itemDistributeDuration);
-        ingredient.transform.DOLocalJump(_target, 1f, 1, _itemDistributeDuration).OnComplete(()=>CompleteReceive(ingredient,giver,receiver,list));
+        ingredient.transform.DOLocalJump(target, 1f, 1, _itemDistributeDuration).OnComplete(()=>CompleteReceive(ingredient,giver,receiver,list));
     }
 
     private void CompleteGive(Ingredient ingredient, ItemDistributor giver, InventoryManager receiver, List<Ingredient> list)
@@ -86,4 +110,6 @@ public class ItemDistributor : MonoBehaviour
         giver.RemoveItemFromDictionary(ingredient);
         //Debug.Log("ItemReceive complete");
     }
+
+    
 }

@@ -6,25 +6,23 @@ ScriptsOnlyBuild:
     - Core.Factory.CustomerFactory
     - CustomerOrdersManager
     - DEBUG_CustomerSpawn
-    - Entity.NPC.NPC
+    - Entity.NPC.Customer
+    - Entity.NPC.Helper
     - FloatingJoystick
     - FremeRate
     - InventoryManager
     - ItemGiver
     - Ketchup
     - KetchupPool
-    - KetchupStand
     - Milk
     - MilkPool
-    - MilkStand
     - MoneyPool
     - PlaceHolderForItems
     - PooledShape
     - ProductionMachine
-    - StandPointForCustomers
+    - Stand
     - Tomatoes
     - TomatoesPool
-    - TomatoesStand
     - TrashCan
     - UIMultiplier
     Cinemachine.dll:
@@ -163,39 +161,35 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2048}
     - Class: 114
-      Script: {instanceID: 2104}
+      Script: {instanceID: 2578}
     - Class: 114
-      Script: {instanceID: 2580}
+      Script: {instanceID: 3000}
     - Class: 114
-      Script: {instanceID: 3002}
+      Script: {instanceID: 3036}
     - Class: 114
-      Script: {instanceID: 3038}
+      Script: {instanceID: 3082}
     - Class: 114
-      Script: {instanceID: 3084}
+      Script: {instanceID: 3136}
     - Class: 114
-      Script: {instanceID: 3138}
+      Script: {instanceID: 3178}
     - Class: 114
-      Script: {instanceID: 3180}
+      Script: {instanceID: 3340}
     - Class: 114
-      Script: {instanceID: 3342}
+      Script: {instanceID: 3454}
     - Class: 114
-      Script: {instanceID: 3456}
+      Script: {instanceID: 3636}
     - Class: 114
-      Script: {instanceID: 3638}
+      Script: {instanceID: 3654}
     - Class: 114
-      Script: {instanceID: 3656}
+      Script: {instanceID: 4044}
     - Class: 114
-      Script: {instanceID: 3986}
+      Script: {instanceID: 4600}
     - Class: 114
-      Script: {instanceID: 4046}
+      Script: {instanceID: 4692}
     - Class: 114
-      Script: {instanceID: 4602}
+      Script: {instanceID: 4766}
     - Class: 114
-      Script: {instanceID: 4626}
-    - Class: 114
-      Script: {instanceID: 4694}
-    - Class: 114
-      Script: {instanceID: 4768}
+      Script: {instanceID: 4930}
     - Class: 114
       Script: {instanceID: 5002}
     - Class: 114
@@ -219,27 +213,31 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 6948}
     - Class: 114
-      Script: {instanceID: 6990}
+      Script: {instanceID: 6992}
     - Class: 114
-      Script: {instanceID: 7044}
+      Script: {instanceID: 7046}
     - Class: 114
-      Script: {instanceID: 7194}
+      Script: {instanceID: 7196}
     - Class: 114
-      Script: {instanceID: 7256}
+      Script: {instanceID: 7258}
     - Class: 114
-      Script: {instanceID: 7614}
+      Script: {instanceID: 7354}
     - Class: 114
-      Script: {instanceID: 8454}
+      Script: {instanceID: 7618}
     - Class: 114
-      Script: {instanceID: 8518}
+      Script: {instanceID: 7712}
     - Class: 114
-      Script: {instanceID: 8566}
+      Script: {instanceID: 8460}
     - Class: 114
-      Script: {instanceID: 8726}
+      Script: {instanceID: 8524}
     - Class: 114
-      Script: {instanceID: 9332}
+      Script: {instanceID: 8572}
     - Class: 114
-      Script: {instanceID: 9922}
+      Script: {instanceID: 9928}
+    - Class: 114
+      Script: {instanceID: 25498}
+    - Class: 114
+      Script: {instanceID: 25726}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -361,12 +359,6 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: Shadow
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: StandPointForCustomers
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -849,7 +841,7 @@ ScriptsOnlyBuild:
     className: Ketchup
   - hash:
       serializedVersion: 2
-      Hash: 9e8fdd5fd6254fb7b42aff568d3d88e7
+      Hash: e8c3ba3ae2209e9bacba0084cda62e5d
     assemblyName: Assembly-CSharp.dll
     namespaceName: Entity.NPC
     className: NPC
@@ -919,6 +911,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
     className: PhysicsRaycaster
+  - hash:
+      serializedVersion: 2
+      Hash: e8c3ba3ae2209e9bacba0084cda62e5d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Entity.NPC
+    className: Customer
   - hash:
       serializedVersion: 2
       Hash: 1e3d6222ff533d213aab144eb854a53b
@@ -1365,6 +1363,12 @@ ScriptsOnlyBuild:
     className: AnimatorMoveHandlerManager
   - hash:
       serializedVersion: 2
+      Hash: e8c3ba3ae2209e9bacba0084cda62e5d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Entity.NPC
+    className: Helper
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Zenject.dll
     namespaceName: Zenject
@@ -1417,6 +1421,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools
     className: BeforeAfterTestCommandState
+  - hash:
+      serializedVersion: 2
+      Hash: 9e282125eaedf8717986297aeb1df1f9
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Stand
   - hash:
       serializedVersion: 2
       Hash: b02546fd00ac6dc2fae4119a1a3ace64

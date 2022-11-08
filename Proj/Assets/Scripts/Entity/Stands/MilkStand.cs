@@ -42,7 +42,7 @@ public class MilkStand : ItemDistributor
         {
             var inventoryManager = player.GetComponentInChildren<InventoryManager>();
             {
-                ReceiveDelayRoutine = ReceiveDelay(inventoryManager);
+                ReceiveDelayRoutine = ReceiveDelay(inventoryManager, null);
                 StartCoroutine(ReceiveDelayRoutine);
                 Debug.Log("Routine started player");
             }
@@ -71,35 +71,23 @@ public class MilkStand : ItemDistributor
         }
     }
 
-    protected IEnumerator ReceiveDelay(InventoryManager inventoryManager)
+    private IEnumerator ReceiveDelay(InventoryManager inventoryManager, NPC npc)
     {
-        yield return new WaitForSeconds(_itemDistributeDelay);
+        yield return new WaitForSeconds(ItemDistributeDelay);
 
-        if (ItemContains.Count < MaxCapacity) 
-        {
-            var item = inventoryManager.GetComponentInChildren<InventoryManager>().ItemGiveRequest(StandType);
-            ReceiveItem(inventoryManager, item, ItemContains);
-        }
+        TryReceiveItem(inventoryManager, npc);
        
-        ReceiveDelayRoutine = ReceiveDelay(inventoryManager);
+        ReceiveDelayRoutine = ReceiveDelay(inventoryManager, npc);
         StartCoroutine(ReceiveDelayRoutine);
     }
-    
-    protected IEnumerator GiveDelay(InventoryManager inventoryManager, NPC npc)
+
+    private IEnumerator GiveDelay(InventoryManager inventoryManager, NPC npc)
     {
-        yield return new WaitForSeconds(_itemDistributeDelay);
+        yield return new WaitForSeconds(ItemDistributeDelay);
         
         GiveDelayRoutine = GiveDelay(inventoryManager, npc);
         StartCoroutine(GiveDelayRoutine);
         
-        if (StandType == inventoryManager.LookingItem && ItemContains.Count > 0)
-        {
-            var item = ItemContains[^1].GetComponent<Ingredient>();
-            GiveItem(inventoryManager, item, ItemContains);
-            npc.OnCollect += npc.OrderNext;
-            npc.OnCollect?.Invoke();
-            npc.OnCollect -= npc.OrderNext;
-            StopCoroutine(GiveDelayRoutine);
-        }
+        TryGiveItem(inventoryManager, npc);
     }
 }

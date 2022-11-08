@@ -227,8 +227,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5155148982873770395}
   - component: {fileID: 5155148982873770397}
-  - component: {fileID: 5155148982873770394}
-  - component: {fileID: -2494867439616722958}
+  - component: {fileID: 3307776294302915944}
   m_Layer: 0
   m_Name: Ketchup
   m_TagString: Untagged
@@ -266,7 +265,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 2, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5155148982873770394
+--- !u!114 &3307776294302915944
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -275,21 +274,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5155148982873770392}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d75a32bc51e06f45813d27b6fce1233, type: 3}
+  m_Script: {fileID: 11500000, guid: ef0377b94008abe41a33f2160fbc416f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-2494867439616722958
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5155148982873770392}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7377683f3216cd34190a8d5b85531f92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  selectedTypeOfStand: 2
 --- !u!1 &5155148983044138946
 GameObject:
   m_ObjectHideFlags: 0

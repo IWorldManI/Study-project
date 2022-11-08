@@ -40,9 +40,9 @@ public class CashierStand : ItemDistributor
                 Debug.Log("Routine started npc");
             }
             //only test
-            npc.OnCollect += npc.OrderNext;
-            npc.OnCollect?.Invoke();
-            npc.OnCollect -= npc.OrderNext;
+            npc.OnCollect += npc.TryOrderNext;
+            npc.OnCollect?.Invoke(npc);
+            npc.OnCollect -= npc.TryOrderNext;
         }
 
         if(other.TryGetComponent<CharacterMoveAndRotate>(out var player))
@@ -77,7 +77,7 @@ public class CashierStand : ItemDistributor
     
     private IEnumerator ReceiveDelay(InventoryManager inventoryManager, NPC npc)
     {
-        yield return new WaitForSeconds(_itemDistributeDelay);
+        yield return new WaitForSeconds(ItemDistributeDelay);
 
         if (ItemContains.Count < MaxCapacity && inventoryManager._ingredientList.Count > 0) 
         {

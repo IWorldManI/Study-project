@@ -73,7 +73,7 @@ public class TomatoesStand : ItemDistributor
     
     private IEnumerator ReceiveDelay(InventoryManager inventoryManager)
     {
-        yield return new WaitForSeconds(_itemDistributeDelay);
+        yield return new WaitForSeconds(ItemDistributeDelay);
        
         if (ItemContains.Count < MaxCapacity)
         {
@@ -87,18 +87,21 @@ public class TomatoesStand : ItemDistributor
     
     private IEnumerator GiveDelay(InventoryManager inventoryManager, NPC npc)
     {
-        yield return new WaitForSeconds(_itemDistributeDelay);
+        yield return new WaitForSeconds(ItemDistributeDelay);
         
         GiveDelayRoutine = GiveDelay(inventoryManager, npc);
         StartCoroutine(GiveDelayRoutine);
         
+        Debug.Log("Find looking item");
+        Debug.Log(StandType);
+        Debug.Log(inventoryManager.LookingItem);
         if (StandType == inventoryManager.LookingItem && ItemContains.Count > 0)
         {
             var item = ItemContains[^1].GetComponent<Ingredient>();
             GiveItem(inventoryManager, item, ItemContains);
-            npc.OnCollect += npc.OrderNext;
-            npc.OnCollect?.Invoke();
-            npc.OnCollect -= npc.OrderNext;
+            npc.OnCollect += npc.TryOrderNext;
+            npc.OnCollect?.Invoke(npc);
+            npc.OnCollect -= npc.TryOrderNext;
             StopCoroutine(GiveDelayRoutine);
         }
     }

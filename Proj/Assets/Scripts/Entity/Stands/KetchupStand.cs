@@ -73,7 +73,7 @@ public class KetchupStand : ItemDistributor
 
     private IEnumerator ReceiveDelay(InventoryManager inventoryManager)
     {
-        yield return new WaitForSeconds(_itemDistributeDelay);
+        yield return new WaitForSeconds(ItemDistributeDelay);
        
         if (ItemContains.Count < MaxCapacity)
         {
@@ -87,7 +87,7 @@ public class KetchupStand : ItemDistributor
     
     private IEnumerator GiveDelay(InventoryManager inventoryManager, NPC npc)
     {
-        yield return new WaitForSeconds(_itemDistributeDelay);
+        yield return new WaitForSeconds(ItemDistributeDelay);
         
         GiveDelayRoutine = GiveDelay(inventoryManager, npc);
         StartCoroutine(GiveDelayRoutine);
@@ -96,9 +96,9 @@ public class KetchupStand : ItemDistributor
         {
             var item = ItemContains[^1].GetComponent<Ingredient>();
             GiveItem(inventoryManager, item, ItemContains);
-            npc.OnCollect += npc.OrderNext;
-            npc.OnCollect?.Invoke();
-            npc.OnCollect -= npc.OrderNext;
+            npc.OnCollect += npc.TryOrderNext;
+            npc.OnCollect?.Invoke(npc);
+            npc.OnCollect -= npc.TryOrderNext;
             StopCoroutine(GiveDelayRoutine);
         }
     }

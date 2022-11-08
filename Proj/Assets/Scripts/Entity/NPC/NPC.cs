@@ -12,26 +12,30 @@ namespace Entity.NPC
 {
     public class NPC : MonoBehaviour
     {
+        [SerializeField] protected NavMeshAgent navMeshAgent;
         [SerializeField] public Animator animator;
 
         public int ordersCount;
         public float customerMultiplier;
 
-        [SerializeField] private NavMeshAgent navMeshAgent;
-
-        private StateMachine _stateMachine;
+        protected StateMachine _stateMachine;
 
         private ItemCollection _itemCollection;
+        
+        protected ItemGiver _startPosition;
 
-        private InventoryManager inventoryManager; //need reference
-        private CustomerOrdersManager _customerOrdersManager;
+        protected InventoryManager inventoryManager; //need reference
+        protected CustomerOrdersManager _customerOrdersManager;
         
-        [SerializeField] private Vector3 target;
+        [SerializeField] protected Vector3 target;
         
-        public Action OnCollect;
-        
-        private void Start()
+        internal Action<NPC> OnCollect;
+
+        protected virtual void Start()
         {
+            inventoryManager = GetComponentInChildren<InventoryManager>();
+            _customerOrdersManager = GetComponentInChildren<CustomerOrdersManager>();
+            
             //testing values field
             ordersCount = Random.Range(10, 200);
             customerMultiplier = Random.Range(1f, 2f);
@@ -43,25 +47,20 @@ namespace Entity.NPC
             _stateMachine = new StateMachine();
             _stateMachine.Initialize(new CustomerIdle(this));
             
-            //test moving
-            OrderNext();
-            
-            //test list moving
-            ItemDistributor[] standObjects = FindObjectsOfType<StandPointForCustomers>(); // for debug
-            
+        }
+
+        protected void InitStands(ItemDistributor[] standObjects)
+        {
             //iterator test
             _itemCollection = new ItemCollection();
             
-            //iterator additems // for debug
+            //iterator add items // for debug
             foreach (var stand in standObjects)
             {
                 var component = stand.GetComponent<ItemDistributor>();
                 _itemCollection.AddItem(component);
             }
-            inventoryManager = GetComponentInChildren<InventoryManager>();
-            _customerOrdersManager = GetComponentInChildren<CustomerOrdersManager>();
         }
-        
         //debug
         private void Update()
         {
@@ -70,30 +69,63 @@ namespace Entity.NPC
                 _stateMachine.ChangeState(new CustomerIdle(this));
             }
         }
-        
         //test moving
-        public void OrderNext()
+        internal void TryOrderNext(NPC npc)
         {
             if (ordersCount > 0)
             {
                 ordersCount -= 1;
-                Debug.Log("Next order find");
-                StartCoroutine(NextState());
+                Debug.Log("Next order finding ");
+                var item = _itemCollection.GetItems();
+                var itemId = Random.Range(0, item.Count);
+            
+                npc.target = item[itemId].transform.position;
+                Debug.Log("Looking for " + item[itemId].name + " " + name);
+            
+                npc.inventoryManager.LookingItem = _customerOrdersManager.GetOrder(item[itemId]);
+                Debug.Log(_customerOrdersManager.GetOrder(item[itemId]));
+                npc.StartCoroutine(NextState(this));
+            }
+            else
+            {
+                Debug.Log("orderCount = 0" + name);
             }
         }
-        private IEnumerator NextState()
+        internal void TryHelperNext(NPC npc)
+        {
+            if (inventoryManager._ingredientList.Count <= 0)
+            {
+                npc.target = _startPosition.transform.position;
+                //Debug.Log("Looking for " + _startPosition.name + name);
+                
+                npc.StartCoroutine(NextState(this));
+            }
+            else
+            {
+                var item = _itemCollection.GetItems();
+                var itemType = inventoryManager._ingredientList[0].GetType();
+                foreach (var find in item)
+                {
+                    if (find.GetType() == itemType)
+                    {
+                        npc.target = find.transform.position;
+                    }
+                    else
+                    {
+                        Debug.Log("Cant find");
+                    }
+                }
+                npc.StartCoroutine(NextState(this));
+                //TryOrderNext(npc);
+                Debug.Log("Helper have items" + name);
+            }
+        }
+        
+        private IEnumerator NextState(NPC npc)
         {
             yield return new WaitForSeconds(Random.Range(1f, 5f));
             
-            var item = _itemCollection.GetItems();
-            var itemId = Random.Range(0, item.Count);
-            
-            target = item[itemId].transform.position;
-            Debug.Log("Looking for " + item[itemId].name + name);
-            
-            inventoryManager.LookingItem = _customerOrdersManager.GetOrder(item[itemId]);
-
-            _stateMachine.ChangeState(new CustomerRun(this));
+            npc._stateMachine.ChangeState(new CustomerRun(this));
             navMeshAgent.SetDestination(target);
         }
     }
