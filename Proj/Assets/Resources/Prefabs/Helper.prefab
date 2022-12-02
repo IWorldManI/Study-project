@@ -719,7 +719,6 @@ GameObject:
   - component: {fileID: 3036542946462041064}
   - component: {fileID: 7427020349511325232}
   - component: {fileID: 2420762822345931340}
-  - component: {fileID: 8246236464311974101}
   m_Layer: 0
   m_Name: Helper
   m_TagString: Untagged
@@ -770,6 +769,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   ordersCount: 0
   customerMultiplier: 0
+  _startPosition: {fileID: 0}
   target: {x: 0, y: 0, z: 0}
 --- !u!23 &4040691393493516618
 MeshRenderer:
@@ -837,7 +837,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -885,18 +885,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &8246236464311974101
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4040691393493516663}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efacb4dc80dacdd4f93dca7c0cb6e3d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4161928383798544755
 GameObject:
   m_ObjectHideFlags: 0
@@ -2123,6 +2111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ingredientList: []
+  MaxCapacity: 3
 --- !u!1 &8979448629830721134
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,6 @@
 using System;
 
-public class CustomerOrdersManager : ItemDistributor
+public class CustomerOrdersManager
 {
     public Type GetOrder(ItemDistributor distributor)
     {

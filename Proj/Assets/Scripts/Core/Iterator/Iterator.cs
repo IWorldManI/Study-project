@@ -22,7 +22,7 @@ namespace Core.Iterator
         public abstract void Reset();
     }
 
-    abstract class IteratorAggregate : IEnumerable
+    public abstract class IteratorAggregate : IEnumerable
     {
         // Returns an Iterator or another IteratorAggregate for the implementing
         // object.
@@ -86,7 +86,7 @@ namespace Core.Iterator
 
     // Concrete Collections provide one or several methods for retrieving fresh
     // iterator instances, compatible with the collection class.
-    class ItemCollection : IteratorAggregate
+    public class ItemCollection : IteratorAggregate
     {
         List<ItemDistributor> _collection = new List<ItemDistributor>();
         

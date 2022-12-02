@@ -3,17 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Entity.NPC;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class ItemGiver : ItemDistributor
+public class ItemGiver : ItemDistributor, IEnumTypes
 {
     private readonly Dictionary<string, Coroutine> _receiveItemDictionary = new Dictionary<string, Coroutine>();
     private readonly Dictionary<string, Coroutine> _giveItemDictionary = new Dictionary<string, Coroutine>(); 
     
     private TomatoesPool _tomatoesPool;
-    
     private MilkPool _milkPool;
+    private KetchupPool _ketchupPool;
     
+    [SerializeField] private IEnumTypes.ItemTypes selectedTypeOfPool;
+
     //class for test item pickup from spawner
     protected override void Start()
     {
@@ -28,8 +31,9 @@ public class ItemGiver : ItemDistributor
                 ItemContains.Add(item);
             }
             MaxCapacity = ItemContains.Count;
-            _tomatoesPool = GetComponentInChildren<TomatoesPool>();
-            _milkPool = GetComponentInChildren<MilkPool>();
+            _tomatoesPool = FindObjectOfType<TomatoesPool>();
+            _milkPool = FindObjectOfType<MilkPool>();
+            _ketchupPool = FindObjectOfType<KetchupPool>();
             StartCoroutine(SpawnDelay());
         }
     }
@@ -84,7 +88,7 @@ public class ItemGiver : ItemDistributor
     }
 
    
-    private IEnumerator GiveDelay(InventoryManager inventoryManager, NPC npc, string entityName) //override in stand WARNING
+    private IEnumerator GiveDelay(InventoryManager inventoryManager, NPC npc, string entityName) 
     {
         while (true)
         {
@@ -97,6 +101,7 @@ public class ItemGiver : ItemDistributor
             }
         
             TryGiveItem(inventoryManager, npc);
+            
             yield return null;
         }
     }
@@ -107,12 +112,26 @@ public class ItemGiver : ItemDistributor
         {
             if (ItemContains.Count < MaxCapacity)
             {
-                var item = _tomatoesPool.Spawn(transform.position + new Vector3(2,0,2));
-                ItemContains.Add(item.GetComponent<Ingredient>());
-                item = _milkPool.Spawn(transform.position + new Vector3(3,0,2));
-                ItemContains.Add(item.GetComponent<Ingredient>());
+                PooledShape item;
+                switch (selectedTypeOfPool)
+                {
+                    case IEnumTypes.ItemTypes.Tomatoes:
+                        item = _tomatoesPool.Spawn(transform.position + new Vector3(2,ItemContains.Count,0));
+                        ItemContains.Add(item.GetComponent<Ingredient>());
+                        break;
+                    case IEnumTypes.ItemTypes.Milk:
+                        item = _milkPool.Spawn(transform.position + new Vector3(2,ItemContains.Count,0));
+                        ItemContains.Add(item.GetComponent<Ingredient>());
+                        break;
+                    case IEnumTypes.ItemTypes.Ketchup:
+                        item = _ketchupPool.Spawn(transform.position + new Vector3(2,ItemContains.Count,0));
+                        ItemContains.Add(item.GetComponent<Ingredient>());
+                        break;
+                    default: Debug.Log("Dont have current pool in enum");
+                        break;
+                }
             }
-            yield return new WaitForSeconds(4f);
+            yield return new WaitForSeconds(2f);
         }
     }
 }

@@ -2,11 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Entity.NPC;
+using ModestTree;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
-public class CashierStand : ItemDistributor
+public class CashierStand : ItemDistributor, ISubject
 {
     private MoneyPool _moneyPool;
+    
+    private List<IObserver> _customers = new List<IObserver>();
     
     private readonly Dictionary<NPC, Coroutine> _receiveItemDictionary = new Dictionary<NPC, Coroutine>();
     private readonly Dictionary<NPC, Coroutine> _giveItemDictionary = new Dictionary<NPC, Coroutine>(); //maybe helper class
@@ -16,14 +21,14 @@ public class CashierStand : ItemDistributor
         base.Start();
         {
             ItemContains = new List<Ingredient>();
-            
+
             Holder = GetComponentInChildren<PlaceHolderForItems>();
             foreach (Transform child in Holder.transform)
             {
                 ItemPlace.Add(child);
             }
             
-            MaxCapacity = 999;
+            MaxCapacity = ItemPlace.Count;
             _moneyPool = FindObjectOfType<MoneyPool>();
         }
     }
@@ -37,12 +42,9 @@ public class CashierStand : ItemDistributor
             {
                 GiveDelayRoutine = ReceiveDelay(inventoryManager, npc);
                 _receiveItemDictionary.Add(npc, StartCoroutine(GiveDelayRoutine));
-                Debug.Log("Routine started npc");
+                Debug.Log("Routine started " + npc.name);
             }
-            //only test
-            npc.OnCollect += npc.TryOrderNext;
-            npc.OnCollect?.Invoke(npc);
-            npc.OnCollect -= npc.TryOrderNext;
+           
         }
 
         if(other.TryGetComponent<CharacterMoveAndRotate>(out var player))
@@ -81,14 +83,52 @@ public class CashierStand : ItemDistributor
 
         if (ItemContains.Count < MaxCapacity && inventoryManager._ingredientList.Count > 0) 
         {
-            var type = inventoryManager._ingredientList.LastOrDefault().GetType();
+            var type = inventoryManager._ingredientList.LastOrDefault()?.GetType();
             var item = inventoryManager.GetComponentInChildren<InventoryManager>().ItemGiveRequest(type);
-            ReceiveItem(inventoryManager, item, ItemContains);
+            ReceiveItem(inventoryManager, item, ItemContains, this);
         }
-        if(inventoryManager._ingredientList.Count>0)
+
+        if (inventoryManager._ingredientList.Count > 0) 
         {
             GiveDelayRoutine = ReceiveDelay(inventoryManager, npc);
             StartCoroutine(GiveDelayRoutine);
+        }
+    }
+
+    public Vector3 GetLastCustomerPosition()
+    {
+        if (_customers.IsEmpty())
+        {
+            return transform.position;
+        }
+        else
+        {
+            var lastCustomer = _customers.Last();
+            return lastCustomer._transform.position;
+        }
+        
+    }
+    
+    public void Attach(IObserver observer)
+    {
+        if(!_customers.Contains(observer))
+        {
+            _customers.Add(observer);
+            Debug.Log(observer + " Added");
+        }
+        observer.UpdateObserver(this);
+    }
+
+    public void Detach(IObserver observer)
+    {
+        _customers.Remove(observer);
+    }
+
+    public void Notify()
+    {
+        foreach (var customer in _customers)
+        {
+            customer.UpdateObserver(this);
         }
     }
 }

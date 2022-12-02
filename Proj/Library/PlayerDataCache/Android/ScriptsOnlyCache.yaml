@@ -4,10 +4,10 @@ ScriptsOnlyBuild:
     - CashierStand
     - CharacterMoveAndRotate
     - Core.Factory.CustomerFactory
-    - CustomerOrdersManager
     - DEBUG_CustomerSpawn
     - Entity.NPC.Customer
     - Entity.NPC.Helper
+    - EventBus
     - FloatingJoystick
     - FremeRate
     - InventoryManager
@@ -163,81 +163,77 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2578}
     - Class: 114
-      Script: {instanceID: 3000}
+      Script: {instanceID: 3002}
     - Class: 114
-      Script: {instanceID: 3036}
+      Script: {instanceID: 3038}
     - Class: 114
-      Script: {instanceID: 3082}
+      Script: {instanceID: 3084}
     - Class: 114
-      Script: {instanceID: 3136}
+      Script: {instanceID: 3138}
     - Class: 114
-      Script: {instanceID: 3178}
+      Script: {instanceID: 3180}
     - Class: 114
-      Script: {instanceID: 3340}
+      Script: {instanceID: 3342}
     - Class: 114
-      Script: {instanceID: 3454}
+      Script: {instanceID: 3456}
     - Class: 114
-      Script: {instanceID: 3636}
+      Script: {instanceID: 3638}
     - Class: 114
-      Script: {instanceID: 3654}
+      Script: {instanceID: 3656}
     - Class: 114
       Script: {instanceID: 4044}
     - Class: 114
-      Script: {instanceID: 4600}
+      Script: {instanceID: 4406}
     - Class: 114
-      Script: {instanceID: 4692}
+      Script: {instanceID: 4602}
     - Class: 114
-      Script: {instanceID: 4766}
+      Script: {instanceID: 4694}
     - Class: 114
-      Script: {instanceID: 4930}
+      Script: {instanceID: 4770}
     - Class: 114
-      Script: {instanceID: 5002}
+      Script: {instanceID: 4934}
     - Class: 114
-      Script: {instanceID: 5038}
+      Script: {instanceID: 5006}
     - Class: 114
-      Script: {instanceID: 5196}
+      Script: {instanceID: 5200}
     - Class: 114
-      Script: {instanceID: 5342}
+      Script: {instanceID: 5346}
     - Class: 114
-      Script: {instanceID: 5868}
+      Script: {instanceID: 5872}
     - Class: 114
-      Script: {instanceID: 6152}
+      Script: {instanceID: 6156}
     - Class: 114
-      Script: {instanceID: 6256}
+      Script: {instanceID: 6260}
     - Class: 114
-      Script: {instanceID: 6360}
+      Script: {instanceID: 6364}
     - Class: 114
-      Script: {instanceID: 6410}
+      Script: {instanceID: 6414}
     - Class: 114
-      Script: {instanceID: 6562}
+      Script: {instanceID: 6568}
     - Class: 114
-      Script: {instanceID: 6948}
+      Script: {instanceID: 6954}
     - Class: 114
-      Script: {instanceID: 6992}
+      Script: {instanceID: 6998}
     - Class: 114
-      Script: {instanceID: 7046}
+      Script: {instanceID: 7052}
     - Class: 114
-      Script: {instanceID: 7196}
+      Script: {instanceID: 7202}
     - Class: 114
-      Script: {instanceID: 7258}
+      Script: {instanceID: 7264}
     - Class: 114
-      Script: {instanceID: 7354}
+      Script: {instanceID: 7360}
     - Class: 114
-      Script: {instanceID: 7618}
+      Script: {instanceID: 7624}
     - Class: 114
-      Script: {instanceID: 7712}
+      Script: {instanceID: 7718}
     - Class: 114
-      Script: {instanceID: 8460}
+      Script: {instanceID: 8466}
     - Class: 114
-      Script: {instanceID: 8524}
+      Script: {instanceID: 8530}
     - Class: 114
-      Script: {instanceID: 8572}
+      Script: {instanceID: 8578}
     - Class: 114
-      Script: {instanceID: 9928}
-    - Class: 114
-      Script: {instanceID: 25498}
-    - Class: 114
-      Script: {instanceID: 25726}
+      Script: {instanceID: 9930}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -245,6 +241,8 @@ ScriptsOnlyBuild:
     - Class: 136
       Script: {instanceID: 0}
     - Class: 137
+      Script: {instanceID: 0}
+    - Class: 143
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -349,7 +347,7 @@ ScriptsOnlyBuild:
     className: CinemachineTriggerAction
   - hash:
       serializedVersion: 2
-      Hash: b9ef60b62be4d38b764297a61f0c92ce
+      Hash: bdfa5d99bc126c5a3cee966662dbe229
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CharacterMoveAndRotate
@@ -577,7 +575,7 @@ ScriptsOnlyBuild:
     className: UnityOnButtonClickMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 48bf9c490a7b16caaa7f433b886dabf3
+      Hash: 9990a60d8615a354233bd1ca144feab1
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: InventoryManager
@@ -722,12 +720,6 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: TomatoesStand
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
     className: CinemachinePixelPerfect
@@ -811,6 +803,12 @@ ScriptsOnlyBuild:
     className: TCP2_Demo_InvertedMaskImage
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: EventBus
+  - hash:
+      serializedVersion: 2
       Hash: 2574ac7d50617d23cdefe4ad22f5e1ad
     assemblyName: Unity.VisualScripting.Flow.dll
     namespaceName: Unity.VisualScripting
@@ -841,7 +839,7 @@ ScriptsOnlyBuild:
     className: Ketchup
   - hash:
       serializedVersion: 2
-      Hash: e8c3ba3ae2209e9bacba0084cda62e5d
+      Hash: 2c8c7a5bdd9f21a91ac183d963680fb8
     assemblyName: Assembly-CSharp.dll
     namespaceName: Entity.NPC
     className: NPC
@@ -871,7 +869,7 @@ ScriptsOnlyBuild:
     className: CinemachineGroupComposer
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: a23cafd8a4c183d6b985112d28fe5148
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ItemGiver
@@ -913,7 +911,7 @@ ScriptsOnlyBuild:
     className: PhysicsRaycaster
   - hash:
       serializedVersion: 2
-      Hash: e8c3ba3ae2209e9bacba0084cda62e5d
+      Hash: 2c8c7a5bdd9f21a91ac183d963680fb8
     assemblyName: Assembly-CSharp.dll
     namespaceName: Entity.NPC
     className: Customer
@@ -971,12 +969,6 @@ ScriptsOnlyBuild:
     assemblyName: Zenject.dll
     namespaceName: Zenject
     className: ProjectKernel
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: CustomerOrdersManager
   - hash:
       serializedVersion: 2
       Hash: 7ffbb3f92ea27f70bb5deca6312414ef
@@ -1363,7 +1355,7 @@ ScriptsOnlyBuild:
     className: AnimatorMoveHandlerManager
   - hash:
       serializedVersion: 2
-      Hash: e8c3ba3ae2209e9bacba0084cda62e5d
+      Hash: 2c8c7a5bdd9f21a91ac183d963680fb8
     assemblyName: Assembly-CSharp.dll
     namespaceName: Entity.NPC
     className: Helper
@@ -1423,7 +1415,7 @@ ScriptsOnlyBuild:
     className: BeforeAfterTestCommandState
   - hash:
       serializedVersion: 2
-      Hash: 9e282125eaedf8717986297aeb1df1f9
+      Hash: 06795b947a1e925b1d914f26e37b6298
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Stand
@@ -1604,12 +1596,6 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: MilkStand
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Zenject.dll
     namespaceName: Zenject
     className: ScriptableObjectInstallerBase
@@ -1691,12 +1677,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: Variables
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: KetchupStand
   - hash:
       serializedVersion: 2
       Hash: 2574ac7d50617d23cdefe4ad22f5e1ad

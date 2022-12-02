@@ -32,7 +32,7 @@ public class TomatoesPool : PoolerBase<PooledShape>
         return shape;
     }
 
-    private void KillShape(PooledShape shape)
+    public void KillShape(PooledShape shape)
     {
         Release(shape);
     }

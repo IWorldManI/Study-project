@@ -737,7 +737,6 @@ GameObject:
   - component: {fileID: 6586224389666549733}
   - component: {fileID: 6586224389666549728}
   - component: {fileID: 6586224389666549743}
-  - component: {fileID: -707414406717188772}
   m_Layer: 0
   m_Name: Cashier
   m_TagString: Untagged
@@ -785,18 +784,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d00a1646cd2d4fd428f8032a43f7d924, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &-707414406717188772
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6586224389666549734}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7377683f3216cd34190a8d5b85531f92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6586224389754102638

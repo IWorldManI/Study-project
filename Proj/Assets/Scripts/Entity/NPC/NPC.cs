@@ -14,38 +14,31 @@ namespace Entity.NPC
     {
         [SerializeField] protected NavMeshAgent navMeshAgent;
         [SerializeField] public Animator animator;
-
-        public int ordersCount;
-        public float customerMultiplier;
-
+        
         protected StateMachine _stateMachine;
 
-        private ItemCollection _itemCollection;
-        
-        protected ItemGiver _startPosition;
+        protected ItemCollection _itemCollection;
 
-        protected InventoryManager inventoryManager; //need reference
+        protected ItemDistributor[] standObjects;
+        
+        [SerializeField] protected ItemGiver _startPosition;
+        protected TrashCan trashCan;
+        protected CashierStand _cashierStand;
+
+        internal InventoryManager inventoryManager; //need reference
         protected CustomerOrdersManager _customerOrdersManager;
         
-        [SerializeField] protected Vector3 target;
+        [SerializeField] internal Vector3 target;
         
-        internal Action<NPC> OnCollect;
+        internal EventBus _eventBus;
+
+        protected virtual void Awake()
+        {
+            
+        }
 
         protected virtual void Start()
         {
-            inventoryManager = GetComponentInChildren<InventoryManager>();
-            _customerOrdersManager = GetComponentInChildren<CustomerOrdersManager>();
-            
-            //testing values field
-            ordersCount = Random.Range(10, 200);
-            customerMultiplier = Random.Range(1f, 2f);
-
-            //Replace to zenject
-            navMeshAgent = GetComponent<NavMeshAgent>();
-            animator = GetComponent<Animator>();
-
-            _stateMachine = new StateMachine();
-            _stateMachine.Initialize(new CustomerIdle(this));
             
         }
 
@@ -70,63 +63,16 @@ namespace Entity.NPC
             }
         }
         //test moving
-        internal void TryOrderNext(NPC npc)
-        {
-            if (ordersCount > 0)
-            {
-                ordersCount -= 1;
-                Debug.Log("Next order finding ");
-                var item = _itemCollection.GetItems();
-                var itemId = Random.Range(0, item.Count);
-            
-                npc.target = item[itemId].transform.position;
-                Debug.Log("Looking for " + item[itemId].name + " " + name);
-            
-                npc.inventoryManager.LookingItem = _customerOrdersManager.GetOrder(item[itemId]);
-                Debug.Log(_customerOrdersManager.GetOrder(item[itemId]));
-                npc.StartCoroutine(NextState(this));
-            }
-            else
-            {
-                Debug.Log("orderCount = 0" + name);
-            }
-        }
-        internal void TryHelperNext(NPC npc)
-        {
-            if (inventoryManager._ingredientList.Count <= 0)
-            {
-                npc.target = _startPosition.transform.position;
-                //Debug.Log("Looking for " + _startPosition.name + name);
-                
-                npc.StartCoroutine(NextState(this));
-            }
-            else
-            {
-                var item = _itemCollection.GetItems();
-                var itemType = inventoryManager._ingredientList[0].GetType();
-                foreach (var find in item)
-                {
-                    if (find.GetType() == itemType)
-                    {
-                        npc.target = find.transform.position;
-                    }
-                    else
-                    {
-                        Debug.Log("Cant find");
-                    }
-                }
-                npc.StartCoroutine(NextState(this));
-                //TryOrderNext(npc);
-                Debug.Log("Helper have items" + name);
-            }
-        }
-        
-        private IEnumerator NextState(NPC npc)
+
+       
+        protected IEnumerator NextState(NPC npc)
         {
             yield return new WaitForSeconds(Random.Range(1f, 5f));
             
             npc._stateMachine.ChangeState(new CustomerRun(this));
             navMeshAgent.SetDestination(target);
         }
+
+      
     }
 }

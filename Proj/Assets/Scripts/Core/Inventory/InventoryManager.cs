@@ -9,6 +9,7 @@ public class InventoryManager : MonoBehaviour
     public List<Ingredient> _ingredientList = new List<Ingredient>();
 
     public Type LookingItem;
+    public int MaxCapacity = 3;
 
     private void Awake()
     {
@@ -67,9 +68,9 @@ public class InventoryManager : MonoBehaviour
             _ingredientDictionary[type].Add(item);
         }
     }
-    
-    
-    public void RemoveItemFromDictionary(Ingredient item)
+
+
+    private void RemoveItemFromDictionary(Ingredient item)
     {
         //Debug.Log(_ingredientList.Count + " items contains before remove");
         

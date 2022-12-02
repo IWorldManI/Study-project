@@ -27,6 +27,11 @@ public class ProductionMachine : ItemDistributor
             productPool = GetComponent<KetchupPool>();
         }
     }
+    
+    protected override void OnCollectAction(ItemDistributor distributor)
+    {
+        Debug.Log(name + " was collect item");
+    }
 
     private IEnumerator Process(Type type)
     {
@@ -39,7 +44,7 @@ public class ProductionMachine : ItemDistributor
                         var index = ItemContains.IndexOf(itemForProcessing);
                         ItemContains.RemoveAt(index);
                         Destroy(itemForProcessing.gameObject);
-                        var item = productPool.Spawn(transform.position + new Vector3(0, ItemProduction.Count, 0), 1);
+                        var item = productPool.Spawn(transform.position + new Vector3(0, ItemProduction.Count, 0));
                         
                         item.transform.parent = transform;
                         ItemProduction.Add(item.GetComponent<Ingredient>());
@@ -63,7 +68,7 @@ public class ProductionMachine : ItemDistributor
         if (ItemContains.Count < MaxCapacity)
         {
             var item = inventoryManager.GetComponentInChildren<InventoryManager>().ItemGiveRequest(StandType);
-            ReceiveItem(inventoryManager,item, ItemContains);
+            ReceiveItem(inventoryManager,item, ItemContains, this);
         }
             
         if (ItemProduction.Count > 0) 

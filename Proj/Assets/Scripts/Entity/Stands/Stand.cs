@@ -4,24 +4,23 @@ using System.Collections.Generic;
 using Entity.NPC;
 using UnityEngine;
 
-public class Stand : AbstractStand
+public class Stand : AbstractStand, IEnumTypes
 {
-    [SerializeField] private StandTypes selectedTypeOfStand;
+    [SerializeField] private IEnumTypes.ItemTypes  selectedTypeOfStand;
 
-    private enum StandTypes
+    private readonly Dictionary<IEnumTypes.ItemTypes, Type> _dictionaryOfStandTypes = new Dictionary<IEnumTypes.ItemTypes, Type> 
     {
-        Milk, Tomatoes, Ketchup,
-    }
-    
-    private readonly Dictionary<StandTypes, Type> _dictionaryOfStandTypes = new Dictionary<StandTypes, Type> 
-    {
-        { StandTypes.Milk, typeof(Milk) },
-        { StandTypes.Tomatoes, typeof(Tomatoes) },
-        { StandTypes.Ketchup, typeof(Ketchup) },
+        { IEnumTypes.ItemTypes.Milk, typeof(Milk) },
+        { IEnumTypes.ItemTypes.Tomatoes, typeof(Tomatoes) },
+        { IEnumTypes.ItemTypes.Ketchup, typeof(Ketchup) },
     };
-    
-    
-   protected override void Start()
+
+    private void Awake()
+    {
+        _eventBus = FindObjectOfType<EventBus>();
+    }
+
+    protected override void Start()
     {
         base.Start();
         {
@@ -36,6 +35,10 @@ public class Stand : AbstractStand
             MaxCapacity = ItemPlace.Count;
             StandType = _dictionaryOfStandTypes[selectedTypeOfStand];
         }
+    }
+    protected override void OnCollectAction(ItemDistributor distributor)
+    {
+        Debug.Log(name + " was collect item");
     }
 
     private void OnTriggerEnter(Collider other)
@@ -79,33 +82,33 @@ public class Stand : AbstractStand
     {
         if(other.TryGetComponent<CharacterMoveAndRotate>(out var player))
         {
-            if (_receiveItemDictionary.TryGetValue(player.GetInstanceID().ToString(), out Coroutine rCoroutine))
+            if (_receiveItemDictionary.TryGetValue(player.GetInstanceID().ToString(), out Coroutine currentCoroutine))
             {
                 _receiveItemDictionary.Remove(player.GetInstanceID().ToString());
 
-                StopCoroutine(rCoroutine);
+                StopCoroutine(currentCoroutine);
                 //Debug.Log("Routine stopped player" + player.GetInstanceID().ToString());
             }
         }
 
         if (other.TryGetComponent<Customer>(out var customer))
         {
-            if (_giveItemDictionary.TryGetValue(customer.GetInstanceID().ToString(), out Coroutine rCoroutine))
+            if (_giveItemDictionary.TryGetValue(customer.GetInstanceID().ToString(), out Coroutine currentCoroutine))
             {
                 _giveItemDictionary.Remove(customer.GetInstanceID().ToString());
 
-                StopCoroutine(rCoroutine);
+                StopCoroutine(currentCoroutine);
                 Debug.Log("Routine stopped npc" + customer.GetInstanceID().ToString());
             }
         }
         
         if (other.TryGetComponent<Helper>(out var helper))
         {
-            if (_receiveItemDictionary.TryGetValue(helper.GetInstanceID().ToString(), out Coroutine rCoroutine))
+            if (_receiveItemDictionary.TryGetValue(helper.GetInstanceID().ToString(), out Coroutine currentCoroutine))
             {
                 _receiveItemDictionary.Remove(helper.GetInstanceID().ToString());
 
-                StopCoroutine(rCoroutine);
+                StopCoroutine(currentCoroutine);
                 //Debug.Log("Routine stopped helper" + helper.GetInstanceID().ToString());
             }
         }
@@ -115,13 +118,14 @@ public class Stand : AbstractStand
     {
         while (true)
         {
-            if (_receiveItemDictionary.TryGetValue(entityName, out Coroutine rCoroutine))
+            if (_receiveItemDictionary.TryGetValue(entityName, out Coroutine currentCoroutine))
             {
-                yield return new WaitForSeconds(ItemDistributeDelay);
-
-                TryReceiveItem(inventoryManager, npc);
+                TryReceiveItem(inventoryManager, npc, this);
             
-                Debug.Log("Try give item for "  + entityName);
+                //Debug.Log("Try give item for "  + entityName);
+                isFull = ItemContains.Count >= MaxCapacity;
+                
+                yield return new WaitForSeconds(ItemDistributeDelay);
             }
             yield return null;
         }
@@ -131,16 +135,27 @@ public class Stand : AbstractStand
     {
         while (true)
         {
-            if (_giveItemDictionary.TryGetValue(entityName, out Coroutine rCoroutine))
+            if (_giveItemDictionary.TryGetValue(entityName, out Coroutine currentCoroutine))
             {
                 yield return new WaitForSeconds(ItemDistributeDelay);
                 
                 Debug.Log("Try give item for " + entityName); 
                         
                 TryGiveItem(inventoryManager, npc);
+                isFull = ItemContains.Count >= MaxCapacity;
             }
             
             yield return null;
         }
+    }
+
+    private void OnEnable()
+    {
+        _eventBus.OnCollectStand += OnCollectAction;
+    }
+
+    private void OnDisable()
+    {
+        _eventBus.OnCollectStand -= OnCollectAction;
     }
 }
