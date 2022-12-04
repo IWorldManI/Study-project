@@ -839,7 +839,7 @@ ScriptsOnlyBuild:
     className: Ketchup
   - hash:
       serializedVersion: 2
-      Hash: 2c8c7a5bdd9f21a91ac183d963680fb8
+      Hash: e90041022febe7f7d7f0520fb0069fb8
     assemblyName: Assembly-CSharp.dll
     namespaceName: Entity.NPC
     className: NPC
@@ -911,7 +911,7 @@ ScriptsOnlyBuild:
     className: PhysicsRaycaster
   - hash:
       serializedVersion: 2
-      Hash: 2c8c7a5bdd9f21a91ac183d963680fb8
+      Hash: e90041022febe7f7d7f0520fb0069fb8
     assemblyName: Assembly-CSharp.dll
     namespaceName: Entity.NPC
     className: Customer
@@ -1355,7 +1355,7 @@ ScriptsOnlyBuild:
     className: AnimatorMoveHandlerManager
   - hash:
       serializedVersion: 2
-      Hash: 2c8c7a5bdd9f21a91ac183d963680fb8
+      Hash: e90041022febe7f7d7f0520fb0069fb8
     assemblyName: Assembly-CSharp.dll
     namespaceName: Entity.NPC
     className: Helper

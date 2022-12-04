@@ -14,12 +14,12 @@ namespace Entity.NPC
         public Transform _transform { get; private set; }
         private List<ItemDistributor> _stands = new List<ItemDistributor>();
 
-        private void Awake()
+        protected override void Awake()
         {
             _eventBus = FindObjectOfType<EventBus>();
         }
-        
-        private void Start()
+
+        protected override void Start()
         {
             _customerOrdersManager = new CustomerOrdersManager();
             _stands = new List<ItemDistributor>();
@@ -38,26 +38,29 @@ namespace Entity.NPC
             _stateMachine = new StateMachine();
             _stateMachine.Initialize(new CustomerIdle(this));
             
-            ItemDistributor[] standObjects = FindObjectsOfType<Stand>(); 
-            InitStands(standObjects);
+            ItemDistributor[] stands = FindObjectsOfType<Stand>(); 
+            InitStands(stands);
             
             TryNextTarget(this);
             _transform = transform;
         }
 
-        private void TryNextTarget(NPC npc)
+        public override void TryNextTarget(NPC npc)
         {
+            Debug.Log("Looking for next order " + name);
+            
             if (inventoryManager._ingredientList.Count < inventoryManager.MaxCapacity)
             {
-                FindStand(npc);
+                FindStand(this);
             }
             else
             {
                 Debug.Log("orderCount = 0" + name);
-                MoveToCashier(npc);
+                MoveToCashier(this);
             }
         }
 
+        
         private void FindStand(NPC npc)
         {
             ordersCount -= 1;
@@ -69,6 +72,7 @@ namespace Entity.NPC
             //Debug.Log("Looking for " + _stands[itemId].name + " " + name);
             
             npc.inventoryManager.LookingItem = _customerOrdersManager.GetOrder(_stands[itemId]);
+            Debug.Log(npc.GetType());
             //Debug.Log(_customerOrdersManager.GetOrder(_stands[itemId]));
             npc.StartCoroutine(NextState(this));
         }
@@ -88,21 +92,11 @@ namespace Entity.NPC
             //need position in queue and set it here 
             npc.StartCoroutine(NextState(this));
         }
-        private void OnEnable()
-        {  
-            _eventBus.OnCollect += TryNextTarget;
-        }
-
-        private void OnDisable()
-        {
-            _eventBus.OnCollect -= TryNextTarget;
-        }
 
         public void UpdateObserver(ISubject subject)
         {
             //Debug.Log("Customer was reacted to the event");
         }
     }
-  
 }
 

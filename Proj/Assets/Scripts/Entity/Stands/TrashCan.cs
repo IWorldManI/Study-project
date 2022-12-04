@@ -7,7 +7,6 @@ using UnityEngine;
 
 public class TrashCan : ItemDistributor
 {
-    private EventBus _eventBus;
     private readonly Dictionary<string, Coroutine> _giveItemDictionary = new Dictionary<string, Coroutine>(); 
     
     private TomatoesPool _tomatoesPool;

@@ -1,23 +1,21 @@
-using System;
 using System.Collections;
 using Core.StateMachine;
 using Core.StateMachine.StateList;
 using UnityEngine;
 using UnityEngine.AI;
-using Random = UnityEngine.Random;
+using Debug = UnityEngine.Debug;
 
 namespace Entity.NPC
 {
     public class Helper : NPC
     {
-        private void Awake()
+        protected override void Awake()
         {
             _eventBus = FindObjectOfType<EventBus>();
         }
 
-        private void Start()
+        protected override void Start()
         {
-            _customerOrdersManager = new CustomerOrdersManager();
             inventoryManager = GetComponentInChildren<InventoryManager>();
             
             //Replace to zenject
@@ -29,7 +27,6 @@ namespace Entity.NPC
             
             standObjects = FindObjectsOfType<Stand>();
             InitStands(standObjects);
-            //_startPosition = FindObjectOfType<ItemGiver>();
             trashCan = FindObjectOfType<TrashCan>();
 
             StartCoroutine("Delay", 2f);
@@ -45,17 +42,18 @@ namespace Entity.NPC
             }
         }
 
-        private void TryNextTarget(NPC npc)
+        public override void TryNextTarget(NPC npc)
         {
+            Debug.Log("Looking for next target " + name);
             var standList = standObjects;
             
             if (inventoryManager._ingredientList.Count <= 0)
             {
-                ReturnToStartPosition(npc);
+                ReturnToStartPosition(this);
             }
             else
             {
-                FindCurrentStand(npc, standList);
+                FindCurrentStand(this, standList);
             }
         }
 
@@ -90,15 +88,6 @@ namespace Entity.NPC
             npc.StartCoroutine(NextState(this));
                 
             //Debug.Log("Helper have items" + name);
-        }
-        private void OnEnable()
-        {
-            //_eventBus.OnCollect += TryNextTarget;
-        }
-
-        private void OnDisable()
-        {
-            //_eventBus.OnCollect -= TryNextTarget;
         }
     }
 }

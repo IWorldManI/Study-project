@@ -85,7 +85,7 @@ public class InventoryManager : MonoBehaviour
         var indexList = _ingredientList.IndexOf(item);
         _ingredientList.RemoveAt(indexList);
         
-        item.transform.parent = null;
+        //item.transform.parent = null;
         
         SortItemsInList();
         

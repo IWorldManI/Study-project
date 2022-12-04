@@ -140,11 +140,17 @@ public class Stand : AbstractStand, IEnumTypes
                 yield return new WaitForSeconds(ItemDistributeDelay);
                 
                 Debug.Log("Try give item for " + entityName); 
-                        
-                TryGiveItem(inventoryManager, npc);
+                
+                if(!InProcess)
+                    TryGiveItem(inventoryManager, npc);
+                else
+                {
+                    Debug.Log("Stand now is receiving items, wait...");
+                }
+                
                 isFull = ItemContains.Count >= MaxCapacity;
             }
-            
+
             yield return null;
         }
     }

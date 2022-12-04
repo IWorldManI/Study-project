@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Entity.NPC;
 using ModestTree;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class CashierStand : ItemDistributor, ISubject
 {

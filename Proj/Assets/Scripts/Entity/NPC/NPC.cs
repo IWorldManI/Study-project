@@ -30,7 +30,7 @@ namespace Entity.NPC
         
         [SerializeField] internal Vector3 target;
         
-        internal EventBus _eventBus;
+        protected EventBus _eventBus;
 
         protected virtual void Awake()
         {
@@ -73,6 +73,9 @@ namespace Entity.NPC
             navMeshAgent.SetDestination(target);
         }
 
-      
+        public virtual void TryNextTarget(NPC npc)
+        {
+            
+        }
     }
 }
