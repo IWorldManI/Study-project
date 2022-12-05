@@ -383,6 +383,7 @@
 "Assets/Joystick Pack/Scripts/Joysticks/VariableJoystick.cs"
 "Assets/Scripts/Core/AbstractClass/AbstractStand.cs"
 "Assets/Scripts/Core/EventBus.cs"
+"Assets/Scripts/Core/ExitPoint.cs"
 "Assets/Scripts/Core/Factory/CustomerFactory.cs"
 "Assets/Scripts/Core/Factory/GenericFactory.cs"
 "Assets/Scripts/Core/Installers/PlayerInstaller.cs"

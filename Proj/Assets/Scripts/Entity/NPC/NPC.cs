@@ -10,7 +10,7 @@ namespace Entity.NPC
 {
     public class NPC : MonoBehaviour
     {
-        [SerializeField] protected NavMeshAgent navMeshAgent;
+        [SerializeField] internal NavMeshAgent navMeshAgent;
         [SerializeField] public Animator animator;
         
         protected StateMachine _stateMachine;
@@ -19,14 +19,14 @@ namespace Entity.NPC
 
         protected ItemDistributor[] standObjects;
         
-        [SerializeField] protected ItemGiver _startPosition;
+        [SerializeField] protected Transform _startPosition;
         protected TrashCan trashCan;
         protected CashierStand _cashierStand;
 
         internal InventoryManager inventoryManager; //need reference
         protected CustomerOrdersManager _customerOrdersManager;
         
-        [SerializeField] internal Vector3 target;
+        [SerializeField] internal Transform target;
         
         protected EventBus _eventBus;
 
@@ -59,6 +59,10 @@ namespace Entity.NPC
             {
                 _stateMachine.ChangeState(new CustomerIdle(this));
             }
+            else
+            {
+                _stateMachine.ChangeState(new CustomerRun(this));
+            }
         }
         //test moving
 
@@ -68,7 +72,7 @@ namespace Entity.NPC
             yield return new WaitForSeconds(Random.Range(1f, 5f));
             
             npc._stateMachine.ChangeState(new CustomerRun(this));
-            navMeshAgent.SetDestination(target);
+            navMeshAgent.SetDestination(target.transform.position);
         }
 
         public virtual void TryNextTarget(NPC npc)

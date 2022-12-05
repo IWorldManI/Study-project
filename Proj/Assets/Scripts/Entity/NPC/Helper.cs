@@ -12,6 +12,9 @@ namespace Entity.NPC
         protected override void Awake()
         {
             _eventBus = FindObjectOfType<EventBus>();
+            
+            standObjects = FindObjectsOfType<Stand>();
+            InitStands(standObjects);
         }
 
         protected override void Start()
@@ -24,15 +27,13 @@ namespace Entity.NPC
 
             _stateMachine = new StateMachine();
             _stateMachine.Initialize(new CustomerIdle(this));
-            
-            standObjects = FindObjectsOfType<Stand>();
-            InitStands(standObjects);
+
             trashCan = FindObjectOfType<TrashCan>();
 
-            StartCoroutine("Delay", 2f);
+            StartCoroutine(InitDelay());
         }
         
-        private IEnumerator Delay()
+        private IEnumerator InitDelay()
         {
             while (true)
             {
@@ -41,25 +42,24 @@ namespace Entity.NPC
                 TryNextTarget(this);
             }
         }
-
+        
         public override void TryNextTarget(NPC npc)
         {
             Debug.Log("Looking for next target " + name);
-            var standList = standObjects;
-            
+
             if (inventoryManager._ingredientList.Count <= 0)
             {
                 ReturnToStartPosition(this);
             }
             else
             {
-                FindCurrentStand(this, standList);
+                FindCurrentStand(this, standObjects);
             }
         }
 
         private void ReturnToStartPosition(NPC npc)
         {
-            npc.target = _startPosition.transform.position;
+            npc.target = _startPosition.transform;
             //Debug.Log("Looking for " + _startPosition.name + name);
                 
             npc.StartCoroutine(NextState(this));
@@ -73,14 +73,14 @@ namespace Entity.NPC
                 var stand = find.GetComponent<Stand>();
                 if (itemType == stand.StandType && !stand.isFull)
                 {
-                    npc.target = find.transform.position;
+                    npc.target = find.transform;
                     //Debug.Log("Moving to " + find.name);
                 }
                 else
                 {
                     if (itemType == stand.StandType && stand.isFull)
                     {
-                        npc.target = trashCan.transform.position;
+                        npc.target = trashCan.transform;
                     }
                     ///Debug.Log("Cant find");
                 }

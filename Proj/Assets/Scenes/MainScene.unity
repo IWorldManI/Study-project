@@ -1032,6 +1032,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 204135029}
+  - component: {fileID: 204135030}
   m_Layer: 0
   m_Name: Doors
   m_TagString: Untagged
@@ -1056,6 +1057,18 @@ Transform:
   m_Father: {fileID: 699817268}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &204135030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204135028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91b9cac2d3a83944cb08d09def857afb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &245564591 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 657517611165285472, guid: d28e8f92e44e6944aaa25f090407c661, type: 3}
@@ -2800,7 +2813,7 @@ PrefabInstance:
     - target: {fileID: 763933293970120942, guid: 76b18f5045ec8bc4db7f8beef01e3199, type: 3}
       propertyPath: _startPosition
       value: 
-      objectReference: {fileID: 730814361}
+      objectReference: {fileID: 730814359}
     - target: {fileID: 763933293970120942, guid: 76b18f5045ec8bc4db7f8beef01e3199, type: 3}
       propertyPath: selectedTypeOfHelper
       value: 1
@@ -3222,7 +3235,7 @@ PrefabInstance:
     - target: {fileID: 763933293970120942, guid: 76b18f5045ec8bc4db7f8beef01e3199, type: 3}
       propertyPath: _startPosition
       value: 
-      objectReference: {fileID: 636405901}
+      objectReference: {fileID: 636405899}
     - target: {fileID: 763933293970120942, guid: 76b18f5045ec8bc4db7f8beef01e3199, type: 3}
       propertyPath: selectedTypeOfHelper
       value: 2
@@ -5565,7 +5578,7 @@ PrefabInstance:
     - target: {fileID: 763933293970120942, guid: 76b18f5045ec8bc4db7f8beef01e3199, type: 3}
       propertyPath: _startPosition
       value: 
-      objectReference: {fileID: 1820365856}
+      objectReference: {fileID: 1820365855}
     - target: {fileID: 4040691393493516660, guid: 76b18f5045ec8bc4db7f8beef01e3199, type: 3}
       propertyPath: m_RootOrder
       value: 0

@@ -8,6 +8,7 @@ ScriptsOnlyBuild:
     - Entity.NPC.Customer
     - Entity.NPC.Helper
     - EventBus
+    - ExitPoint
     - FloatingJoystick
     - FremeRate
     - InventoryManager
@@ -157,85 +158,87 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1766}
     - Class: 114
-      Script: {instanceID: 1794}
+      Script: {instanceID: 1790}
     - Class: 114
-      Script: {instanceID: 1906}
+      Script: {instanceID: 1902}
     - Class: 114
-      Script: {instanceID: 2052}
+      Script: {instanceID: 2048}
     - Class: 114
-      Script: {instanceID: 2582}
+      Script: {instanceID: 2578}
     - Class: 114
-      Script: {instanceID: 3006}
+      Script: {instanceID: 3002}
     - Class: 114
-      Script: {instanceID: 3042}
+      Script: {instanceID: 3038}
     - Class: 114
-      Script: {instanceID: 3088}
+      Script: {instanceID: 3084}
     - Class: 114
-      Script: {instanceID: 3142}
+      Script: {instanceID: 3138}
     - Class: 114
-      Script: {instanceID: 3184}
+      Script: {instanceID: 3180}
     - Class: 114
-      Script: {instanceID: 3346}
+      Script: {instanceID: 3342}
     - Class: 114
-      Script: {instanceID: 3460}
+      Script: {instanceID: 3456}
     - Class: 114
-      Script: {instanceID: 3642}
+      Script: {instanceID: 3638}
     - Class: 114
-      Script: {instanceID: 3660}
+      Script: {instanceID: 3656}
     - Class: 114
-      Script: {instanceID: 4048}
+      Script: {instanceID: 4044}
     - Class: 114
-      Script: {instanceID: 4410}
+      Script: {instanceID: 4406}
     - Class: 114
-      Script: {instanceID: 4606}
+      Script: {instanceID: 4602}
     - Class: 114
-      Script: {instanceID: 4698}
+      Script: {instanceID: 4694}
     - Class: 114
-      Script: {instanceID: 4774}
+      Script: {instanceID: 4770}
     - Class: 114
-      Script: {instanceID: 4938}
+      Script: {instanceID: 4934}
     - Class: 114
-      Script: {instanceID: 5010}
+      Script: {instanceID: 5006}
     - Class: 114
-      Script: {instanceID: 5204}
+      Script: {instanceID: 5200}
     - Class: 114
-      Script: {instanceID: 5350}
+      Script: {instanceID: 5346}
     - Class: 114
-      Script: {instanceID: 5876}
+      Script: {instanceID: 5872}
     - Class: 114
-      Script: {instanceID: 6160}
+      Script: {instanceID: 6156}
     - Class: 114
-      Script: {instanceID: 6264}
+      Script: {instanceID: 6260}
     - Class: 114
-      Script: {instanceID: 6368}
+      Script: {instanceID: 6364}
     - Class: 114
-      Script: {instanceID: 6418}
+      Script: {instanceID: 6414}
     - Class: 114
-      Script: {instanceID: 6572}
+      Script: {instanceID: 6568}
     - Class: 114
-      Script: {instanceID: 6958}
+      Script: {instanceID: 6954}
     - Class: 114
-      Script: {instanceID: 7002}
+      Script: {instanceID: 6998}
     - Class: 114
-      Script: {instanceID: 7056}
+      Script: {instanceID: 7052}
     - Class: 114
-      Script: {instanceID: 7206}
+      Script: {instanceID: 7202}
     - Class: 114
-      Script: {instanceID: 7268}
+      Script: {instanceID: 7264}
     - Class: 114
-      Script: {instanceID: 7364}
+      Script: {instanceID: 7360}
     - Class: 114
-      Script: {instanceID: 7628}
+      Script: {instanceID: 7624}
     - Class: 114
-      Script: {instanceID: 7722}
+      Script: {instanceID: 7718}
     - Class: 114
-      Script: {instanceID: 8470}
+      Script: {instanceID: 8466}
     - Class: 114
-      Script: {instanceID: 8534}
+      Script: {instanceID: 8530}
     - Class: 114
-      Script: {instanceID: 8582}
+      Script: {instanceID: 8578}
     - Class: 114
-      Script: {instanceID: 9934}
+      Script: {instanceID: 9930}
+    - Class: 114
+      Script: {instanceID: 333184}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -841,7 +844,7 @@ ScriptsOnlyBuild:
     className: Ketchup
   - hash:
       serializedVersion: 2
-      Hash: e90041022febe7f7d7f0520fb0069fb8
+      Hash: ac703eedc36e9d63fbe75ca968c809f7
     assemblyName: Assembly-CSharp.dll
     namespaceName: Entity.NPC
     className: NPC
@@ -913,7 +916,7 @@ ScriptsOnlyBuild:
     className: PhysicsRaycaster
   - hash:
       serializedVersion: 2
-      Hash: e90041022febe7f7d7f0520fb0069fb8
+      Hash: ac703eedc36e9d63fbe75ca968c809f7
     assemblyName: Assembly-CSharp.dll
     namespaceName: Entity.NPC
     className: Customer
@@ -1357,7 +1360,7 @@ ScriptsOnlyBuild:
     className: AnimatorMoveHandlerManager
   - hash:
       serializedVersion: 2
-      Hash: e90041022febe7f7d7f0520fb0069fb8
+      Hash: ac703eedc36e9d63fbe75ca968c809f7
     assemblyName: Assembly-CSharp.dll
     namespaceName: Entity.NPC
     className: Helper
@@ -1775,6 +1778,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ExitPoint
   platform: 13
   scenePathNames:
   - Assets/Scenes/MainScene.unity

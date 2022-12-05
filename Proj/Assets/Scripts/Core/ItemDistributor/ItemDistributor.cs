@@ -28,7 +28,7 @@ public class ItemDistributor : MonoBehaviour
     private Sequence _giveSequence;
     private Sequence _receiveSequence;
 
-    protected bool InProcess = false;
+    protected bool InProcess = false; // need stateMachine
     
     protected virtual void Start()
     {
@@ -127,7 +127,7 @@ public class ItemDistributor : MonoBehaviour
     {
         InProcess = false;
         //list.Add(ingredient);
-        //_eventBus.OnCollectStand?.Invoke(receiver);
+        _eventBus.OnCollectStand?.Invoke(receiver);
         
         Debug.Log("ItemReceive complete");
     }
