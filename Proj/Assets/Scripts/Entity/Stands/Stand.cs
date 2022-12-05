@@ -8,12 +8,7 @@ public class Stand : AbstractStand, IEnumTypes
 {
     [SerializeField] private IEnumTypes.ItemTypes  selectedTypeOfStand;
 
-    private readonly Dictionary<IEnumTypes.ItemTypes, Type> _dictionaryOfStandTypes = new Dictionary<IEnumTypes.ItemTypes, Type> 
-    {
-        { IEnumTypes.ItemTypes.Milk, typeof(Milk) },
-        { IEnumTypes.ItemTypes.Tomatoes, typeof(Tomatoes) },
-        { IEnumTypes.ItemTypes.Ketchup, typeof(Ketchup) },
-    };
+    
 
     private void Awake()
     {
@@ -33,7 +28,7 @@ public class Stand : AbstractStand, IEnumTypes
             }
             
             MaxCapacity = ItemPlace.Count;
-            StandType = _dictionaryOfStandTypes[selectedTypeOfStand];
+            StandType = IEnumTypes.DictionaryOfStandTypes[selectedTypeOfStand];
         }
     }
     protected override void OnCollectAction(ItemDistributor distributor)

@@ -1,11 +1,9 @@
-using System;
 using System.Collections;
 using Core.Iterator;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 using Core.StateMachine.StateList;
-using Debug = UnityEngine.Debug;
 using StateMachine = Core.StateMachine.StateMachine;
 
 namespace Entity.NPC

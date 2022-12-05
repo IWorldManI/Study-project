@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 
 public interface IEnumTypes 
 {
@@ -5,4 +7,11 @@ public interface IEnumTypes
     {
         Milk, Tomatoes, Ketchup,
     }
+    
+    public static readonly Dictionary<ItemTypes, Type> DictionaryOfStandTypes = new Dictionary<ItemTypes, Type> 
+    {
+        { ItemTypes.Milk, typeof(Milk) },
+        { ItemTypes.Tomatoes, typeof(Tomatoes) },
+        { ItemTypes.Ketchup, typeof(Ketchup) },
+    };
 }
