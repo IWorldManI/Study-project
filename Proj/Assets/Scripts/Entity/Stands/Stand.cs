@@ -1,15 +1,13 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Entity.NPC;
+using ModestTree;
 using UnityEngine;
 
 public class Stand : AbstractStand, IEnumTypes
 {
     [SerializeField] private IEnumTypes.ItemTypes  selectedTypeOfStand;
-
     
-
     private void Awake()
     {
         _eventBus = FindObjectOfType<EventBus>();
@@ -46,7 +44,6 @@ public class Stand : AbstractStand, IEnumTypes
             {
                 ReceiveDelayRoutine = ReceiveDelay(inventoryManager, null, player.GetInstanceID().ToString());
                 _receiveItemDictionary.Add(player.GetInstanceID().ToString(), StartCoroutine(ReceiveDelayRoutine));
-                //Debug.Log("Routine started player" + player.GetInstanceID() + player.name);
             }
         }
         if(other.TryGetComponent<Customer>(out var customer))
@@ -56,7 +53,6 @@ public class Stand : AbstractStand, IEnumTypes
             {
                 GiveDelayRoutine = GiveDelay(inventoryManager, customer, customer.GetInstanceID().ToString());
                 _giveItemDictionary.Add(customer.GetInstanceID().ToString(), StartCoroutine(GiveDelayRoutine));
-                Debug.Log("Routine started customer" + customer.GetInstanceID().ToString()+ customer.name);
             }
         }
         
@@ -68,7 +64,6 @@ public class Stand : AbstractStand, IEnumTypes
             {
                 ReceiveDelayRoutine = ReceiveDelay(inventoryManager, helper, helper.GetInstanceID().ToString());
                 _receiveItemDictionary.Add(helper.GetInstanceID().ToString(), StartCoroutine(ReceiveDelayRoutine));
-                //Debug.Log("Routine started helper" + helper.GetInstanceID().ToString()+ helper.name);   
             }
         }
         
@@ -82,7 +77,6 @@ public class Stand : AbstractStand, IEnumTypes
                 _receiveItemDictionary.Remove(player.GetInstanceID().ToString());
 
                 StopCoroutine(currentCoroutine);
-                //Debug.Log("Routine stopped player" + player.GetInstanceID().ToString());
             }
         }
 
@@ -93,7 +87,6 @@ public class Stand : AbstractStand, IEnumTypes
                 _giveItemDictionary.Remove(customer.GetInstanceID().ToString());
 
                 StopCoroutine(currentCoroutine);
-                Debug.Log("Routine stopped npc" + customer.GetInstanceID().ToString());
             }
         }
         
@@ -104,7 +97,6 @@ public class Stand : AbstractStand, IEnumTypes
                 _receiveItemDictionary.Remove(helper.GetInstanceID().ToString());
 
                 StopCoroutine(currentCoroutine);
-                //Debug.Log("Routine stopped helper" + helper.GetInstanceID().ToString());
             }
         }
     }
@@ -115,12 +107,20 @@ public class Stand : AbstractStand, IEnumTypes
         {
             if (_receiveItemDictionary.TryGetValue(entityName, out Coroutine currentCoroutine))
             {
-                TryReceiveItem(inventoryManager, npc, this);
-            
-                //Debug.Log("Try give item for "  + entityName);
-                isFull = ItemContains.Count >= MaxCapacity;
-                
                 yield return new WaitForSeconds(ItemDistributeDelay);
+                
+                var item = TryReceiveItem(inventoryManager, npc, this);
+                if (item != null)
+                {
+                    ReceiveItem(inventoryManager, item, ItemContains, this);
+                }
+                else
+                {
+                    _receiveItemDictionary.Remove(entityName);
+
+                    StopCoroutine(currentCoroutine);
+                }
+                isFull = ItemContains.Count >= MaxCapacity;
             }
             yield return null;
         }
@@ -130,22 +130,16 @@ public class Stand : AbstractStand, IEnumTypes
     {
         while (true)
         {
-            if (_giveItemDictionary.TryGetValue(entityName, out Coroutine currentCoroutine))
+            if (_giveItemDictionary.TryGetValue(entityName, out Coroutine currentCoroutine) && _receiveItemDictionary.IsEmpty()) //check if empty
             {
                 yield return new WaitForSeconds(ItemDistributeDelay);
                 
                 Debug.Log("Try give item for " + entityName); 
                 
-                if(!InProcess)
-                    TryGiveItem(inventoryManager, npc);
-                else
-                {
-                    Debug.Log("Stand now is receiving items, wait...");
-                }
+                TryGiveItem(inventoryManager, npc);
                 
                 isFull = ItemContains.Count >= MaxCapacity;
             }
-
             yield return null;
         }
     }

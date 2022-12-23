@@ -2,12 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using Entity.NPC;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TrashCan : ItemDistributor
 {
-    private readonly Dictionary<string, Coroutine> _giveItemDictionary = new Dictionary<string, Coroutine>(); 
+    private readonly Dictionary<string, Coroutine> _giveItemDictionary = new Dictionary<string, Coroutine>();
+
+    private Transform _animationTarget;
     
     private TomatoesPool _tomatoesPool;
     private MilkPool _milkPool;
@@ -16,6 +20,7 @@ public class TrashCan : ItemDistributor
     private void Awake()
     {
         _eventBus = FindObjectOfType<EventBus>();
+        _animationTarget = GetComponentInChildren<AnimationTarget>().GetComponent<Transform>();
     }
 
     protected override void Start()
@@ -83,7 +88,6 @@ public class TrashCan : ItemDistributor
                 _giveItemDictionary.Remove(helper.GetInstanceID().ToString());
 
                 StopCoroutine(rCoroutine);
-                //Debug.Log("Routine stopped helper" + helper.GetInstanceID().ToString());
             }
         }
     }
@@ -114,6 +118,14 @@ public class TrashCan : ItemDistributor
         
         ItemContains.RemoveAt(index);
         Debug.Log(item + " was returned to pool");
+        PlayAnimation();
+        
+    }
+
+    private void PlayAnimation()
+    {
+        _animationTarget.DORewind();
+        _animationTarget.DOPunchScale(Vector3.one * .4f, 0.4f);
     }
     
     private IEnumerator GiveDelay(InventoryManager inventoryManager, NPC npc, string entityName)
@@ -124,7 +136,6 @@ public class TrashCan : ItemDistributor
             {
                 yield return new WaitForSeconds(ItemDistributeDelay);
                 
-                Debug.Log("Try give item for " + entityName);
                 if (inventoryManager._ingredientList.Count > 0) ;
                     DropInCan(inventoryManager);
             }

@@ -21,8 +21,10 @@ android.permission.ACCESS_NETWORK_STATE was added because:
 android.hardware.touchscreen.multitouch, android.hardware.touchscreen.multitouch.distinct were enabled because:
 	UnityEngine.Input::get_touches was present in:
 		Cinemachine-FeaturesChecked.txt
+		Unity.RenderPipelines.Core.Runtime-FeaturesChecked.txt
 	UnityEngine.Input::GetTouch was present in:
 		UnityEngine.UI-FeaturesChecked.txt
 	UnityEngine.Input::get_touchCount was present in:
 		Cinemachine-FeaturesChecked.txt
+		Unity.RenderPipelines.Core.Runtime-FeaturesChecked.txt
 		UnityEngine.UI-FeaturesChecked.txt

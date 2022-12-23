@@ -2,12 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using UnityEngine;
 
 public class ProductionMachine : ItemDistributor
 {
     [SerializeField] private KetchupPool productPool; //testing, there should be a pool
-    
+    [SerializeField] private TomatoesPool containsPool;
+
+    [SerializeField] private Transform spawnPoint;
     private IEnumerator _productRoutine;
     protected override void Start()
     {
@@ -17,6 +20,7 @@ public class ProductionMachine : ItemDistributor
             ItemProduction = new List<Ingredient>();
 
             Holder = GetComponentInChildren<PlaceHolderForItems>();
+            spawnPoint = GetComponentInChildren<SpawnPointForProcessItems>().transform;
             foreach (Transform child in Holder.transform)
             {
                 ItemPlace.Add(child);
@@ -24,7 +28,8 @@ public class ProductionMachine : ItemDistributor
             MaxCapacity = ItemPlace.Count;
             StandType = typeof(Tomatoes);
 
-            productPool = GetComponent<KetchupPool>();
+            productPool = FindObjectOfType<KetchupPool>();
+            containsPool = FindObjectOfType<TomatoesPool>();
         }
     }
     
@@ -41,14 +46,7 @@ public class ProductionMachine : ItemDistributor
                     var itemForProcessing = ItemContains.LastOrDefault(x => x.GetType() == type);
                     if (itemForProcessing != null) 
                     {
-                        var index = ItemContains.IndexOf(itemForProcessing);
-                        ItemContains.RemoveAt(index);
-                        Destroy(itemForProcessing.gameObject);
-                        var item = productPool.Spawn(transform.position + new Vector3(0, ItemProduction.Count, 0));
-                        
-                        item.transform.parent = transform;
-                        ItemProduction.Add(item.GetComponent<Ingredient>());
-                        
+                        CreateProduct(itemForProcessing);
                         Debug.Log("Start again routine cuz have item to product");
                     }else
                     {
@@ -61,6 +59,24 @@ public class ProductionMachine : ItemDistributor
         }
     }
 
+    private void CreateProduct(Ingredient itemForProcessing)
+    {
+        var index = ItemContains.IndexOf(itemForProcessing);
+        ItemContains.RemoveAt(index);
+        containsPool.KillShape(itemForProcessing.GetComponent<PooledShape>());
+                        
+        var item = productPool.Spawn(transform.position + new Vector3(0, ItemProduction.Count, 0));
+                        
+        item.transform.parent = transform;
+        Vector3 targetPosition = spawnPoint.localPosition + new Vector3(0, ItemProduction.Count, 0);
+        item.transform.DOLocalJump(targetPosition, 1f, 1, 0.4f).OnComplete(() => CompleteItemCreate(item));
+    }
+
+    private void CompleteItemCreate(PooledShape item)
+    {
+        ItemProduction.Add(item.GetComponent<Ingredient>());
+    }
+    
     private IEnumerator Delay(InventoryManager inventoryManager)
     {
         yield return new WaitForSeconds(ItemDistributeDelay);
@@ -71,7 +87,7 @@ public class ProductionMachine : ItemDistributor
             ReceiveItem(inventoryManager,item, ItemContains, this);
         }
             
-        if (ItemProduction.Count > 0) 
+        if (ItemProduction.Count > 0 && inventoryManager._ingredientList.Count< inventoryManager.MaxCapacity) 
         {
             var item = ItemProduction.LastOrDefault(x => x.GetType() == typeof(Ketchup));
             GiveItem(inventoryManager, item, ItemProduction);

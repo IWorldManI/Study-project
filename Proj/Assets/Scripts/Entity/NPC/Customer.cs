@@ -1,10 +1,8 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Core.StateMachine.StateList;
 using UnityEngine;
 using UnityEngine.AI;
-using Zenject.Internal;
 using Random = UnityEngine.Random;
 using StateMachine = Core.StateMachine.StateMachine;
 
@@ -14,7 +12,10 @@ namespace Entity.NPC
     {
         private int ordersCount;
         private float customerMultiplier;
-        
+        private Vector3 oldTarget;
+        private float _delayForCheckTargetPosition = 1f;
+        public bool WaitForPay { get; set; }
+
         private List<ItemDistributor> _stands = new List<ItemDistributor>();
 
         protected override void Awake()
@@ -60,9 +61,20 @@ namespace Entity.NPC
         {
             while (true)
             {
-                yield return new WaitForSeconds(.5f);
-            
-                navMeshAgent.SetDestination(target.transform.position);
+                yield return new WaitForSeconds(_delayForCheckTargetPosition);
+
+                if (oldTarget == target.transform.position)
+                {
+                    Debug.Log("Target position not changed");
+                }
+                else
+                {
+                    Debug.Log("Target position is changed, new way created"); 
+                    
+                    var position = target.transform.position;
+                    navMeshAgent.SetDestination(position);
+                    oldTarget = position;
+                }
             }
         }
         
@@ -97,17 +109,10 @@ namespace Entity.NPC
             npc.StartCoroutine(NextState(this));
         }
         
-        private void MoveToCashier(NPC npc)
-        {
-            npc.target = _cashierStand.transform;
-            npc.StartCoroutine(NextState(this));
-        }
-
-        public void ReturnToStartPosition()
+        public void MovingToExit()
         {
             target = _startPosition.transform;
-            //Debug.Log("Looking for " + _startPosition.name + name);
-                
+
             StartCoroutine(NextState(this));
         }
 
@@ -124,7 +129,7 @@ namespace Entity.NPC
         public void UpdateObserver(ISubject subject)
         {
             this.target = _cashierStand.transform;
-            Debug.Log("Customer was reacted to the event" + name);
+            //Debug.Log("Customer was reacted to the event" + name);
         }
     }
 }

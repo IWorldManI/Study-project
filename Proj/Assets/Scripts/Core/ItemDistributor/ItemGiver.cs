@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ItemGiver : ItemDistributor, IEnumTypes
 {
-    private readonly Dictionary<string, Coroutine> _receiveItemDictionary = new Dictionary<string, Coroutine>();
+    //private readonly Dictionary<string, Coroutine> _receiveItemDictionary = new Dictionary<string, Coroutine>();
     private readonly Dictionary<string, Coroutine> _giveItemDictionary = new Dictionary<string, Coroutine>(); 
     
     private TomatoesPool _tomatoesPool;
@@ -13,8 +13,7 @@ public class ItemGiver : ItemDistributor, IEnumTypes
     private KetchupPool _ketchupPool;
     
     [SerializeField] private IEnumTypes.ItemTypes selectedTypeOfPool;
-
-    //class for test item pickup from spawner
+    
     protected override void Start()
     {
         base.Start();
@@ -40,10 +39,10 @@ public class ItemGiver : ItemDistributor, IEnumTypes
         {
             var inventoryManager = player.GetComponentInChildren<InventoryManager>();
             {
-                if (!_receiveItemDictionary.ContainsKey(player.GetInstanceID().ToString()))
+                if (!_giveItemDictionary.ContainsKey(player.GetInstanceID().ToString()))
                 {
                     GiveDelayRoutine = GiveDelay(inventoryManager, null, player.GetInstanceID().ToString());
-                    _receiveItemDictionary.Add(player.GetInstanceID().ToString(), StartCoroutine(GiveDelayRoutine));
+                    _giveItemDictionary.Add(player.GetInstanceID().ToString(), StartCoroutine(GiveDelayRoutine));
                     //Debug.Log("Routine started npc" + player.GetInstanceID().ToString() + player. name);
                 }
             }
@@ -51,10 +50,10 @@ public class ItemGiver : ItemDistributor, IEnumTypes
         if (other.TryGetComponent<Helper>(out var helper))
         {
             var inventoryManager = helper.GetComponentInChildren<InventoryManager>();
-            if (!_receiveItemDictionary.ContainsKey(helper.GetInstanceID().ToString()))
+            if (!_giveItemDictionary.ContainsKey(helper.GetInstanceID().ToString()))
             {
                 GiveDelayRoutine = GiveDelay(inventoryManager, helper, helper.GetInstanceID().ToString());
-                _receiveItemDictionary.Add(helper.GetInstanceID().ToString(), StartCoroutine(GiveDelayRoutine));
+                _giveItemDictionary.Add(helper.GetInstanceID().ToString(), StartCoroutine(GiveDelayRoutine));
                 //Debug.Log("Routine started npc" + helper.GetInstanceID().ToString()+ helper.name);
             }
         }
@@ -63,9 +62,9 @@ public class ItemGiver : ItemDistributor, IEnumTypes
     {
         if(other.TryGetComponent<CharacterMoveAndRotate>(out var player))
         {
-            if (_receiveItemDictionary.TryGetValue(player.GetInstanceID().ToString(), out Coroutine rCoroutine))
+            if (_giveItemDictionary.TryGetValue(player.GetInstanceID().ToString(), out Coroutine rCoroutine))
             {
-                _receiveItemDictionary.Remove(player.GetInstanceID().ToString());
+                _giveItemDictionary.Remove(player.GetInstanceID().ToString());
 
                 StopCoroutine(rCoroutine);
                 //Debug.Log("Routine stopped helper" + player.GetInstanceID().ToString() + player.name);
@@ -74,9 +73,9 @@ public class ItemGiver : ItemDistributor, IEnumTypes
         
         if (other.TryGetComponent<Helper>(out var helper))
         {
-            if (_receiveItemDictionary.TryGetValue(helper.GetInstanceID().ToString(), out Coroutine rCoroutine))
+            if (_giveItemDictionary.TryGetValue(helper.GetInstanceID().ToString(), out Coroutine rCoroutine))
             {
-                _receiveItemDictionary.Remove(helper.GetInstanceID().ToString());
+                _giveItemDictionary.Remove(helper.GetInstanceID().ToString());
 
                 StopCoroutine(rCoroutine);
                 //Debug.Log("Routine stopped helper" + helper.GetInstanceID().ToString()+ helper.name);
@@ -91,10 +90,10 @@ public class ItemGiver : ItemDistributor, IEnumTypes
         {
             yield return new WaitForSeconds(ItemDistributeDelay);
             
-            if (!_receiveItemDictionary.ContainsKey(entityName))
+            if (!_giveItemDictionary.ContainsKey(entityName))
             {
                 GiveDelayRoutine = GiveDelay(inventoryManager, npc, entityName);
-                _receiveItemDictionary.Add(entityName, StartCoroutine(GiveDelayRoutine));
+                _giveItemDictionary.Add(entityName, StartCoroutine(GiveDelayRoutine));
             }
         
             TryGiveItem(inventoryManager, npc);

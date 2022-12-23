@@ -3,7 +3,7 @@ using Core.StateMachine;
 using Core.StateMachine.StateList;
 using UnityEngine;
 
-public class CharacterMoveAndRotate : MonoBehaviour
+public class CharacterMoveAndRotate : EntityBase
 {
     private CharacterController controller;
     private Vector3 playerVelocity;

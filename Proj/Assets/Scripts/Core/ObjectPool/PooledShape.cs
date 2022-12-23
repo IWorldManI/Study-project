@@ -14,6 +14,7 @@ public class PooledShape : MonoBehaviour
         _killAction = killAction;
     }
 
+    /*
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.CompareTag("Ground"))
@@ -21,4 +22,5 @@ public class PooledShape : MonoBehaviour
             _killAction(this);
         }
     }
+    */
 }

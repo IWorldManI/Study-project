@@ -8,7 +8,7 @@ using StateMachine = Core.StateMachine.StateMachine;
 
 namespace Entity.NPC
 {
-    public class NPC : MonoBehaviour
+    public class NPC : EntityBase
     {
         [SerializeField] internal NavMeshAgent navMeshAgent;
         [SerializeField] public Animator animator;

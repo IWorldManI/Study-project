@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Core.StateMachine;
 using Core.StateMachine.StateList;
@@ -60,8 +61,7 @@ namespace Entity.NPC
         private void ReturnToStartPosition(NPC npc)
         {
             npc.target = _startPosition.transform;
-            //Debug.Log("Looking for " + _startPosition.name + name);
-                
+
             npc.StartCoroutine(NextState(this));
         }
 
@@ -74,7 +74,6 @@ namespace Entity.NPC
                 if (itemType == stand.StandType && !stand.isFull)
                 {
                     npc.target = find.transform;
-                    //Debug.Log("Moving to " + find.name);
                 }
                 else
                 {
@@ -82,12 +81,9 @@ namespace Entity.NPC
                     {
                         npc.target = trashCan.transform;
                     }
-                    ///Debug.Log("Cant find");
                 }
             }
             npc.StartCoroutine(NextState(this));
-                
-            //Debug.Log("Helper have items" + name);
         }
     }
 }

@@ -1,9 +1,11 @@
 
+using Entity.NPC;
+
 public interface ISubject
 {
-    void Attach(IObserver observer);
+    void Attach(Customer observer);
     
-    void Detach(IObserver observer);
+    void Detach(Customer observer);
 
     void Notify();
 }

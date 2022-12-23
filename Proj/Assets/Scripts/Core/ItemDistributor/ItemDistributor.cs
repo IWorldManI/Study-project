@@ -19,8 +19,8 @@ public class ItemDistributor : MonoBehaviour
 
     protected IEnumerator ReceiveDelayRoutine;
     protected IEnumerator GiveDelayRoutine;
-    
-    private float _itemDistributeDuration = 0.3f;
+
+    protected float _itemDistributeDuration = 0.3f;
     protected float ItemDistributeDelay;
 
     internal EventBus _eventBus;
@@ -28,7 +28,7 @@ public class ItemDistributor : MonoBehaviour
     private Sequence _giveSequence;
     private Sequence _receiveSequence;
 
-    protected bool InProcess = false; // need stateMachine
+    private bool InProcess = false; // need stateMachine?
     
     protected virtual void Start()
     {
@@ -39,13 +39,16 @@ public class ItemDistributor : MonoBehaviour
         _eventBus = FindObjectOfType<EventBus>();
     }
     
-    protected void TryReceiveItem(InventoryManager inventoryManager, NPC npc, ItemDistributor distributor)
+    protected Ingredient TryReceiveItem(InventoryManager inventoryManager, NPC npc, ItemDistributor distributor)
     {
         if (ItemContains.Count < MaxCapacity) 
         {
             var item = inventoryManager.GetComponentInChildren<InventoryManager>().ItemGiveRequest(StandType);
-            ReceiveItem(inventoryManager, item, ItemContains, distributor);
+            return item;
+            //ReceiveItem(inventoryManager, item, ItemContains, distributor);
         }
+        
+        return null;
     }
     protected void TryGiveItem(InventoryManager inventoryManager, NPC npc)
     {

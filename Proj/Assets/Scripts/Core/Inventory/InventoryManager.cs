@@ -5,7 +5,7 @@ using System.Linq;
 
 public class InventoryManager : MonoBehaviour
 {
-    private readonly Dictionary<Type, List<Ingredient>> _ingredientDictionary = new Dictionary<Type, List<Ingredient>>();
+    private Dictionary<Type, List<Ingredient>> _ingredientDictionary = new Dictionary<Type, List<Ingredient>>();
     public List<Ingredient> _ingredientList = new List<Ingredient>();
 
     public Type LookingItem;
@@ -13,6 +13,9 @@ public class InventoryManager : MonoBehaviour
 
     private void Awake()
     {
+        _ingredientDictionary = new Dictionary<Type, List<Ingredient>>();  
+        _ingredientList = new List<Ingredient>();
+        
         if (_ingredientList.Count >= 0)
         {
             SearchAllAndAddToDictionary();

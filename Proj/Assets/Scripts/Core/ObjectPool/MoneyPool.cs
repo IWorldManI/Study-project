@@ -23,19 +23,17 @@ public class MoneyPool : PoolerBase<PooledShape>
         }
     }
 
-    public void Spawn(Vector3 spawnPosition, int count)
+    public PooledShape Spawn(Vector3 spawnPosition)
     {
-        for (int i = 0; i < count; i++)
-        {
-            var shape = Get();
-            shape.transform.parent = gameObject.transform;
-            shape.transform.position = spawnPosition;
-            shape.Init(KillShape);   
-        }
+        var shape = Get();
+        shape.transform.position = spawnPosition;
+        shape.Init(KillShape); 
+        return shape;
     }
 
-    private void KillShape(PooledShape shape)
+    public void KillShape(PooledShape shape)
     {
+        shape.transform.parent = gameObject.transform;
         Release(shape);
     }
 }
