@@ -119,7 +119,6 @@ public class TrashCan : ItemDistributor
         ItemContains.RemoveAt(index);
         Debug.Log(item + " was returned to pool");
         PlayAnimation();
-        
     }
 
     private void PlayAnimation()

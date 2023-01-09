@@ -21,13 +21,11 @@ public class InventoryManager : MonoBehaviour
             SearchAllAndAddToDictionary();
         }
     }
-   
-    private void Update()
+
+    private void OnEnable()
     {
-        if (Input.GetMouseButtonUp(0))
-        {
-            
-        }
+        _ingredientDictionary.Clear();
+        //Debug.Log(_ingredientDictionary.Count);
     }
 
     public Ingredient ItemGiveRequest(Type type)

@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Core.StateMachine.StateList;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
@@ -8,13 +10,14 @@ using StateMachine = Core.StateMachine.StateMachine;
 
 namespace Entity.NPC
 {
-    public class Customer : NPC, IObserver
+    public class Customer : NPC, IObserver, IEnumTypeToVisual
     {
         private int ordersCount;
         private float customerMultiplier;
         private Vector3 oldTarget;
         private float _delayForCheckTargetPosition = 1f;
         public bool WaitForPay { get; set; }
+        public UI2World UI2World;
 
         private List<ItemDistributor> _stands = new List<ItemDistributor>();
 
@@ -24,13 +27,13 @@ namespace Entity.NPC
             _customerOrdersManager = new CustomerOrdersManager();
             
             standObjects = FindObjectsOfType<Stand>();
+            inventoryManager = GetComponentInChildren<InventoryManager>();
             InitStands(standObjects);
         }
 
         protected override void Start()
         {
             //_stands = new List<ItemDistributor>();
-            inventoryManager = GetComponentInChildren<InventoryManager>();
 
             //testing values field
             ordersCount = inventoryManager.MaxCapacity;
@@ -104,8 +107,11 @@ namespace Entity.NPC
             Debug.Log("Looking for " + _stands[itemId].name + " " + name);
             
             npc.inventoryManager.LookingItem = _customerOrdersManager.GetOrder(_stands[itemId]);
+            var image = _customerOrdersManager.GetImage(_stands[itemId]);
+            UI2World.UpdateOrderImage(image);
+          
             Debug.Log(npc.inventoryManager.LookingItem + " + " + name);
-            //Debug.Log(_customerOrdersManager.GetOrder(_stands[itemId]));
+            
             npc.StartCoroutine(NextState(this));
         }
         
@@ -130,6 +136,13 @@ namespace Entity.NPC
         {
             this.target = _cashierStand.transform;
             //Debug.Log("Customer was reacted to the event" + name);
+        }
+
+        private void OnEnable()
+        {
+            ordersCount = inventoryManager.MaxCapacity;
+            WaitForPay = false;
+            StartCoroutine(InitDelay());
         }
     }
 }
